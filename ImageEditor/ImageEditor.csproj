@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{56F21CD8-76AD-47E3-B319-0F9CA3047942}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>ImageEditor</RootNamespace>
+    <AssemblyName>ImageEditor</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>AppIcon-96.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ContrastForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ContrastForm.Designer.cs">
+      <DependentUpon>ContrastForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EffectFormBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BrightnessForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BrightnessForm.Designer.cs">
+      <DependentUpon>BrightnessForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helper\MathHelper.cs" />
+    <Compile Include="ImageEffects\ContrastEffect.cs" />
+    <Compile Include="TintForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TintForm.Designer.cs">
+      <DependentUpon>TintForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImageEffects\TintEffect.cs" />
+    <Compile Include="SepiaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SepiaForm.Designer.cs">
+      <DependentUpon>SepiaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GrayscaleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GrayscaleForm.Designer.cs">
+      <DependentUpon>GrayscaleForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HistoryImage.cs" />
+    <Compile Include="ImageEffects\CircleEffect.cs" />
+    <Compile Include="ImageEffects\BrightnessEffect.cs" />
+    <Compile Include="ImageEffects\InverseEffect.cs" />
+    <Compile Include="ImageEffects\SepiaEffect.cs" />
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImageEffects\GrayscaleEffect.cs" />
+    <Compile Include="HistoryManager.cs" />
+    <Compile Include="ImageEffects\IImageEffect.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ContrastForm.resx">
+      <DependentUpon>ContrastForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BrightnessForm.resx">
+      <DependentUpon>BrightnessForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TintForm.resx">
+      <DependentUpon>TintForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SepiaForm.resx">
+      <DependentUpon>SepiaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GrayscaleForm.resx">
+      <DependentUpon>GrayscaleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Tools\place_these_executables_in_same_folder_as_Cudafy.NET.dll_" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DragDropIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gimpimagegim_gimp_image_6217.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="AppIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Readme\CUDA.NET.Readme.txt" />
+    <Content Include="Readme\CUDAfy-License.txt" />
+    <Content Include="Readme\example_source_code.cs.txt" />
+    <Content Include="Readme\ILSpy-license.txt" />
+    <Content Include="Readme\README.txt" />
+    <Content Include="Tools\cudafycl.exe" />
+    <Content Include="Tools\CudafyViewer.exe" />
+    <None Include="Appicon-32.ico" />
+    <Content Include="AppIcon-96.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
