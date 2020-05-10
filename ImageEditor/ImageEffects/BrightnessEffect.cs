@@ -64,3 +64,6 @@ namespace ImageEditor.ImageEffects
         }
     }
 }
+
+
+// TODO: Call in button Apply OnEffectApplied()

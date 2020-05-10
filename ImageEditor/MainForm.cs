@@ -20,6 +20,11 @@ namespace ImageEditor
         private IconButton _currentButton;
         private Panel _leftBorderBtn;
         private EffectFormBase _currEffectForm;
+        private BrightnessForm _brightnessForm;
+        private ContrastForm _contrashForm;
+        private SepiaForm _sepiaForm;
+        private GrayscaleForm _grayscaleForm;
+        private TintForm _tintForm;
 
         /// <summary>
         /// Constructor
@@ -50,6 +55,23 @@ namespace ImageEditor
             Text = string.Empty;
             ControlBox = false;
             DoubleBuffered = true;
+
+            _brightnessForm = new BrightnessForm();
+            _contrashForm = new ContrastForm();
+            _sepiaForm = new SepiaForm();
+            _grayscaleForm = new GrayscaleForm();
+            _tintForm = new TintForm();
+
+            _brightnessForm.EffectApplied += OnEffectApplied;
+            _brightnessForm.EffectCanceled += OnEffectCanceled;
+            _contrashForm.EffectApplied += OnEffectApplied;
+            _contrashForm.EffectCanceled += OnEffectCanceled;
+            _sepiaForm.EffectApplied += OnEffectApplied;
+            _sepiaForm.EffectCanceled += OnEffectCanceled;
+            _grayscaleForm.EffectApplied += OnEffectApplied;
+            _grayscaleForm.EffectCanceled += OnEffectCanceled;
+            _tintForm.EffectApplied += OnEffectApplied;
+            _tintForm.EffectCanceled += OnEffectCanceled;
 
             MaximizedBounds = Screen.FromHandle(Handle).WorkingArea;
             _historyManager = new HistoryManager();
@@ -82,6 +104,30 @@ namespace ImageEditor
                 _leftBorderBtn.BringToFront();
             }
         }
+
+        /// <summary>
+        /// Callback for when an effect is canceled, resets the form
+        /// </summary>
+        public void OnEffectCanceled( object src, EventArgs e )
+        {
+            Reset();
+        }
+
+        /// <summary>
+        /// Callback for when an effect is applied, resets the form
+        /// </summary>
+        public void OnEffectApplied( object src, EventArgs e )
+        {
+            if(_currEffectForm != null)
+            {
+                _historyManager.Append( _currEffectForm.Img );
+                pictureBox.Image = _currEffectForm.Img.Image;
+                UpdateGui();
+                DisableHighlight();
+                Reset();
+            }
+        }
+
 
         /// <summary>
         /// Disables hightlight for a button by reverting back to default settings
@@ -189,11 +235,11 @@ namespace ImageEditor
         /// </summary>
         private void icnBtnGrayscale_Click( object sender, System.EventArgs e )
         {
-            if( _historyManager.GetCurrent() == null || _currEffectForm != null )
+            if( _historyManager.GetCurrent() == null )
                 return;
 
             HightlightButton( sender, ButtonColors.color1 );
-            ShowEffectForm( new GrayscaleForm( _historyManager.GetCurrent(), _historyManager.GetHistory(), _historyManager.CurrIndex ) );
+            ShowEffectForm( _grayscaleForm );
         }
 
         /// <summary>
@@ -201,11 +247,11 @@ namespace ImageEditor
         /// </summary>
         private void icnBtnSepia_Click( object sender, System.EventArgs e )
         {
-            if( _historyManager.GetCurrent() == null || _currEffectForm != null )
+            if( _historyManager.GetCurrent() == null )
                 return;
 
             HightlightButton( sender, ButtonColors.color6 );
-            ShowEffectForm( new SepiaForm( _historyManager.GetCurrent(), _historyManager.GetHistory(), _historyManager.CurrIndex ) );
+            ShowEffectForm( _sepiaForm );
         }
 
         /// <summary>
@@ -237,11 +283,11 @@ namespace ImageEditor
         /// </summary>
         private void icnBtnTint_Click( object sender, System.EventArgs e )
         {
-            if( _historyManager.GetCurrent() == null || _currEffectForm != null )
+            if( _historyManager.GetCurrent() == null )
                 return;
 
             HightlightButton( sender, ButtonColors.color3 );
-            ShowEffectForm( new TintForm( _historyManager.GetCurrent(), _historyManager.GetHistory(), _historyManager.CurrIndex ) );
+            ShowEffectForm( _tintForm );
         }
 
         /// <summary>
@@ -249,10 +295,10 @@ namespace ImageEditor
         /// </summary>
         private void icnBtnBrightness_Click( object sender, System.EventArgs e )
         {
-            if( _historyManager.GetCurrent() == null || _currEffectForm != null )
+            if( _historyManager.GetCurrent() == null )
                 return;
 
-            ShowEffectForm( new BrightnessForm( _historyManager.GetCurrent(), _historyManager.GetHistory(), _historyManager.CurrIndex ) );
+            ShowEffectForm( _brightnessForm );
             HightlightButton( sender, ButtonColors.color2 );
         }
 
@@ -261,11 +307,11 @@ namespace ImageEditor
         /// </summary>
         private void icnBtnContrast_Click( object sender, System.EventArgs e )
         {
-            if( _historyManager.GetCurrent() == null || _currEffectForm != null )
+            if( _historyManager.GetCurrent() == null )
                 return;
 
             HightlightButton( sender, ButtonColors.color7 );
-            ShowEffectForm( new ContrastForm( _historyManager.GetCurrent(), _historyManager.GetHistory(), _historyManager.CurrIndex ) );
+            ShowEffectForm( _contrashForm );
         }
 
         /// <summary>
@@ -284,15 +330,7 @@ namespace ImageEditor
             panelDesktop.Tag = _currEffectForm;
             _currEffectForm.BringToFront();
 
-            if( form.ShowDialog() == DialogResult.OK )
-            {
-                _historyManager.Append( form.Img );
-                pictureBox.Image = form.Img.Image;
-                UpdateGui();
-            }
-
-            _currEffectForm = null;
-            DisableHighlight();
+            _currEffectForm.ShowForm( _historyManager.GetCurrent(), _historyManager.GetHistory(), _historyManager.CurrIndex );
         }
 
         /// <summary>
@@ -421,6 +459,12 @@ namespace ImageEditor
         private void Reset()
         {
             DisableHighlight();
+
+            if(_currEffectForm != null)
+            {
+                _currEffectForm.Hide();
+                _currEffectForm = null;
+            }
         }
 
         /// <summary>

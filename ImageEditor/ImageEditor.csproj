@@ -112,6 +112,9 @@
     <EmbeddedResource Include="BrightnessForm.resx">
       <DependentUpon>BrightnessForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="EffectFormBase.resx">
+      <DependentUpon>EffectFormBase.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TintForm.resx">
       <DependentUpon>TintForm.cs</DependentUpon>
     </EmbeddedResource>

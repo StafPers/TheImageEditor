@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.Icon = ImageEditor.Properties.Resources.AppIcon;
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.barAmount = new System.Windows.Forms.TrackBar();
             this.btnApply = new System.Windows.Forms.Button();
@@ -91,12 +90,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(323, 332);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(33)))), ((int)(((byte)(74)))));
+            this.ClientSize = new System.Drawing.Size(682, 395);
             this.Controls.Add(this.lblAmount);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnApply);
             this.Controls.Add(this.barAmount);
             this.Controls.Add(this.pictureBox);
+            this.Icon = global::ImageEditor.Properties.Resources.AppIcon;
             this.Name = "GrayscaleForm";
             this.Text = "Grayscale";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();

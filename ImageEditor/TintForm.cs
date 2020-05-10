@@ -12,13 +12,9 @@ namespace ImageEditor
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="image">The image which the effect may be applied to</param>
-        /// <param name="history">The history of changes</param>
-        /// <param name="currentIndex">The index of the image within the history</param>
-        public TintForm(HistoryImage image, List<HistoryImage> history, int currentIndex )
+        public TintForm()
         {
             InitializeComponent();
-            InitializeImage( image, history, currentIndex );
         }
 
         /// <summary>
@@ -27,7 +23,7 @@ namespace ImageEditor
         /// <param name="image">The image which the effect may be applied to</param>
         /// <param name="history">The history of changes</param>
         /// <param name="currentIndex">The index of the image within the history</param>
-        private void InitializeImage( HistoryImage image, List<HistoryImage> history, int currentIndex )
+        protected override void InitializeImage( HistoryImage image, List<HistoryImage> history, int currentIndex )
         {
             if( image.Image == null )
                 return;
