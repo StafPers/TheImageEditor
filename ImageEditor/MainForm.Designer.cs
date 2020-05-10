@@ -83,7 +83,7 @@
             this.pictureBox.Location = new System.Drawing.Point(0, 0);
             this.pictureBox.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(698, 434);
+            this.pictureBox.Size = new System.Drawing.Size(698, 442);
             this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox.TabIndex = 0;
             this.pictureBox.TabStop = false;
@@ -494,7 +494,7 @@
             this.panelDesktop.Location = new System.Drawing.Point(0, 0);
             this.panelDesktop.Margin = new System.Windows.Forms.Padding(0);
             this.panelDesktop.Name = "panelDesktop";
-            this.panelDesktop.Size = new System.Drawing.Size(698, 434);
+            this.panelDesktop.Size = new System.Drawing.Size(698, 442);
             this.panelDesktop.TabIndex = 12;
             // 
             // panelRightPad
@@ -503,7 +503,7 @@
             this.panelRightPad.Dock = System.Windows.Forms.DockStyle.Right;
             this.panelRightPad.Location = new System.Drawing.Point(698, 0);
             this.panelRightPad.Name = "panelRightPad";
-            this.panelRightPad.Size = new System.Drawing.Size(30, 434);
+            this.panelRightPad.Size = new System.Drawing.Size(30, 442);
             this.panelRightPad.TabIndex = 11;
             // 
             // panelBtns
@@ -512,9 +512,9 @@
             this.panelBtns.Controls.Add(this.icnBtnSave);
             this.panelBtns.Controls.Add(this.icnBtnLoad);
             this.panelBtns.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelBtns.Location = new System.Drawing.Point(0, 434);
+            this.panelBtns.Location = new System.Drawing.Point(0, 442);
             this.panelBtns.Name = "panelBtns";
-            this.panelBtns.Size = new System.Drawing.Size(728, 68);
+            this.panelBtns.Size = new System.Drawing.Size(728, 60);
             this.panelBtns.TabIndex = 10;
             // 
             // icnBtnSave
@@ -529,10 +529,11 @@
             this.icnBtnSave.IconColor = System.Drawing.Color.Gainsboro;
             this.icnBtnSave.IconSize = 32;
             this.icnBtnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.icnBtnSave.Location = new System.Drawing.Point(158, 16);
+            this.icnBtnSave.Location = new System.Drawing.Point(146, 0);
+            this.icnBtnSave.Margin = new System.Windows.Forms.Padding(0);
             this.icnBtnSave.Name = "icnBtnSave";
             this.icnBtnSave.Rotation = 0D;
-            this.icnBtnSave.Size = new System.Drawing.Size(146, 38);
+            this.icnBtnSave.Size = new System.Drawing.Size(146, 60);
             this.icnBtnSave.TabIndex = 11;
             this.icnBtnSave.Text = "Save";
             this.icnBtnSave.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -552,10 +553,11 @@
             this.icnBtnLoad.IconColor = System.Drawing.Color.Gainsboro;
             this.icnBtnLoad.IconSize = 32;
             this.icnBtnLoad.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.icnBtnLoad.Location = new System.Drawing.Point(6, 16);
+            this.icnBtnLoad.Location = new System.Drawing.Point(0, 0);
+            this.icnBtnLoad.Margin = new System.Windows.Forms.Padding(0);
             this.icnBtnLoad.Name = "icnBtnLoad";
             this.icnBtnLoad.Rotation = 0D;
-            this.icnBtnLoad.Size = new System.Drawing.Size(146, 38);
+            this.icnBtnLoad.Size = new System.Drawing.Size(146, 60);
             this.icnBtnLoad.TabIndex = 10;
             this.icnBtnLoad.Text = "Load";
             this.icnBtnLoad.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
