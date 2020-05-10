@@ -1,7 +1,4 @@
-﻿using ImageEditor.ImageEffects;
-using System.Collections.Generic;
-using System.Drawing;
-using System;
+﻿using System.Collections.Generic;
 
 namespace ImageEditor
 {
@@ -9,6 +6,7 @@ namespace ImageEditor
     {
         private List<HistoryImage> _imageHistory;
         public int CurrIndex { get; private set; } = -1;
+        private const int MaxHisotryRecords = 50;
 
         public HistoryManager()
         {
@@ -77,6 +75,18 @@ namespace ImageEditor
 
             _imageHistory.Add( img );
             ++CurrIndex;
+
+            LimitHistory();
+        }
+
+        private void LimitHistory()
+        {
+            int diff = _imageHistory.Count - MaxHisotryRecords;
+            if( diff > 0 )
+            {
+                CurrIndex -= diff;
+                _imageHistory.RemoveRange( 0, diff );
+            }
         }
     }
 }
