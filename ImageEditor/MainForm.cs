@@ -88,6 +88,7 @@ namespace ImageEditor
                 _currentButton.IconColor = Color.Gainsboro;
                 _currentButton.TextImageRelation = TextImageRelation.ImageBeforeText;
                 _currentButton.ImageAlign = ContentAlignment.MiddleLeft;
+                _leftBorderBtn.Visible = false;
             }
         }
 
@@ -104,7 +105,7 @@ namespace ImageEditor
                 icnBtnTint.Enabled =
                 icnBtnBrightness.Enabled =
                 icnBtnContrast.Enabled =
-                btnSave.Enabled =
+                icnBtnSave.Enabled =
                 active;
         }
 
@@ -269,6 +270,8 @@ namespace ImageEditor
                 pictureBox.Image = form.Img.Image;
                 UpdateGui();
             }
+
+            DisableHighlight();
         }
 
         /// <summary>
@@ -288,51 +291,9 @@ namespace ImageEditor
         }
 
         /// <summary>
-        /// Opens an image using filedialog
-        /// </summary>
-        private void loadToolStripMenuItem_Click( object sender, System.EventArgs e )
-        {
-            OpenImg();
-        }
-
-        /// <summary>
         /// Saves the image
         /// </summary>
-        private void saveToolStripMenuItem_Click( object sender, System.EventArgs e )
-        {
-            SaveImg();
-        }
-
-        /// <summary>
-        /// Revert most recent change
-        /// </summary>
-        private void revertToolStripMenuItem_Click( object sender, System.EventArgs e )
-        {
-            pictureBox.Image = _historyManager.Revert().Image;
-            UpdateGui();
-        }
-
-        /// <summary>
-        /// Redo most recent reverted change
-        /// </summary>
-        private void redoToolStripMenuItem_Click( object sender, System.EventArgs e )
-        {
-            pictureBox.Image = _historyManager.Redo().Image;
-            UpdateGui();
-        }
-
-        /// <summary>
-        /// Exits the app
-        /// </summary>
-        private void exitToolStripMenuItem_Click( object sender, System.EventArgs e )
-        {
-            Application.Exit();
-        }
-
-        /// <summary>
-        /// Saves the image
-        /// </summary>
-        private void btnSave_Click( object sender, System.EventArgs e )
+        private void icnBtnSave_Click( object sender, System.EventArgs e )
         {
             SaveImg();
         }
@@ -340,7 +301,7 @@ namespace ImageEditor
         /// <summary>
         /// Loads image using filedialog
         /// </summary>
-        private void btnLoad_Click( object sender, System.EventArgs e )
+        private void icnBtnLoad_Click( object sender, System.EventArgs e )
         {
             OpenImg();
         }
@@ -408,14 +369,6 @@ namespace ImageEditor
         }
 
         /// <summary>
-        /// Saves image using filedialog
-        /// </summary>
-        private void saveAsToolStripMenuItem_Click( object sender, System.EventArgs e )
-        {
-            SaveImgAs();
-        }
-
-        /// <summary>
         /// Promps user to save
         /// </summary>
         private void PromptForSave()
@@ -434,6 +387,74 @@ namespace ImageEditor
         {
             if(!_historyManager.GetIsSaved())
                 PromptForSave();
+        }
+
+        private void pictureBoxLogo_Click( object sender, System.EventArgs e )
+        {
+            Reset();
+        }
+
+        private void Reset()
+        {
+            DisableHighlight();
+        }
+
+        /// <summary>
+        /// Opens an image using filedialog
+        /// </summary>
+        private void loadMenuItem_Click( object sender, System.EventArgs e )
+        {
+            OpenImg();
+        }
+
+        /// <summary>
+        /// Saves the image
+        /// </summary>
+        private void saveMenuItem_Click( object sender, System.EventArgs e )
+        {
+            SaveImg();
+        }
+
+        /// <summary>
+        /// Revert most recent change
+        /// </summary>
+        private void revertMenuItem_Click( object sender, System.EventArgs e )
+        {
+            HistoryImage img = _historyManager.Revert();
+            if(img != null)
+            {
+                pictureBox.Image = img.Image;
+                UpdateGui();
+            }
+        }
+
+        /// <summary>
+        /// Redo most recent reverted change
+        /// </summary>
+        private void redoMenuItem_Click( object sender, System.EventArgs e )
+        {
+            HistoryImage img = _historyManager.Revert();
+            if( img != null )
+            {
+                pictureBox.Image = img.Image;
+                UpdateGui();
+            }
+        }
+
+        /// <summary>
+        /// Exits the app
+        /// </summary>
+        private void exitMenuItem_Click( object sender, System.EventArgs e )
+        {
+            Application.Exit();
+        }
+
+        /// <summary>
+        /// Saves image using filedialog
+        /// </summary>
+        private void saveAsMenuItem_Click( object sender, System.EventArgs e )
+        {
+            SaveImgAs();
         }
     }
 }
