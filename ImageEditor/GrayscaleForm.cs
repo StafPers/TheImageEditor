@@ -44,7 +44,6 @@ namespace ImageEditor
             }
 
             barAmount.Value = Math.Min((int)( ( Img.Effect as GrayscaleEffect ).Amount * 100.0f), 100);
-            lblAmount.Text = ( Img.Effect as GrayscaleEffect ).Amount.ToString();
             Img.Image = Img.Effect.ApplyEffect( _originalImg.Image );
             pictureBox.Image = Img.Image;
         }
@@ -57,11 +56,19 @@ namespace ImageEditor
         {
             float amount = barAmount.Value / 100.0f;
 
-            lblAmount.Text = amount.ToString();
-
             (Img.Effect as GrayscaleEffect).Amount = amount;
             Img.Image = Img.Effect.ApplyEffect( _originalImg.Image );
             pictureBox.Image = Img.Image;
+        }
+
+        private void icnBtnApply_Click( object sender, EventArgs e )
+        {
+            OnEffectApplied();
+        }
+
+        private void icnBtnCancel_Click( object sender, EventArgs e )
+        {
+            onEffectCanceled();
         }
     }
 }
