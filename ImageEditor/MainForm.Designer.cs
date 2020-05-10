@@ -34,8 +34,6 @@
             this.icnBtnContrast = new FontAwesome.Sharp.IconButton();
             this.icnBtnBrightness = new FontAwesome.Sharp.IconButton();
             this.icnBtnTint = new FontAwesome.Sharp.IconButton();
-            this.icnBtnCircle = new FontAwesome.Sharp.IconButton();
-            this.icnBtnInverse = new FontAwesome.Sharp.IconButton();
             this.icnBtnSepia = new FontAwesome.Sharp.IconButton();
             this.icnBtnGrayscale = new FontAwesome.Sharp.IconButton();
             this.panelLogo = new System.Windows.Forms.Panel();
@@ -62,6 +60,8 @@
             this.icnBtnLoad = new FontAwesome.Sharp.IconButton();
             this.panelShadow = new System.Windows.Forms.Panel();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.icnBtnCircle = new FontAwesome.Sharp.IconButton();
+            this.icnBtnInverse = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.panelEffects.SuspendLayout();
             this.panelLogo.SuspendLayout();
@@ -94,11 +94,11 @@
             // 
             this.panelEffects.AutoScroll = true;
             this.panelEffects.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(30)))), ((int)(((byte)(68)))));
+            this.panelEffects.Controls.Add(this.icnBtnCircle);
+            this.panelEffects.Controls.Add(this.icnBtnInverse);
             this.panelEffects.Controls.Add(this.icnBtnContrast);
             this.panelEffects.Controls.Add(this.icnBtnBrightness);
             this.panelEffects.Controls.Add(this.icnBtnTint);
-            this.panelEffects.Controls.Add(this.icnBtnCircle);
-            this.panelEffects.Controls.Add(this.icnBtnInverse);
             this.panelEffects.Controls.Add(this.icnBtnSepia);
             this.panelEffects.Controls.Add(this.icnBtnGrayscale);
             this.panelEffects.Controls.Add(this.panelLogo);
@@ -120,7 +120,7 @@
             this.icnBtnContrast.IconColor = System.Drawing.Color.Gainsboro;
             this.icnBtnContrast.IconSize = 32;
             this.icnBtnContrast.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.icnBtnContrast.Location = new System.Drawing.Point(0, 460);
+            this.icnBtnContrast.Location = new System.Drawing.Point(0, 340);
             this.icnBtnContrast.Name = "icnBtnContrast";
             this.icnBtnContrast.Padding = new System.Windows.Forms.Padding(15, 0, 20, 0);
             this.icnBtnContrast.Rotation = 0D;
@@ -144,7 +144,7 @@
             this.icnBtnBrightness.IconColor = System.Drawing.Color.Gainsboro;
             this.icnBtnBrightness.IconSize = 32;
             this.icnBtnBrightness.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.icnBtnBrightness.Location = new System.Drawing.Point(0, 400);
+            this.icnBtnBrightness.Location = new System.Drawing.Point(0, 280);
             this.icnBtnBrightness.Name = "icnBtnBrightness";
             this.icnBtnBrightness.Padding = new System.Windows.Forms.Padding(15, 0, 20, 0);
             this.icnBtnBrightness.Rotation = 0D;
@@ -168,7 +168,7 @@
             this.icnBtnTint.IconColor = System.Drawing.Color.Gainsboro;
             this.icnBtnTint.IconSize = 32;
             this.icnBtnTint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.icnBtnTint.Location = new System.Drawing.Point(0, 340);
+            this.icnBtnTint.Location = new System.Drawing.Point(0, 220);
             this.icnBtnTint.Name = "icnBtnTint";
             this.icnBtnTint.Padding = new System.Windows.Forms.Padding(15, 0, 20, 0);
             this.icnBtnTint.Rotation = 0D;
@@ -179,54 +179,6 @@
             this.icnBtnTint.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.icnBtnTint.UseVisualStyleBackColor = true;
             this.icnBtnTint.Click += new System.EventHandler(this.icnBtnTint_Click);
-            // 
-            // icnBtnCircle
-            // 
-            this.icnBtnCircle.Dock = System.Windows.Forms.DockStyle.Top;
-            this.icnBtnCircle.FlatAppearance.BorderSize = 0;
-            this.icnBtnCircle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.icnBtnCircle.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
-            this.icnBtnCircle.Font = new System.Drawing.Font("Arimo", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.icnBtnCircle.ForeColor = System.Drawing.Color.Gainsboro;
-            this.icnBtnCircle.IconChar = FontAwesome.Sharp.IconChar.UserCircle;
-            this.icnBtnCircle.IconColor = System.Drawing.Color.Gainsboro;
-            this.icnBtnCircle.IconSize = 32;
-            this.icnBtnCircle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.icnBtnCircle.Location = new System.Drawing.Point(0, 280);
-            this.icnBtnCircle.Name = "icnBtnCircle";
-            this.icnBtnCircle.Padding = new System.Windows.Forms.Padding(15, 0, 20, 0);
-            this.icnBtnCircle.Rotation = 0D;
-            this.icnBtnCircle.Size = new System.Drawing.Size(200, 60);
-            this.icnBtnCircle.TabIndex = 4;
-            this.icnBtnCircle.Text = "Circle";
-            this.icnBtnCircle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.icnBtnCircle.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.icnBtnCircle.UseVisualStyleBackColor = true;
-            this.icnBtnCircle.Click += new System.EventHandler(this.icnBtnCircle_Click);
-            // 
-            // icnBtnInverse
-            // 
-            this.icnBtnInverse.Dock = System.Windows.Forms.DockStyle.Top;
-            this.icnBtnInverse.FlatAppearance.BorderSize = 0;
-            this.icnBtnInverse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.icnBtnInverse.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
-            this.icnBtnInverse.Font = new System.Drawing.Font("Arimo", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.icnBtnInverse.ForeColor = System.Drawing.Color.Gainsboro;
-            this.icnBtnInverse.IconChar = FontAwesome.Sharp.IconChar.Image;
-            this.icnBtnInverse.IconColor = System.Drawing.Color.Gainsboro;
-            this.icnBtnInverse.IconSize = 32;
-            this.icnBtnInverse.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.icnBtnInverse.Location = new System.Drawing.Point(0, 220);
-            this.icnBtnInverse.Name = "icnBtnInverse";
-            this.icnBtnInverse.Padding = new System.Windows.Forms.Padding(15, 0, 20, 0);
-            this.icnBtnInverse.Rotation = 0D;
-            this.icnBtnInverse.Size = new System.Drawing.Size(200, 60);
-            this.icnBtnInverse.TabIndex = 3;
-            this.icnBtnInverse.Text = "Inverse";
-            this.icnBtnInverse.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.icnBtnInverse.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.icnBtnInverse.UseVisualStyleBackColor = true;
-            this.icnBtnInverse.Click += new System.EventHandler(this.icnBtnInverse_Click);
             // 
             // icnBtnSepia
             // 
@@ -579,6 +531,54 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
+            // icnBtnCircle
+            // 
+            this.icnBtnCircle.Dock = System.Windows.Forms.DockStyle.Top;
+            this.icnBtnCircle.FlatAppearance.BorderSize = 0;
+            this.icnBtnCircle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.icnBtnCircle.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
+            this.icnBtnCircle.Font = new System.Drawing.Font("Arimo", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.icnBtnCircle.ForeColor = System.Drawing.Color.Gainsboro;
+            this.icnBtnCircle.IconChar = FontAwesome.Sharp.IconChar.UserCircle;
+            this.icnBtnCircle.IconColor = System.Drawing.Color.Gainsboro;
+            this.icnBtnCircle.IconSize = 32;
+            this.icnBtnCircle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.icnBtnCircle.Location = new System.Drawing.Point(0, 460);
+            this.icnBtnCircle.Name = "icnBtnCircle";
+            this.icnBtnCircle.Padding = new System.Windows.Forms.Padding(15, 0, 20, 0);
+            this.icnBtnCircle.Rotation = 0D;
+            this.icnBtnCircle.Size = new System.Drawing.Size(200, 60);
+            this.icnBtnCircle.TabIndex = 9;
+            this.icnBtnCircle.Text = "Circle";
+            this.icnBtnCircle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.icnBtnCircle.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.icnBtnCircle.UseVisualStyleBackColor = true;
+            this.icnBtnCircle.Click += new System.EventHandler(this.icnBtnCircle_Click);
+            // 
+            // icnBtnInverse
+            // 
+            this.icnBtnInverse.Dock = System.Windows.Forms.DockStyle.Top;
+            this.icnBtnInverse.FlatAppearance.BorderSize = 0;
+            this.icnBtnInverse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.icnBtnInverse.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
+            this.icnBtnInverse.Font = new System.Drawing.Font("Arimo", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.icnBtnInverse.ForeColor = System.Drawing.Color.Gainsboro;
+            this.icnBtnInverse.IconChar = FontAwesome.Sharp.IconChar.Image;
+            this.icnBtnInverse.IconColor = System.Drawing.Color.Gainsboro;
+            this.icnBtnInverse.IconSize = 32;
+            this.icnBtnInverse.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.icnBtnInverse.Location = new System.Drawing.Point(0, 400);
+            this.icnBtnInverse.Name = "icnBtnInverse";
+            this.icnBtnInverse.Padding = new System.Windows.Forms.Padding(15, 0, 20, 0);
+            this.icnBtnInverse.Rotation = 0D;
+            this.icnBtnInverse.Size = new System.Drawing.Size(200, 60);
+            this.icnBtnInverse.TabIndex = 8;
+            this.icnBtnInverse.Text = "Inverse";
+            this.icnBtnInverse.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.icnBtnInverse.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.icnBtnInverse.UseVisualStyleBackColor = true;
+            this.icnBtnInverse.Click += new System.EventHandler(this.icnBtnInverse_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -618,8 +618,6 @@
         private FontAwesome.Sharp.IconButton icnBtnContrast;
         private FontAwesome.Sharp.IconButton icnBtnBrightness;
         private FontAwesome.Sharp.IconButton icnBtnTint;
-        private FontAwesome.Sharp.IconButton icnBtnCircle;
-        private FontAwesome.Sharp.IconButton icnBtnInverse;
         private FontAwesome.Sharp.IconButton icnBtnSepia;
         private System.Windows.Forms.PictureBox pictureBoxLogo;
         private System.Windows.Forms.Panel panelTitlebar;
@@ -644,6 +642,8 @@
         private FontAwesome.Sharp.IconButton icnBtnMinimize;
         private FontAwesome.Sharp.IconButton icnBtnClose;
         private System.Windows.Forms.Label lblTitle;
+        private FontAwesome.Sharp.IconButton icnBtnCircle;
+        private FontAwesome.Sharp.IconButton icnBtnInverse;
     }
 }
 

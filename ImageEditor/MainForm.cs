@@ -321,6 +321,9 @@ namespace ImageEditor
         /// <param name="form">The form to open</param>
         private void ShowEffectForm(EffectFormBase form)
         {
+            if( _currEffectForm != null )
+                _currEffectForm.Hide();
+
             _currEffectForm = form;
 
             _currEffectForm.TopLevel = false;
