@@ -2,17 +2,28 @@
 
 namespace ImageEditor
 {
+    /// <summary>
+    /// Class used for storing and handling the history of edits on images
+    /// 
+    /// </summary>
     class HistoryManager
     {
         private List<HistoryImage> _imageHistory;
         public int CurrIndex { get; private set; } = -1;
         private const int MaxHisotryRecords = 50;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public HistoryManager()
         {
             _imageHistory = new List<HistoryImage>();
         }
 
+        /// <summary>
+        /// Revert (ctrl + z) Go back 1 strep in the hisotory
+        /// </summary>
+        /// <returns>The HistoryImage at the previous position</returns>
         public HistoryImage Revert()
         {
             if( _imageHistory.Count == 0 )
@@ -25,6 +36,10 @@ namespace ImageEditor
             return (HistoryImage)_imageHistory[CurrIndex].Clone();
         }
 
+        /// <summary>
+        /// Flags the the current image as saved
+        /// Remove saved flag for all other history records
+        /// </summary>
         public void Save()
         {
             foreach( HistoryImage img in _imageHistory )
@@ -33,9 +48,13 @@ namespace ImageEditor
             _imageHistory[CurrIndex].IsSaved = true;
         }
 
+        /// <summary>
+        /// Gets a copy of the history
+        /// </summary>
+        /// <returns>A copied list of the history</returns>
         public List<HistoryImage> GetHistory()
         {
-            // Return copy so the history can't be changed outside this class
+            // Return copy so the actual history can't be changed outside this class
             List<HistoryImage> historyCopy = new List<HistoryImage>();
             foreach( HistoryImage img in _imageHistory )
                 historyCopy.Add( (HistoryImage)img.Clone() );
@@ -43,6 +62,10 @@ namespace ImageEditor
             return new List<HistoryImage>( _imageHistory );
         }
 
+        /// <summary>
+        /// Checks if the current Image has been saved
+        /// </summary>
+        /// <returns>true if it's flagged as saved, else false</returns>
         public bool GetIsSaved()
         {
             if( _imageHistory.Count == 0 )
@@ -51,6 +74,10 @@ namespace ImageEditor
             return _imageHistory[CurrIndex].IsSaved;
         }
 
+        /// <summary>
+        /// Redo(ctrl + y) Moves to the next step in the history in case reverts has been applied
+        /// </summary>
+        /// <returns>The image at the next step</returns>
         public HistoryImage Redo()
         {
             if( _imageHistory.Count == 0 )
@@ -62,11 +89,19 @@ namespace ImageEditor
             return (HistoryImage)_imageHistory[CurrIndex].Clone();
         }
 
+        /// <summary>
+        /// Gets a copy of the current Image
+        /// </summary>
+        /// <returns>A copy of the current image</returns>
         public HistoryImage GetCurrent()
         {
             return _imageHistory.Count != 0 ? (HistoryImage)_imageHistory[CurrIndex].Clone() : null;
         }
 
+        /// <summary>
+        /// Adds a new image to the history
+        /// </summary>
+        /// <param name="img">The image to be added</param>
         public void Append(HistoryImage img)
         {
             // Remove history after current index in case user has reverted before
@@ -79,6 +114,10 @@ namespace ImageEditor
             LimitHistory();
         }
 
+        /// <summary>
+        /// Limits the amount history records in order to not have the software
+        /// Take an unnecessary amount of ram 
+        /// </summary>
         private void LimitHistory()
         {
             int diff = _imageHistory.Count - MaxHisotryRecords;

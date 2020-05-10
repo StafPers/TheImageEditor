@@ -153,9 +153,6 @@
     <None Include="Resources\gimpimagegim_gimp_image_6217.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="AppIcon.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Readme\CUDA.NET.Readme.txt" />
     <Content Include="Readme\CUDAfy-License.txt" />
     <Content Include="Readme\example_source_code.cs.txt" />
