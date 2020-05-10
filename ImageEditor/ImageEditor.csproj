@@ -38,6 +38,9 @@
     <ApplicationIcon>AppIcon-96.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FontAwesome.Sharp, Version=5.12.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FontAwesome.Sharp.5.12.1\lib\net45\FontAwesome.Sharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -131,6 +134,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -151,6 +155,7 @@
     <None Include="Resources\gimpimagegim_gimp_image_6217.ico" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="logo.png" />
     <None Include="Appicon-32.ico" />
     <Content Include="AppIcon-96.ico" />
   </ItemGroup>

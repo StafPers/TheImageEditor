@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Windows.Forms;
+using FontAwesome.Sharp;
 
 namespace ImageEditor
 {
@@ -14,6 +15,8 @@ namespace ImageEditor
         private HistoryManager _historyManager;
         private string _path = string.Empty;
         private string _loadedPath = string.Empty;
+        private IconButton _currentButton;
+        private Panel _leftBorderBtn;
 
         /// <summary>
         /// Constructor
@@ -24,6 +27,17 @@ namespace ImageEditor
             InitializeGui();
         }
 
+        private struct ButtonColors
+        {
+            public static Color color1 = Color.FromArgb(172, 126, 241);
+            public static Color color2 = Color.FromArgb(249, 118, 176);
+            public static Color color3 = Color.FromArgb(253, 138, 114);
+            public static Color color4 = Color.FromArgb(95, 77, 221);
+            public static Color color5 = Color.FromArgb(249, 88, 155);
+            public static Color color6 = Color.FromArgb(24, 161, 155);
+            public static Color color7 = Color.FromArgb(53, 177, 211);
+        }
+
         /// <summary>
         /// Creates and sets variables
         /// </summary>
@@ -32,6 +46,49 @@ namespace ImageEditor
             _historyManager = new HistoryManager();
             pictureBox.AllowDrop = true;
             SetButtonState( false );
+            _leftBorderBtn = new Panel();
+            _leftBorderBtn.Size = new Size( 7, 60 );
+            panelEffects.Controls.Add( _leftBorderBtn );
+        }
+
+        /// <summary>
+        /// Visually highlights a button
+        /// </summary>
+        private void HightlightButton(object sender, Color color)
+        {
+            if(sender != null)
+            {
+                DisableHighlight();
+
+                _currentButton = sender as IconButton;
+                _currentButton.BackColor = Color.FromArgb( 37, 36, 81 );
+                _currentButton.ForeColor = color;
+                _currentButton.TextAlign = ContentAlignment.MiddleCenter;
+                _currentButton.IconColor = color;
+                _currentButton.TextImageRelation = TextImageRelation.TextBeforeImage;
+                _currentButton.ImageAlign = ContentAlignment.MiddleRight;
+
+                _leftBorderBtn.BackColor = color;
+                _leftBorderBtn.Location = new Point( 0, _currentButton.Location.Y );
+                _leftBorderBtn.Visible = true;
+                _leftBorderBtn.BringToFront();
+            }
+        }
+
+        /// <summary>
+        /// Disables hightlight for a button by reverting back to default settings
+        /// </summary>
+        private void DisableHighlight()
+        {
+            if(_currentButton != null)
+            {
+                _currentButton.BackColor = Color.FromArgb( 31, 30, 68 );
+                _currentButton.ForeColor = Color.Gainsboro;
+                _currentButton.TextAlign = ContentAlignment.MiddleLeft;
+                _currentButton.IconColor = Color.Gainsboro;
+                _currentButton.TextImageRelation = TextImageRelation.ImageBeforeText;
+                _currentButton.ImageAlign = ContentAlignment.MiddleLeft;
+            }
         }
 
         /// <summary>
@@ -40,13 +97,13 @@ namespace ImageEditor
         /// <param name="active">true if enabled, false if disabled</param>
         private void SetButtonState(bool active)
         {
-            btnGrayscale.Enabled = 
-                btnSepia.Enabled = 
-                btnInverse.Enabled = 
-                btnCircle.Enabled =
-                btnTint.Enabled =
-                btnBrightness.Enabled =
-                btnContrast.Enabled =
+            icnBtnGrayscale.Enabled = 
+                icnBtnSepia.Enabled = 
+                icnBtnInverse.Enabled = 
+                icnBtnCircle.Enabled =
+                icnBtnTint.Enabled =
+                icnBtnBrightness.Enabled =
+                icnBtnContrast.Enabled =
                 btnSave.Enabled =
                 active;
         }
@@ -139,56 +196,63 @@ namespace ImageEditor
         /// <summary>
         /// Opens GrayscaleForm
         /// </summary>
-        private void btnGrayscale_Click( object sender, System.EventArgs e )
+        private void icnBtnGrayscale_Click( object sender, System.EventArgs e )
         {
+            HightlightButton( sender, ButtonColors.color1 );
             ShowEffectForm( new GrayscaleForm( _historyManager.GetCurrent(), _historyManager.GetHistory(), _historyManager.CurrIndex ) );
         }
 
         /// <summary>
         /// Opens SepiaForm
         /// </summary>
-        private void btnSepia_Click( object sender, System.EventArgs e )
+        private void icnBtnSepia_Click( object sender, System.EventArgs e )
         {
+            HightlightButton( sender, ButtonColors.color6 );
             ShowEffectForm( new SepiaForm( _historyManager.GetCurrent(), _historyManager.GetHistory(), _historyManager.CurrIndex ) );
         }
 
         /// <summary>
         /// Inverse the colors of the image
         /// </summary>
-        private void btnInverse_Click( object sender, System.EventArgs e )
+        private void icnBtnInverse_Click( object sender, System.EventArgs e )
         {
+            HightlightButton( sender, ButtonColors.color5 );
             ApplyEffect( new InverseEffect() );
         }
 
         /// <summary>
         /// Creates a circular frame for the image
         /// </summary>
-        private void btnCircle_Click( object sender, System.EventArgs e )
+        private void icnBtnCircle_Click( object sender, System.EventArgs e )
         {
+            HightlightButton( sender, ButtonColors.color4 );
             ApplyEffect( new CircleEffect() );
         }
 
         /// <summary>
         /// Opens TintForm
         /// </summary>
-        private void btnTint_Click( object sender, System.EventArgs e )
+        private void icnBtnTint_Click( object sender, System.EventArgs e )
         {
-            ShowEffectForm( new TintForm(_historyManager.GetCurrent(), _historyManager.GetHistory(), _historyManager.CurrIndex ) );
+            HightlightButton( sender, ButtonColors.color3 );
+            ShowEffectForm( new TintForm( _historyManager.GetCurrent(), _historyManager.GetHistory(), _historyManager.CurrIndex ) );
         }
 
         /// <summary>
         /// Opens BrightnessForm
         /// </summary>
-        private void btnBrightness_Click( object sender, System.EventArgs e )
+        private void icnBtnBrightness_Click( object sender, System.EventArgs e )
         {
             ShowEffectForm( new BrightnessForm( _historyManager.GetCurrent(), _historyManager.GetHistory(), _historyManager.CurrIndex ) );
+            HightlightButton( sender, ButtonColors.color2 );
         }
 
         /// <summary>
         /// Opens ContrastForm
         /// </summary>
-        private void btnContrast_Click( object sender, System.EventArgs e )
+        private void icnBtnContrast_Click( object sender, System.EventArgs e )
         {
+            HightlightButton( sender, ButtonColors.color7 );
             ShowEffectForm( new ContrastForm( _historyManager.GetCurrent(), _historyManager.GetHistory(), _historyManager.CurrIndex ) );
         }
 
