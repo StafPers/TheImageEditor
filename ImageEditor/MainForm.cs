@@ -4,6 +4,8 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Windows.Forms;
 using FontAwesome.Sharp;
+using System.Runtime.InteropServices;
+using System;
 
 namespace ImageEditor
 {
@@ -17,6 +19,7 @@ namespace ImageEditor
         private string _loadedPath = string.Empty;
         private IconButton _currentButton;
         private Panel _leftBorderBtn;
+        private EffectFormBase _currEffectForm;
 
         /// <summary>
         /// Constructor
@@ -43,9 +46,14 @@ namespace ImageEditor
         /// </summary>
         private void InitializeGui()
         {
+            //Remove default titlebar
+            Text = string.Empty;
+            ControlBox = false;
+            DoubleBuffered = true;
+
+            MaximizedBounds = Screen.FromHandle(Handle).WorkingArea;
             _historyManager = new HistoryManager();
             pictureBox.AllowDrop = true;
-            SetButtonState( false );
             _leftBorderBtn = new Panel();
             _leftBorderBtn.Size = new Size( 7, 60 );
             panelEffects.Controls.Add( _leftBorderBtn );
@@ -93,23 +101,6 @@ namespace ImageEditor
         }
 
         /// <summary>
-        /// Enables or disables buttons on the form
-        /// </summary>
-        /// <param name="active">true if enabled, false if disabled</param>
-        private void SetButtonState(bool active)
-        {
-            icnBtnGrayscale.Enabled = 
-                icnBtnSepia.Enabled = 
-                icnBtnInverse.Enabled = 
-                icnBtnCircle.Enabled =
-                icnBtnTint.Enabled =
-                icnBtnBrightness.Enabled =
-                icnBtnContrast.Enabled =
-                icnBtnSave.Enabled =
-                active;
-        }
-
-        /// <summary>
         /// Gets filename
         /// </summary>
         /// <param name="fileNames">array of filenames</param>
@@ -141,12 +132,12 @@ namespace ImageEditor
             // Display * next to title if the file hasn't been saved
             if(_historyManager.GetCurrent().IsSaved)
             {
-                Text = Text.Replace( "*", "" );
+                lblTitle.Text = lblTitle.Text.Replace( "*", "" );
             }
             else
             {
-                if( !Text.Contains( "*" ) )
-                    Text += "*";
+                if( !lblTitle.Text.Contains( "*" ) )
+                    lblTitle.Text += "*";
             }
         }
 
@@ -165,7 +156,6 @@ namespace ImageEditor
 
                 pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
                 _historyManager.Append( new HistoryImage( pictureBox.Image as Bitmap ) );
-                SetButtonState( true );
                 UpdateGui();
             }
         }
@@ -199,6 +189,9 @@ namespace ImageEditor
         /// </summary>
         private void icnBtnGrayscale_Click( object sender, System.EventArgs e )
         {
+            if( _historyManager.GetCurrent() == null || _currEffectForm != null )
+                return;
+
             HightlightButton( sender, ButtonColors.color1 );
             ShowEffectForm( new GrayscaleForm( _historyManager.GetCurrent(), _historyManager.GetHistory(), _historyManager.CurrIndex ) );
         }
@@ -208,6 +201,9 @@ namespace ImageEditor
         /// </summary>
         private void icnBtnSepia_Click( object sender, System.EventArgs e )
         {
+            if( _historyManager.GetCurrent() == null || _currEffectForm != null )
+                return;
+
             HightlightButton( sender, ButtonColors.color6 );
             ShowEffectForm( new SepiaForm( _historyManager.GetCurrent(), _historyManager.GetHistory(), _historyManager.CurrIndex ) );
         }
@@ -217,6 +213,9 @@ namespace ImageEditor
         /// </summary>
         private void icnBtnInverse_Click( object sender, System.EventArgs e )
         {
+            if( _historyManager.GetCurrent() == null || _currEffectForm != null )
+                return;
+
             HightlightButton( sender, ButtonColors.color5 );
             ApplyEffect( new InverseEffect() );
         }
@@ -226,6 +225,9 @@ namespace ImageEditor
         /// </summary>
         private void icnBtnCircle_Click( object sender, System.EventArgs e )
         {
+            if( _historyManager.GetCurrent() == null || _currEffectForm != null )
+                return;
+
             HightlightButton( sender, ButtonColors.color4 );
             ApplyEffect( new CircleEffect() );
         }
@@ -235,6 +237,9 @@ namespace ImageEditor
         /// </summary>
         private void icnBtnTint_Click( object sender, System.EventArgs e )
         {
+            if( _historyManager.GetCurrent() == null || _currEffectForm != null )
+                return;
+
             HightlightButton( sender, ButtonColors.color3 );
             ShowEffectForm( new TintForm( _historyManager.GetCurrent(), _historyManager.GetHistory(), _historyManager.CurrIndex ) );
         }
@@ -244,6 +249,9 @@ namespace ImageEditor
         /// </summary>
         private void icnBtnBrightness_Click( object sender, System.EventArgs e )
         {
+            if( _historyManager.GetCurrent() == null || _currEffectForm != null )
+                return;
+
             ShowEffectForm( new BrightnessForm( _historyManager.GetCurrent(), _historyManager.GetHistory(), _historyManager.CurrIndex ) );
             HightlightButton( sender, ButtonColors.color2 );
         }
@@ -253,6 +261,9 @@ namespace ImageEditor
         /// </summary>
         private void icnBtnContrast_Click( object sender, System.EventArgs e )
         {
+            if( _historyManager.GetCurrent() == null || _currEffectForm != null )
+                return;
+
             HightlightButton( sender, ButtonColors.color7 );
             ShowEffectForm( new ContrastForm( _historyManager.GetCurrent(), _historyManager.GetHistory(), _historyManager.CurrIndex ) );
         }
@@ -264,6 +275,15 @@ namespace ImageEditor
         /// <param name="form">The form to open</param>
         private void ShowEffectForm(EffectFormBase form)
         {
+            _currEffectForm = form;
+
+            _currEffectForm.TopLevel = false;
+            _currEffectForm.FormBorderStyle = FormBorderStyle.None;
+            _currEffectForm.Dock = DockStyle.Fill;
+            panelDesktop.Controls.Add( _currEffectForm );
+            panelDesktop.Tag = _currEffectForm;
+            _currEffectForm.BringToFront();
+
             if( form.ShowDialog() == DialogResult.OK )
             {
                 _historyManager.Append( form.Img );
@@ -271,6 +291,7 @@ namespace ImageEditor
                 UpdateGui();
             }
 
+            _currEffectForm = null;
             DisableHighlight();
         }
 
@@ -295,6 +316,9 @@ namespace ImageEditor
         /// </summary>
         private void icnBtnSave_Click( object sender, System.EventArgs e )
         {
+            if( _historyManager.GetCurrent() == null )
+                return;
+
             SaveImg();
         }
 
@@ -455,6 +479,39 @@ namespace ImageEditor
         private void saveAsMenuItem_Click( object sender, System.EventArgs e )
         {
             SaveImgAs();
+        }
+
+        
+        [DllImport( "user32.DLL", EntryPoint = "ReleaseCapture" )]
+        private extern static void ReleaseCapture();
+        [DllImport( "user32.DLL", EntryPoint = "SendMessage" )]
+        private extern static void SendMessage( IntPtr hWnd, int wMsg, int wParam, int lParam );
+
+        /// <summary>
+        /// Drag form on custom titlebar
+        /// </summary>
+        private void panelTitlebar_MouseDown( object sender, MouseEventArgs e )
+        {
+            ReleaseCapture();
+            SendMessage( this.Handle, 0x112, 0xf012, 0 );
+        }
+
+        private void icnBtnMinimize_Click( object sender, EventArgs e )
+        {
+            WindowState = FormWindowState.Minimized;
+        }
+
+        private void icnBtnMaximize_Click( object sender, EventArgs e )
+        {
+            if( WindowState == FormWindowState.Normal )
+                WindowState = FormWindowState.Maximized;
+            else
+                WindowState = FormWindowState.Normal;
+        }
+
+        private void icnBtnClose_Click( object sender, EventArgs e )
+        {
+            Application.Exit();
         }
     }
 }

@@ -73,9 +73,9 @@ namespace ImageEditor.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap DragDropIcon {
+        internal static System.Drawing.Bitmap dragdrop {
             get {
-                object obj = ResourceManager.GetObject("DragDropIcon", resourceCulture);
+                object obj = ResourceManager.GetObject("dragdrop", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

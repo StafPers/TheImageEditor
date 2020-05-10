@@ -41,12 +41,9 @@
             this.panelLogo = new System.Windows.Forms.Panel();
             this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
             this.panelTitlebar = new System.Windows.Forms.Panel();
-            this.panelForm = new System.Windows.Forms.Panel();
-            this.panelBtns = new System.Windows.Forms.Panel();
-            this.icnBtnSave = new FontAwesome.Sharp.IconButton();
-            this.icnBtnLoad = new FontAwesome.Sharp.IconButton();
-            this.panelShadow = new System.Windows.Forms.Panel();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.icnBtnMaximize = new FontAwesome.Sharp.IconButton();
+            this.icnBtnMinimize = new FontAwesome.Sharp.IconButton();
+            this.icnBtnClose = new FontAwesome.Sharp.IconButton();
             this.panelMenu = new System.Windows.Forms.Panel();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.fileMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,27 +53,37 @@
             this.revertMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redoMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.panelForm = new System.Windows.Forms.Panel();
+            this.panelDesktop = new System.Windows.Forms.Panel();
+            this.panelRightPad = new System.Windows.Forms.Panel();
+            this.panelBtns = new System.Windows.Forms.Panel();
+            this.icnBtnSave = new FontAwesome.Sharp.IconButton();
+            this.icnBtnLoad = new FontAwesome.Sharp.IconButton();
+            this.panelShadow = new System.Windows.Forms.Panel();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.lblTitle = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.panelEffects.SuspendLayout();
             this.panelLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
             this.panelTitlebar.SuspendLayout();
-            this.panelForm.SuspendLayout();
-            this.panelBtns.SuspendLayout();
             this.panelMenu.SuspendLayout();
             this.menuStrip.SuspendLayout();
+            this.panelForm.SuspendLayout();
+            this.panelDesktop.SuspendLayout();
+            this.panelBtns.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox
             // 
             this.pictureBox.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox.Image = global::ImageEditor.Properties.Resources.DragDropIcon;
+            this.pictureBox.Image = global::ImageEditor.Properties.Resources.dragdrop;
             this.pictureBox.InitialImage = null;
             this.pictureBox.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(728, 502);
+            this.pictureBox.Size = new System.Drawing.Size(698, 434);
             this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox.TabIndex = 0;
             this.pictureBox.TabStop = false;
@@ -85,6 +92,7 @@
             // 
             // panelEffects
             // 
+            this.panelEffects.AutoScroll = true;
             this.panelEffects.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(30)))), ((int)(((byte)(68)))));
             this.panelEffects.Controls.Add(this.icnBtnContrast);
             this.panelEffects.Controls.Add(this.icnBtnBrightness);
@@ -291,22 +299,201 @@
             // panelTitlebar
             // 
             this.panelTitlebar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(25)))), ((int)(((byte)(62)))));
+            this.panelTitlebar.Controls.Add(this.icnBtnMaximize);
+            this.panelTitlebar.Controls.Add(this.icnBtnMinimize);
+            this.panelTitlebar.Controls.Add(this.icnBtnClose);
             this.panelTitlebar.Controls.Add(this.panelMenu);
             this.panelTitlebar.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTitlebar.Location = new System.Drawing.Point(200, 0);
             this.panelTitlebar.Name = "panelTitlebar";
             this.panelTitlebar.Size = new System.Drawing.Size(728, 56);
             this.panelTitlebar.TabIndex = 10;
+            this.panelTitlebar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelTitlebar_MouseDown);
+            // 
+            // icnBtnMaximize
+            // 
+            this.icnBtnMaximize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.icnBtnMaximize.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(25)))), ((int)(((byte)(62)))));
+            this.icnBtnMaximize.FlatAppearance.BorderSize = 0;
+            this.icnBtnMaximize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.icnBtnMaximize.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
+            this.icnBtnMaximize.Font = new System.Drawing.Font("Arimo", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.icnBtnMaximize.ForeColor = System.Drawing.Color.Gainsboro;
+            this.icnBtnMaximize.IconChar = FontAwesome.Sharp.IconChar.WindowMaximize;
+            this.icnBtnMaximize.IconColor = System.Drawing.Color.Gainsboro;
+            this.icnBtnMaximize.IconSize = 16;
+            this.icnBtnMaximize.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.icnBtnMaximize.Location = new System.Drawing.Point(667, 12);
+            this.icnBtnMaximize.Name = "icnBtnMaximize";
+            this.icnBtnMaximize.Rotation = 0D;
+            this.icnBtnMaximize.Size = new System.Drawing.Size(25, 25);
+            this.icnBtnMaximize.TabIndex = 13;
+            this.icnBtnMaximize.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.icnBtnMaximize.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.icnBtnMaximize.UseVisualStyleBackColor = false;
+            this.icnBtnMaximize.Click += new System.EventHandler(this.icnBtnMaximize_Click);
+            // 
+            // icnBtnMinimize
+            // 
+            this.icnBtnMinimize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.icnBtnMinimize.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(25)))), ((int)(((byte)(62)))));
+            this.icnBtnMinimize.FlatAppearance.BorderSize = 0;
+            this.icnBtnMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.icnBtnMinimize.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
+            this.icnBtnMinimize.Font = new System.Drawing.Font("Arimo", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.icnBtnMinimize.ForeColor = System.Drawing.Color.Gainsboro;
+            this.icnBtnMinimize.IconChar = FontAwesome.Sharp.IconChar.WindowMinimize;
+            this.icnBtnMinimize.IconColor = System.Drawing.Color.Gainsboro;
+            this.icnBtnMinimize.IconSize = 16;
+            this.icnBtnMinimize.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.icnBtnMinimize.Location = new System.Drawing.Point(636, 12);
+            this.icnBtnMinimize.Name = "icnBtnMinimize";
+            this.icnBtnMinimize.Rotation = 0D;
+            this.icnBtnMinimize.Size = new System.Drawing.Size(25, 25);
+            this.icnBtnMinimize.TabIndex = 12;
+            this.icnBtnMinimize.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.icnBtnMinimize.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.icnBtnMinimize.UseVisualStyleBackColor = false;
+            this.icnBtnMinimize.Click += new System.EventHandler(this.icnBtnMinimize_Click);
+            // 
+            // icnBtnClose
+            // 
+            this.icnBtnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.icnBtnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(25)))), ((int)(((byte)(62)))));
+            this.icnBtnClose.FlatAppearance.BorderSize = 0;
+            this.icnBtnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.icnBtnClose.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
+            this.icnBtnClose.Font = new System.Drawing.Font("Arimo", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.icnBtnClose.ForeColor = System.Drawing.Color.Gainsboro;
+            this.icnBtnClose.IconChar = FontAwesome.Sharp.IconChar.Times;
+            this.icnBtnClose.IconColor = System.Drawing.Color.Gainsboro;
+            this.icnBtnClose.IconSize = 16;
+            this.icnBtnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.icnBtnClose.Location = new System.Drawing.Point(698, 12);
+            this.icnBtnClose.Name = "icnBtnClose";
+            this.icnBtnClose.Rotation = 0D;
+            this.icnBtnClose.Size = new System.Drawing.Size(25, 25);
+            this.icnBtnClose.TabIndex = 11;
+            this.icnBtnClose.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.icnBtnClose.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.icnBtnClose.UseVisualStyleBackColor = false;
+            this.icnBtnClose.Click += new System.EventHandler(this.icnBtnClose_Click);
+            // 
+            // panelMenu
+            // 
+            this.panelMenu.Controls.Add(this.lblTitle);
+            this.panelMenu.Controls.Add(this.menuStrip);
+            this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelMenu.Location = new System.Drawing.Point(0, 0);
+            this.panelMenu.Name = "panelMenu";
+            this.panelMenu.Size = new System.Drawing.Size(129, 56);
+            this.panelMenu.TabIndex = 0;
+            this.panelMenu.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelTitlebar_MouseDown);
+            // 
+            // menuStrip
+            // 
+            this.menuStrip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(25)))), ((int)(((byte)(62)))));
+            this.menuStrip.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.menuStrip.Font = new System.Drawing.Font("Arimo", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileMenuItem});
+            this.menuStrip.Location = new System.Drawing.Point(0, 32);
+            this.menuStrip.Name = "menuStrip";
+            this.menuStrip.Size = new System.Drawing.Size(129, 24);
+            this.menuStrip.TabIndex = 6;
+            this.menuStrip.Text = "Menu";
+            // 
+            // fileMenuItem
+            // 
+            this.fileMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.loadMenuItem,
+            this.saveMenuItem,
+            this.saveAsMenuItem,
+            this.revertMenuItem,
+            this.redoMenuItem,
+            this.exitMenuItem});
+            this.fileMenuItem.ForeColor = System.Drawing.Color.Gainsboro;
+            this.fileMenuItem.Name = "fileMenuItem";
+            this.fileMenuItem.Size = new System.Drawing.Size(41, 20);
+            this.fileMenuItem.Text = "File";
+            // 
+            // loadMenuItem
+            // 
+            this.loadMenuItem.Name = "loadMenuItem";
+            this.loadMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.L)));
+            this.loadMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.loadMenuItem.Text = "Load";
+            this.loadMenuItem.Click += new System.EventHandler(this.loadMenuItem_Click);
+            // 
+            // saveMenuItem
+            // 
+            this.saveMenuItem.Name = "saveMenuItem";
+            this.saveMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.saveMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.saveMenuItem.Text = "Save";
+            this.saveMenuItem.Click += new System.EventHandler(this.saveMenuItem_Click);
+            // 
+            // saveAsMenuItem
+            // 
+            this.saveAsMenuItem.Name = "saveAsMenuItem";
+            this.saveAsMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.saveAsMenuItem.Text = "Save as...";
+            this.saveAsMenuItem.Click += new System.EventHandler(this.saveAsMenuItem_Click);
+            // 
+            // revertMenuItem
+            // 
+            this.revertMenuItem.Name = "revertMenuItem";
+            this.revertMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
+            this.revertMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.revertMenuItem.Text = "Revert";
+            this.revertMenuItem.Click += new System.EventHandler(this.revertMenuItem_Click);
+            // 
+            // redoMenuItem
+            // 
+            this.redoMenuItem.Name = "redoMenuItem";
+            this.redoMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
+            this.redoMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.redoMenuItem.Text = "Redo";
+            this.redoMenuItem.Click += new System.EventHandler(this.redoMenuItem_Click);
+            // 
+            // exitMenuItem
+            // 
+            this.exitMenuItem.Name = "exitMenuItem";
+            this.exitMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
+            this.exitMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.exitMenuItem.Text = "Exit";
+            this.exitMenuItem.Click += new System.EventHandler(this.exitMenuItem_Click);
             // 
             // panelForm
             // 
+            this.panelForm.Controls.Add(this.panelDesktop);
+            this.panelForm.Controls.Add(this.panelRightPad);
             this.panelForm.Controls.Add(this.panelBtns);
-            this.panelForm.Controls.Add(this.pictureBox);
             this.panelForm.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelForm.Location = new System.Drawing.Point(200, 56);
             this.panelForm.Name = "panelForm";
             this.panelForm.Size = new System.Drawing.Size(728, 502);
             this.panelForm.TabIndex = 11;
+            // 
+            // panelDesktop
+            // 
+            this.panelDesktop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(33)))), ((int)(((byte)(74)))));
+            this.panelDesktop.Controls.Add(this.pictureBox);
+            this.panelDesktop.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelDesktop.Location = new System.Drawing.Point(0, 0);
+            this.panelDesktop.Margin = new System.Windows.Forms.Padding(0);
+            this.panelDesktop.Name = "panelDesktop";
+            this.panelDesktop.Size = new System.Drawing.Size(698, 434);
+            this.panelDesktop.TabIndex = 12;
+            // 
+            // panelRightPad
+            // 
+            this.panelRightPad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(25)))), ((int)(((byte)(62)))));
+            this.panelRightPad.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panelRightPad.Location = new System.Drawing.Point(698, 0);
+            this.panelRightPad.Name = "panelRightPad";
+            this.panelRightPad.Size = new System.Drawing.Size(30, 434);
+            this.panelRightPad.TabIndex = 11;
             // 
             // panelBtns
             // 
@@ -379,93 +566,22 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // panelMenu
+            // lblTitle
             // 
-            this.panelMenu.Controls.Add(this.menuStrip);
-            this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelMenu.Location = new System.Drawing.Point(0, 0);
-            this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(340, 56);
-            this.panelMenu.TabIndex = 0;
-            // 
-            // menuStrip
-            // 
-            this.menuStrip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(25)))), ((int)(((byte)(62)))));
-            this.menuStrip.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.menuStrip.Font = new System.Drawing.Font("Arimo", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileMenuItem});
-            this.menuStrip.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(340, 56);
-            this.menuStrip.TabIndex = 6;
-            this.menuStrip.Text = "Menu";
-            // 
-            // fileMenuItem
-            // 
-            this.fileMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.loadMenuItem,
-            this.saveMenuItem,
-            this.saveAsMenuItem,
-            this.revertMenuItem,
-            this.redoMenuItem,
-            this.exitMenuItem});
-            this.fileMenuItem.ForeColor = System.Drawing.Color.Gainsboro;
-            this.fileMenuItem.Name = "fileMenuItem";
-            this.fileMenuItem.Size = new System.Drawing.Size(41, 52);
-            this.fileMenuItem.Text = "File";
-            // 
-            // loadMenuItem
-            // 
-            this.loadMenuItem.Name = "loadMenuItem";
-            this.loadMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.L)));
-            this.loadMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.loadMenuItem.Text = "Load";
-            this.loadMenuItem.Click += new System.EventHandler(this.loadMenuItem_Click);
-            // 
-            // saveMenuItem
-            // 
-            this.saveMenuItem.Name = "saveMenuItem";
-            this.saveMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.saveMenuItem.Text = "Save";
-            this.saveMenuItem.Click += new System.EventHandler(this.saveMenuItem_Click);
-            // 
-            // saveAsMenuItem
-            // 
-            this.saveAsMenuItem.Name = "saveAsMenuItem";
-            this.saveAsMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.saveAsMenuItem.Text = "Save as...";
-            this.saveAsMenuItem.Click += new System.EventHandler(this.saveAsMenuItem_Click);
-            // 
-            // revertMenuItem
-            // 
-            this.revertMenuItem.Name = "revertMenuItem";
-            this.revertMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
-            this.revertMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.revertMenuItem.Text = "Revert";
-            this.revertMenuItem.Click += new System.EventHandler(this.revertMenuItem_Click);
-            // 
-            // redoMenuItem
-            // 
-            this.redoMenuItem.Name = "redoMenuItem";
-            this.redoMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
-            this.redoMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.redoMenuItem.Text = "Redo";
-            this.redoMenuItem.Click += new System.EventHandler(this.redoMenuItem_Click);
-            // 
-            // exitMenuItem
-            // 
-            this.exitMenuItem.Name = "exitMenuItem";
-            this.exitMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.exitMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.exitMenuItem.Text = "Exit";
-            this.exitMenuItem.Click += new System.EventHandler(this.exitMenuItem_Click);
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Arimo", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.ForeColor = System.Drawing.Color.Gainsboro;
+            this.lblTitle.Location = new System.Drawing.Point(11, 9);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(106, 16);
+            this.lblTitle.TabIndex = 7;
+            this.lblTitle.Text = "The Image Editor";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(25)))), ((int)(((byte)(62)))));
             this.ClientSize = new System.Drawing.Size(928, 558);
             this.Controls.Add(this.panelShadow);
             this.Controls.Add(this.panelForm);
@@ -480,12 +596,13 @@
             this.panelLogo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
             this.panelTitlebar.ResumeLayout(false);
-            this.panelForm.ResumeLayout(false);
-            this.panelBtns.ResumeLayout(false);
             this.panelMenu.ResumeLayout(false);
             this.panelMenu.PerformLayout();
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
+            this.panelForm.ResumeLayout(false);
+            this.panelDesktop.ResumeLayout(false);
+            this.panelBtns.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -519,6 +636,12 @@
         private System.Windows.Forms.ToolStripMenuItem revertMenuItem;
         private System.Windows.Forms.ToolStripMenuItem redoMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitMenuItem;
+        private System.Windows.Forms.Panel panelDesktop;
+        private System.Windows.Forms.Panel panelRightPad;
+        private FontAwesome.Sharp.IconButton icnBtnMaximize;
+        private FontAwesome.Sharp.IconButton icnBtnMinimize;
+        private FontAwesome.Sharp.IconButton icnBtnClose;
+        private System.Windows.Forms.Label lblTitle;
     }
 }
 
