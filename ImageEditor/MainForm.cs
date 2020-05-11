@@ -438,7 +438,10 @@ namespace ImageEditor
             openDialog.Title = "Open image";
 
             if( openDialog.ShowDialog() == DialogResult.OK )
+            {
+                Reset();
                 LoadImage( openDialog.FileName );
+            }
         }
 
         /// <summary>
