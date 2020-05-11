@@ -1,6 +1,7 @@
 ﻿using ImageEditor.Helper;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Threading.Tasks;
 
 /// <summary>
 /// An effect to adjust the brightness of an image
@@ -25,45 +26,41 @@ namespace ImageEditor.ImageEffects
         /// <summary>
         /// Applies the effect to an image
         /// </summary>
-        /// <param name="img">The image to apply an effect to</param>
+        /// <param name="inImg">The image to apply an effect to</param>
         /// <returns>A new image with the effect applied</returns>
-        public Bitmap ApplyEffect( Bitmap img )
+        public Bitmap ApplyEffect( Bitmap inImg )
         {
-            Bitmap brightnessImg = (Bitmap)img.Clone();
-            BitmapData data = brightnessImg.LockBits(new Rectangle(0, 0, brightnessImg.Width, brightnessImg.Height), ImageLockMode.ReadWrite, brightnessImg.PixelFormat);
-
-            // 3 or 4 depending on if the image has alpha
-            int colWidth = data.Stride / brightnessImg.Width;
+            Bitmap outImg = (Bitmap)inImg.Clone();
+            BitmapData outData = outImg.LockBits(new Rectangle(0, 0, outImg.Width, outImg.Height), ImageLockMode.ReadWrite, outImg.PixelFormat);
+            int bytesPerPixel = Bitmap.GetPixelFormatSize(outImg.PixelFormat) / 8;
+            int height = outData.Height;
+            int width = outData.Width * bytesPerPixel;
             int brightness = (int)MathHelper.Lerp(-255.0f, 255.0f, Amount);
 
             //I'm using pointers in these functions because GetPixel and SetPixel are way to slow
             //to be useable since I'm using sliders which causes this function to be called frequently
             unsafe
             {
-                for( int y = 0; y < brightnessImg.Height; ++y )
+                byte* ptr0 = (byte*)outData.Scan0;
+                Parallel.For( 0, height, y =>
                 {
-                    byte* row = (byte*)data.Scan0 + (y * data.Stride);
-                    int columnOffset = 0;
-                    for( int x = 0; x < brightnessImg.Width; ++x )
+                    byte* row = ptr0 + (y * outData.Stride);
+
+                    for( int x = 0; x < width; x += bytesPerPixel )
                     {
-                        byte b = row[columnOffset];
-                        byte g = row[columnOffset + 1];
-                        byte r = row[columnOffset + 2];
+                        byte b = row[x];
+                        byte g = row[x + 1];
+                        byte r = row[x + 2];
 
-                        row[columnOffset + 2] = (byte)MathHelper.Clamp( 0, 255, r + brightness );
-                        row[columnOffset + 1] = ( byte )MathHelper.Clamp( 0, 255, g + brightness );
-                        row[columnOffset] = ( byte )MathHelper.Clamp( 0, 255, b + brightness );
-
-                        columnOffset += colWidth;
+                        row[x] = ( byte )MathHelper.Clamp( 0, 255, b + brightness );
+                        row[x + 1] = ( byte )MathHelper.Clamp( 0, 255, g + brightness );
+                        row[x + 2] = ( byte )MathHelper.Clamp( 0, 255, r + brightness );
                     }
-                }
+                } );
             }
 
-            brightnessImg.UnlockBits( data );
-            return brightnessImg;
+            outImg.UnlockBits( outData );
+            return outImg;
         }
     }
 }
-
-
-// TODO: Call in button Apply OnEffectApplied()
