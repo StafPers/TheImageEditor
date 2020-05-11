@@ -1,6 +1,5 @@
 ﻿using ImageEditor.ImageEffects;
 using System;
-using System.Collections.Generic;
 
 namespace ImageEditor
 {
@@ -15,6 +14,8 @@ namespace ImageEditor
         public TintForm()
         {
             InitializeComponent();
+            icnBtnApply.Click += Apply_Click;
+            icnBtnCancel.Click += Cancel_Click;
         }
 
         /// <summary>
@@ -65,16 +66,6 @@ namespace ImageEditor
             effect.Color = System.Drawing.Color.FromArgb( barRed.Value, barGreen.Value, barBlue.Value );
 
             ApplyEffect();
-        }
-
-        private void icnBtnApply_Click( object sender, EventArgs e )
-        {
-            OnEffectApplied();
-        }
-
-        private void icnBtnCancel_Click( object sender, EventArgs e )
-        {
-            onEffectCanceled();
         }
     }
 }

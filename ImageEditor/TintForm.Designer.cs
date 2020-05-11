@@ -167,7 +167,6 @@
             this.icnBtnCancel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.icnBtnCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.icnBtnCancel.UseVisualStyleBackColor = true;
-            this.icnBtnCancel.Click += new System.EventHandler(this.icnBtnCancel_Click);
             // 
             // icnBtnApply
             // 
@@ -191,7 +190,6 @@
             this.icnBtnApply.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.icnBtnApply.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.icnBtnApply.UseVisualStyleBackColor = true;
-            this.icnBtnApply.Click += new System.EventHandler(this.icnBtnApply_Click);
             // 
             // panelImg
             // 

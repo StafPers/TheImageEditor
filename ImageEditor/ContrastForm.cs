@@ -1,6 +1,5 @@
 ﻿using ImageEditor.ImageEffects;
 using System;
-using System.Collections.Generic;
 
 namespace ImageEditor
 {
@@ -15,6 +14,8 @@ namespace ImageEditor
         public ContrastForm( )
         {
             InitializeComponent();
+            icnBtnApply.Click += Apply_Click;
+            icnBtnCancel.Click += Cancel_Click;
         }
 
         /// <summary>
@@ -52,16 +53,6 @@ namespace ImageEditor
             (Img.Effect as ContrastEffect).Amount = amount;
             Img.Image = Img.Effect.ApplyEffect( _originalImg.Image );
             pictureBox.Image = Img.Image;
-        }
-
-        private void icnBtnApply_Click( object sender, EventArgs e )
-        {
-            OnEffectApplied();
-        }
-
-        private void icnBtnCancel_Click( object sender, EventArgs e )
-        {
-            onEffectCanceled();
         }
     }
 }

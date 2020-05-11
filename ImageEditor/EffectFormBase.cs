@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace ImageEditor
@@ -49,7 +48,16 @@ namespace ImageEditor
             ClientSize = new System.Drawing.Size(284, 261);
             Name = "EffectFormBase";
             ResumeLayout(false);
+        }
 
+        protected void Apply_Click( object sender, EventArgs e )
+        {
+            OnEffectApplied();
+        }
+
+        protected void Cancel_Click( object sender, EventArgs e )
+        {
+            onEffectCanceled();
         }
     }
 
