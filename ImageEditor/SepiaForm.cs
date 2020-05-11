@@ -23,7 +23,7 @@ namespace ImageEditor
         /// <param name="image">The image which the effect may be applied to</param>
         /// <param name="history">The history of changes</param>
         /// <param name="currentIndex">The index of the image within the history</param>
-        protected override void InitializeImage( HistoryImage image, List<HistoryImage> history, int currentIndex )
+        protected override void InitializeImage( HistoryImage image, HistoryManager history )
         {
             if( image.Image == null )
                 return;
@@ -31,17 +31,10 @@ namespace ImageEditor
             _originalImg = image;
             Img = new HistoryImage( image.Image, new SepiaEffect() );
 
-            // Go over the history up until current index to detect if this effect has already been applied
-            // if so then I can use it to set the effect values 
-            for( int i = currentIndex; i > 0; --i )
-            {
-                IImageEffect effect = history[i].Effect;
-                if( effect != null && effect is SepiaEffect )
-                {
-                    ( Img.Effect as SepiaEffect ).Amount = ( effect as SepiaEffect ).Amount;
-                    break;
-                }
-            }
+            // Use old values if it has already been applied 
+            IImageEffect effect = history.HasEffect<SepiaEffect>()?.Effect;
+            if( effect != null )
+                ( Img.Effect as SepiaEffect ).Amount = ( effect as SepiaEffect ).Amount;
 
             barAmount.Value = Math.Min((int)( ( Img.Effect as SepiaEffect ).Amount * 100.0f), 100);
             Img.Image = Img.Effect.ApplyEffect( _originalImg.Image );

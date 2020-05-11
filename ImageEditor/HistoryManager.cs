@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using ImageEditor.ImageEffects;
+using System;
+using System.Collections.Generic;
 
 namespace ImageEditor
 {
@@ -6,7 +8,7 @@ namespace ImageEditor
     /// Class used for storing and handling the history of edits on images
     /// 
     /// </summary>
-    class HistoryManager
+    public class HistoryManager
     {
         private List<HistoryImage> _imageHistory;
         public int CurrIndex { get; private set; } = -1;
@@ -34,6 +36,25 @@ namespace ImageEditor
 
             // Clone so history can't be modified outside of class
             return (HistoryImage)_imageHistory[CurrIndex].Clone();
+        }
+
+        /// <summary>
+        /// Checks if the effect has already been applied
+        /// </summary>
+        /// <returns>The image with the applied effect or null if effect has not been applied</returns>
+        public HistoryImage HasEffect<T>()
+        {
+            for( int i = CurrIndex; i > 0; --i )
+            {
+                IImageEffect currEffect = _imageHistory[i].Effect;
+                if( currEffect == null )
+                    continue;
+
+                if( currEffect is T )
+                    return (HistoryImage)_imageHistory[i].Clone();
+            }
+
+            return null;
         }
 
         /// <summary>

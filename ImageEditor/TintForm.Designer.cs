@@ -30,20 +30,20 @@
         {
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.panelBtns = new System.Windows.Forms.Panel();
+            this.barBlue = new System.Windows.Forms.TrackBar();
+            this.lblBlue = new System.Windows.Forms.Label();
+            this.barGreen = new System.Windows.Forms.TrackBar();
+            this.lblGreen = new System.Windows.Forms.Label();
+            this.barRed = new System.Windows.Forms.TrackBar();
+            this.lblRed = new System.Windows.Forms.Label();
             this.icnBtnCancel = new FontAwesome.Sharp.IconButton();
             this.icnBtnApply = new FontAwesome.Sharp.IconButton();
-            this.lblRed = new System.Windows.Forms.Label();
-            this.barRed = new System.Windows.Forms.TrackBar();
-            this.lblGreen = new System.Windows.Forms.Label();
-            this.barGreen = new System.Windows.Forms.TrackBar();
-            this.lblBlue = new System.Windows.Forms.Label();
-            this.barBlue = new System.Windows.Forms.TrackBar();
             this.panelImg = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.panelBtns.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.barRed)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.barGreen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barBlue)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barGreen)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barRed)).BeginInit();
             this.panelImg.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -72,6 +72,78 @@
             this.panelBtns.Name = "panelBtns";
             this.panelBtns.Size = new System.Drawing.Size(236, 395);
             this.panelBtns.TabIndex = 13;
+            // 
+            // barBlue
+            // 
+            this.barBlue.Dock = System.Windows.Forms.DockStyle.Top;
+            this.barBlue.Location = new System.Drawing.Point(0, 258);
+            this.barBlue.Maximum = 255;
+            this.barBlue.Name = "barBlue";
+            this.barBlue.Size = new System.Drawing.Size(236, 45);
+            this.barBlue.TabIndex = 17;
+            this.barBlue.TickFrequency = 20;
+            this.barBlue.Scroll += new System.EventHandler(this.ColorChanged);
+            // 
+            // lblBlue
+            // 
+            this.lblBlue.AutoSize = true;
+            this.lblBlue.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblBlue.Font = new System.Drawing.Font("Arimo", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBlue.ForeColor = System.Drawing.Color.Gainsboro;
+            this.lblBlue.Location = new System.Drawing.Point(0, 242);
+            this.lblBlue.Name = "lblBlue";
+            this.lblBlue.Padding = new System.Windows.Forms.Padding(7, 0, 0, 0);
+            this.lblBlue.Size = new System.Drawing.Size(45, 16);
+            this.lblBlue.TabIndex = 16;
+            this.lblBlue.Text = "Blue:";
+            // 
+            // barGreen
+            // 
+            this.barGreen.Dock = System.Windows.Forms.DockStyle.Top;
+            this.barGreen.Location = new System.Drawing.Point(0, 197);
+            this.barGreen.Maximum = 255;
+            this.barGreen.Name = "barGreen";
+            this.barGreen.Size = new System.Drawing.Size(236, 45);
+            this.barGreen.TabIndex = 15;
+            this.barGreen.TickFrequency = 20;
+            this.barGreen.Scroll += new System.EventHandler(this.ColorChanged);
+            // 
+            // lblGreen
+            // 
+            this.lblGreen.AutoSize = true;
+            this.lblGreen.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblGreen.Font = new System.Drawing.Font("Arimo", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGreen.ForeColor = System.Drawing.Color.Gainsboro;
+            this.lblGreen.Location = new System.Drawing.Point(0, 181);
+            this.lblGreen.Name = "lblGreen";
+            this.lblGreen.Padding = new System.Windows.Forms.Padding(7, 0, 0, 0);
+            this.lblGreen.Size = new System.Drawing.Size(54, 16);
+            this.lblGreen.TabIndex = 14;
+            this.lblGreen.Text = "Green:";
+            // 
+            // barRed
+            // 
+            this.barRed.Dock = System.Windows.Forms.DockStyle.Top;
+            this.barRed.Location = new System.Drawing.Point(0, 136);
+            this.barRed.Maximum = 255;
+            this.barRed.Name = "barRed";
+            this.barRed.Size = new System.Drawing.Size(236, 45);
+            this.barRed.TabIndex = 13;
+            this.barRed.TickFrequency = 20;
+            this.barRed.Scroll += new System.EventHandler(this.ColorChanged);
+            // 
+            // lblRed
+            // 
+            this.lblRed.AutoSize = true;
+            this.lblRed.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblRed.Font = new System.Drawing.Font("Arimo", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRed.ForeColor = System.Drawing.Color.Gainsboro;
+            this.lblRed.Location = new System.Drawing.Point(0, 120);
+            this.lblRed.Name = "lblRed";
+            this.lblRed.Padding = new System.Windows.Forms.Padding(7, 0, 0, 0);
+            this.lblRed.Size = new System.Drawing.Size(42, 16);
+            this.lblRed.TabIndex = 12;
+            this.lblRed.Text = "Red:";
             // 
             // icnBtnCancel
             // 
@@ -121,78 +193,6 @@
             this.icnBtnApply.UseVisualStyleBackColor = true;
             this.icnBtnApply.Click += new System.EventHandler(this.icnBtnApply_Click);
             // 
-            // lblRed
-            // 
-            this.lblRed.AutoSize = true;
-            this.lblRed.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblRed.Font = new System.Drawing.Font("Arimo", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRed.ForeColor = System.Drawing.Color.Gainsboro;
-            this.lblRed.Location = new System.Drawing.Point(0, 120);
-            this.lblRed.Name = "lblRed";
-            this.lblRed.Padding = new System.Windows.Forms.Padding(7, 0, 0, 0);
-            this.lblRed.Size = new System.Drawing.Size(42, 16);
-            this.lblRed.TabIndex = 12;
-            this.lblRed.Text = "Red:";
-            // 
-            // barRed
-            // 
-            this.barRed.Dock = System.Windows.Forms.DockStyle.Top;
-            this.barRed.Location = new System.Drawing.Point(0, 136);
-            this.barRed.Maximum = 255;
-            this.barRed.Name = "barRed";
-            this.barRed.Size = new System.Drawing.Size(236, 45);
-            this.barRed.TabIndex = 13;
-            this.barRed.TickFrequency = 20;
-            this.barRed.Scroll += new System.EventHandler(this.ColorChanged);
-            // 
-            // lblGreen
-            // 
-            this.lblGreen.AutoSize = true;
-            this.lblGreen.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblGreen.Font = new System.Drawing.Font("Arimo", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGreen.ForeColor = System.Drawing.Color.Gainsboro;
-            this.lblGreen.Location = new System.Drawing.Point(0, 181);
-            this.lblGreen.Name = "lblGreen";
-            this.lblGreen.Padding = new System.Windows.Forms.Padding(7, 0, 0, 0);
-            this.lblGreen.Size = new System.Drawing.Size(54, 16);
-            this.lblGreen.TabIndex = 14;
-            this.lblGreen.Text = "Green:";
-            // 
-            // barGreen
-            // 
-            this.barGreen.Dock = System.Windows.Forms.DockStyle.Top;
-            this.barGreen.Location = new System.Drawing.Point(0, 197);
-            this.barGreen.Maximum = 255;
-            this.barGreen.Name = "barGreen";
-            this.barGreen.Size = new System.Drawing.Size(236, 45);
-            this.barGreen.TabIndex = 15;
-            this.barGreen.TickFrequency = 20;
-            this.barGreen.Scroll += new System.EventHandler(this.ColorChanged);
-            // 
-            // lblBlue
-            // 
-            this.lblBlue.AutoSize = true;
-            this.lblBlue.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblBlue.Font = new System.Drawing.Font("Arimo", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBlue.ForeColor = System.Drawing.Color.Gainsboro;
-            this.lblBlue.Location = new System.Drawing.Point(0, 242);
-            this.lblBlue.Name = "lblBlue";
-            this.lblBlue.Padding = new System.Windows.Forms.Padding(7, 0, 0, 0);
-            this.lblBlue.Size = new System.Drawing.Size(45, 16);
-            this.lblBlue.TabIndex = 16;
-            this.lblBlue.Text = "Blue:";
-            // 
-            // barBlue
-            // 
-            this.barBlue.Dock = System.Windows.Forms.DockStyle.Top;
-            this.barBlue.Location = new System.Drawing.Point(0, 258);
-            this.barBlue.Maximum = 255;
-            this.barBlue.Name = "barBlue";
-            this.barBlue.Size = new System.Drawing.Size(236, 45);
-            this.barBlue.TabIndex = 17;
-            this.barBlue.TickFrequency = 20;
-            this.barBlue.Scroll += new System.EventHandler(this.ColorChanged);
-            // 
             // panelImg
             // 
             this.panelImg.Controls.Add(this.pictureBox);
@@ -216,9 +216,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.panelBtns.ResumeLayout(false);
             this.panelBtns.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.barRed)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.barGreen)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barBlue)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barGreen)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barRed)).EndInit();
             this.panelImg.ResumeLayout(false);
             this.ResumeLayout(false);
 

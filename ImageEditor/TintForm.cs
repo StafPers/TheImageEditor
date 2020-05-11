@@ -23,7 +23,7 @@ namespace ImageEditor
         /// <param name="image">The image which the effect may be applied to</param>
         /// <param name="history">The history of changes</param>
         /// <param name="currentIndex">The index of the image within the history</param>
-        protected override void InitializeImage( HistoryImage image, List<HistoryImage> history, int currentIndex )
+        protected override void InitializeImage( HistoryImage image, HistoryManager history )
         {
             if( image.Image == null )
                 return;
@@ -32,17 +32,10 @@ namespace ImageEditor
             TintEffect tintEffect = new TintEffect();
             Img = new HistoryImage( image.Image, tintEffect );
 
-            // Go over the history up until current index to detect if this effect has already been applied
-            // if so then I can use it to set the effect values 
-            for( int i = currentIndex; i > 0; --i )
-            {
-                IImageEffect effect = history[i].Effect;
-                if( effect != null && effect is TintEffect )
-                {
-                    tintEffect.Color = (effect as TintEffect).Color;
-                    break;
-                }
-            }
+            // Use old values if it has already been applied 
+            IImageEffect effect = history.HasEffect<TintEffect>()?.Effect;
+            if( effect != null )
+                ( Img.Effect as TintEffect ).Color = ( effect as TintEffect ).Color;
 
             TintEffect oldTint = image.Effect as TintEffect;
             barRed.Value = tintEffect.Color.R;

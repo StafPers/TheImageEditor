@@ -29,26 +29,26 @@ namespace ImageEditor
         /// <param name="history">The history of changes</param>
         /// <param name="currentIndex">The index of the image within the history</param>
         /// </summary>
-        public void ShowForm( HistoryImage image, List<HistoryImage> history, int currentIndex )
+        public void ShowForm( HistoryImage image, HistoryManager history )
         {
-            InitializeImage( image, history, currentIndex );
+            InitializeImage( image, history );
             Show();
         }
 
         /// <summary>
         /// Used to initialize an image with the forms effect
         /// </summary>
-        protected virtual void InitializeImage( HistoryImage image, List<HistoryImage> history, int currentIndex ) { }
+        protected virtual void InitializeImage( HistoryImage image, HistoryManager history ) { }
 
         private void InitializeComponent()
         {
-            this.SuspendLayout();
+            SuspendLayout();
             // 
             // EffectFormBase
             // 
-            this.ClientSize = new System.Drawing.Size(284, 261);
-            this.Name = "EffectFormBase";
-            this.ResumeLayout(false);
+            ClientSize = new System.Drawing.Size(284, 261);
+            Name = "EffectFormBase";
+            ResumeLayout(false);
 
         }
     }

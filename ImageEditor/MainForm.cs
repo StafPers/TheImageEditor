@@ -262,8 +262,12 @@ namespace ImageEditor
             if( _historyManager.GetCurrent() == null || _currEffectForm != null )
                 return;
 
-            HightlightButton( sender, ButtonColors.color5 );
-            ApplyEffect( new InverseEffect() );
+            // Only apply this effect if it hasn't already been applied
+            if( _historyManager.HasEffect<InverseEffect>() == null )
+            {
+                HightlightButton( sender, ButtonColors.color5 );
+                ApplyEffect( new InverseEffect() );
+            }
         }
 
         /// <summary>
@@ -274,8 +278,12 @@ namespace ImageEditor
             if( _historyManager.GetCurrent() == null || _currEffectForm != null )
                 return;
 
-            HightlightButton( sender, ButtonColors.color4 );
-            ApplyEffect( new CircleEffect() );
+            // Only apply this effect if it hasn't already been applied
+            if(_historyManager.HasEffect<CircleEffect>() == null)
+            {
+                HightlightButton( sender, ButtonColors.color4 );
+                ApplyEffect( new CircleEffect() );
+            }
         }
 
         /// <summary>
@@ -333,7 +341,7 @@ namespace ImageEditor
             panelDesktop.Tag = _currEffectForm;
             _currEffectForm.BringToFront();
 
-            _currEffectForm.ShowForm( _historyManager.GetCurrent(), _historyManager.GetHistory(), _historyManager.CurrIndex );
+            _currEffectForm.ShowForm( _historyManager.GetCurrent(), _historyManager );
         }
 
         /// <summary>
