@@ -44,8 +44,6 @@ namespace ImageEditor.ImageEffects
             int bytesPerPixel = Bitmap.GetPixelFormatSize(outImg.PixelFormat) / 8;
             int height = outData.Height;
             int width = outData.Width * bytesPerPixel;
-            int contrast = (int)MathHelper.Lerp(-255.0f, 255.0f, Amount);
-            float correctionFactor = (259.0f * (255.0f + contrast)) / (255.0f * (259.0f - contrast));
 
             //I'm using pointers in these functions because GetPixel and SetPixel are way to slow
             //to be useable since I'm using sliders which causes this function to be called frequently
@@ -61,9 +59,10 @@ namespace ImageEditor.ImageEffects
                         byte oldG = row[x + 1];
                         byte oldR = row[x + 2];
 
-                        int r = Math.Min(255, (int)((((oldR * 0.393f) + (oldG * 0.769f) + (oldB * 0.189f)) *  Amount) + (oldR * (1.0f - Amount))));
-                        int g = Math.Min(255, (int)((((oldR * 0.349f) + (oldG * 0.686f) + (oldB * 0.168f)) *  Amount) + (oldG * (1.0f - Amount))));
-                        int b = Math.Min(255, (int)((((oldR * 0.272f) + (oldG * 0.534f) + (oldB * 0.131f)) *  Amount) + (oldB * (1.0f - Amount))));
+                        float remainder = 1.0f - Amount;
+                        int r = Math.Min(255, (int)((((oldR * 0.393f) + (oldG * 0.769f) + (oldB * 0.189f)) *  Amount) + (oldR * remainder)));
+                        int g = Math.Min(255, (int)((((oldR * 0.349f) + (oldG * 0.686f) + (oldB * 0.168f)) *  Amount) + (oldG * remainder)));
+                        int b = Math.Min(255, (int)((((oldR * 0.272f) + (oldG * 0.534f) + (oldB * 0.131f)) *  Amount) + (oldB * remainder)));
 
                         row[x] = ( byte )b;
                         row[x + 1] = ( byte )g;

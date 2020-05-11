@@ -66,6 +66,9 @@ namespace ImageEditor
             effect.Color = System.Drawing.Color.FromArgb( barRed.Value, barGreen.Value, barBlue.Value );
 
             ApplyEffect();
+
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
         }
     }
 }

@@ -44,8 +44,6 @@ namespace ImageEditor.ImageEffects
             int bytesPerPixel = Bitmap.GetPixelFormatSize(outImg.PixelFormat) / 8;
             int height = outData.Height;
             int width = outData.Width * bytesPerPixel;
-            int contrast = (int)MathHelper.Lerp(-255.0f, 255.0f, Amount);
-            float correctionFactor = (259.0f * (255.0f + contrast)) / (255.0f * (259.0f - contrast));
 
             //I'm using pointers in these functions because GetPixel and SetPixel are way to slow
             //to be useable since I'm using sliders which causes this function to be called frequently
