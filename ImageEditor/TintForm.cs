@@ -54,15 +54,10 @@ namespace ImageEditor
 
         /// <summary>
         /// Applies the effect to the image in the pictureBox
-        /// Updates the labels
         /// </summary>
         private void ApplyEffect()
         {
             TintEffect effect = Img.Effect as TintEffect;
-
-            lblRedVal.Text = effect.Color.R.ToString();
-            lblGreenVal.Text = effect.Color.G.ToString();
-            lblBlueVal.Text = effect.Color.B.ToString();
 
             Img.Image = Img.Effect.ApplyEffect( _originalImg.Image );
             pictureBox.Image = Img.Image;
@@ -70,7 +65,6 @@ namespace ImageEditor
 
         /// <summary>
         /// Sets effect Color based on the scroll bars
-        /// Updates the label
         /// </summary>
         private void ColorChanged( object sender, EventArgs e )
         {
@@ -78,6 +72,16 @@ namespace ImageEditor
             effect.Color = System.Drawing.Color.FromArgb( barRed.Value, barGreen.Value, barBlue.Value );
 
             ApplyEffect();
+        }
+
+        private void icnBtnApply_Click( object sender, EventArgs e )
+        {
+            OnEffectApplied();
+        }
+
+        private void icnBtnCancel_Click( object sender, EventArgs e )
+        {
+            onEffectCanceled();
         }
     }
 }
