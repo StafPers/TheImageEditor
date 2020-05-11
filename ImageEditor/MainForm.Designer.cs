@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.panelEffects = new System.Windows.Forms.Panel();
+            this.icnBtnCircle = new FontAwesome.Sharp.IconButton();
+            this.icnBtnInverse = new FontAwesome.Sharp.IconButton();
             this.icnBtnContrast = new FontAwesome.Sharp.IconButton();
             this.icnBtnBrightness = new FontAwesome.Sharp.IconButton();
             this.icnBtnTint = new FontAwesome.Sharp.IconButton();
@@ -60,8 +62,7 @@
             this.icnBtnLoad = new FontAwesome.Sharp.IconButton();
             this.panelShadow = new System.Windows.Forms.Panel();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.icnBtnCircle = new FontAwesome.Sharp.IconButton();
-            this.icnBtnInverse = new FontAwesome.Sharp.IconButton();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.panelEffects.SuspendLayout();
             this.panelLogo.SuspendLayout();
@@ -72,6 +73,7 @@
             this.panelForm.SuspendLayout();
             this.panelDesktop.SuspendLayout();
             this.panelBtns.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox
@@ -107,6 +109,54 @@
             this.panelEffects.Name = "panelEffects";
             this.panelEffects.Size = new System.Drawing.Size(200, 558);
             this.panelEffects.TabIndex = 8;
+            // 
+            // icnBtnCircle
+            // 
+            this.icnBtnCircle.Dock = System.Windows.Forms.DockStyle.Top;
+            this.icnBtnCircle.FlatAppearance.BorderSize = 0;
+            this.icnBtnCircle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.icnBtnCircle.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
+            this.icnBtnCircle.Font = new System.Drawing.Font("Arimo", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.icnBtnCircle.ForeColor = System.Drawing.Color.Gainsboro;
+            this.icnBtnCircle.IconChar = FontAwesome.Sharp.IconChar.UserCircle;
+            this.icnBtnCircle.IconColor = System.Drawing.Color.Gainsboro;
+            this.icnBtnCircle.IconSize = 32;
+            this.icnBtnCircle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.icnBtnCircle.Location = new System.Drawing.Point(0, 460);
+            this.icnBtnCircle.Name = "icnBtnCircle";
+            this.icnBtnCircle.Padding = new System.Windows.Forms.Padding(15, 0, 20, 0);
+            this.icnBtnCircle.Rotation = 0D;
+            this.icnBtnCircle.Size = new System.Drawing.Size(200, 60);
+            this.icnBtnCircle.TabIndex = 9;
+            this.icnBtnCircle.Text = "Circle";
+            this.icnBtnCircle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.icnBtnCircle.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.icnBtnCircle.UseVisualStyleBackColor = true;
+            this.icnBtnCircle.Click += new System.EventHandler(this.icnBtnCircle_Click);
+            // 
+            // icnBtnInverse
+            // 
+            this.icnBtnInverse.Dock = System.Windows.Forms.DockStyle.Top;
+            this.icnBtnInverse.FlatAppearance.BorderSize = 0;
+            this.icnBtnInverse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.icnBtnInverse.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
+            this.icnBtnInverse.Font = new System.Drawing.Font("Arimo", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.icnBtnInverse.ForeColor = System.Drawing.Color.Gainsboro;
+            this.icnBtnInverse.IconChar = FontAwesome.Sharp.IconChar.Image;
+            this.icnBtnInverse.IconColor = System.Drawing.Color.Gainsboro;
+            this.icnBtnInverse.IconSize = 32;
+            this.icnBtnInverse.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.icnBtnInverse.Location = new System.Drawing.Point(0, 400);
+            this.icnBtnInverse.Name = "icnBtnInverse";
+            this.icnBtnInverse.Padding = new System.Windows.Forms.Padding(15, 0, 20, 0);
+            this.icnBtnInverse.Rotation = 0D;
+            this.icnBtnInverse.Size = new System.Drawing.Size(200, 60);
+            this.icnBtnInverse.TabIndex = 8;
+            this.icnBtnInverse.Text = "Inverse";
+            this.icnBtnInverse.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.icnBtnInverse.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.icnBtnInverse.UseVisualStyleBackColor = true;
+            this.icnBtnInverse.Click += new System.EventHandler(this.icnBtnInverse_Click);
             // 
             // icnBtnContrast
             // 
@@ -333,8 +383,8 @@
             // 
             // panelMenu
             // 
+            this.panelMenu.Controls.Add(this.panel1);
             this.panelMenu.Controls.Add(this.lblTitle);
-            this.panelMenu.Controls.Add(this.menuStrip);
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelMenu.Location = new System.Drawing.Point(0, 0);
             this.panelMenu.Name = "panelMenu";
@@ -356,11 +406,10 @@
             // menuStrip
             // 
             this.menuStrip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(25)))), ((int)(((byte)(62)))));
-            this.menuStrip.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.menuStrip.Font = new System.Drawing.Font("Arimo", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileMenuItem});
-            this.menuStrip.Location = new System.Drawing.Point(0, 32);
+            this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Size = new System.Drawing.Size(129, 24);
             this.menuStrip.TabIndex = 6;
@@ -384,7 +433,7 @@
             // 
             this.loadMenuItem.Name = "loadMenuItem";
             this.loadMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.L)));
-            this.loadMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.loadMenuItem.Size = new System.Drawing.Size(180, 22);
             this.loadMenuItem.Text = "Load";
             this.loadMenuItem.Click += new System.EventHandler(this.loadMenuItem_Click);
             // 
@@ -392,14 +441,14 @@
             // 
             this.saveMenuItem.Name = "saveMenuItem";
             this.saveMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.saveMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveMenuItem.Text = "Save";
             this.saveMenuItem.Click += new System.EventHandler(this.saveMenuItem_Click);
             // 
             // saveAsMenuItem
             // 
             this.saveAsMenuItem.Name = "saveAsMenuItem";
-            this.saveAsMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.saveAsMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveAsMenuItem.Text = "Save as...";
             this.saveAsMenuItem.Click += new System.EventHandler(this.saveAsMenuItem_Click);
             // 
@@ -407,7 +456,7 @@
             // 
             this.revertMenuItem.Name = "revertMenuItem";
             this.revertMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
-            this.revertMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.revertMenuItem.Size = new System.Drawing.Size(180, 22);
             this.revertMenuItem.Text = "Revert";
             this.revertMenuItem.Click += new System.EventHandler(this.revertMenuItem_Click);
             // 
@@ -415,7 +464,7 @@
             // 
             this.redoMenuItem.Name = "redoMenuItem";
             this.redoMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
-            this.redoMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.redoMenuItem.Size = new System.Drawing.Size(180, 22);
             this.redoMenuItem.Text = "Redo";
             this.redoMenuItem.Click += new System.EventHandler(this.redoMenuItem_Click);
             // 
@@ -423,7 +472,7 @@
             // 
             this.exitMenuItem.Name = "exitMenuItem";
             this.exitMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.exitMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.exitMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitMenuItem.Text = "Exit";
             this.exitMenuItem.Click += new System.EventHandler(this.exitMenuItem_Click);
             // 
@@ -531,53 +580,14 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // icnBtnCircle
+            // panel1
             // 
-            this.icnBtnCircle.Dock = System.Windows.Forms.DockStyle.Top;
-            this.icnBtnCircle.FlatAppearance.BorderSize = 0;
-            this.icnBtnCircle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.icnBtnCircle.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
-            this.icnBtnCircle.Font = new System.Drawing.Font("Arimo", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.icnBtnCircle.ForeColor = System.Drawing.Color.Gainsboro;
-            this.icnBtnCircle.IconChar = FontAwesome.Sharp.IconChar.UserCircle;
-            this.icnBtnCircle.IconColor = System.Drawing.Color.Gainsboro;
-            this.icnBtnCircle.IconSize = 32;
-            this.icnBtnCircle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.icnBtnCircle.Location = new System.Drawing.Point(0, 460);
-            this.icnBtnCircle.Name = "icnBtnCircle";
-            this.icnBtnCircle.Padding = new System.Windows.Forms.Padding(15, 0, 20, 0);
-            this.icnBtnCircle.Rotation = 0D;
-            this.icnBtnCircle.Size = new System.Drawing.Size(200, 60);
-            this.icnBtnCircle.TabIndex = 9;
-            this.icnBtnCircle.Text = "Circle";
-            this.icnBtnCircle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.icnBtnCircle.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.icnBtnCircle.UseVisualStyleBackColor = true;
-            this.icnBtnCircle.Click += new System.EventHandler(this.icnBtnCircle_Click);
-            // 
-            // icnBtnInverse
-            // 
-            this.icnBtnInverse.Dock = System.Windows.Forms.DockStyle.Top;
-            this.icnBtnInverse.FlatAppearance.BorderSize = 0;
-            this.icnBtnInverse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.icnBtnInverse.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
-            this.icnBtnInverse.Font = new System.Drawing.Font("Arimo", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.icnBtnInverse.ForeColor = System.Drawing.Color.Gainsboro;
-            this.icnBtnInverse.IconChar = FontAwesome.Sharp.IconChar.Image;
-            this.icnBtnInverse.IconColor = System.Drawing.Color.Gainsboro;
-            this.icnBtnInverse.IconSize = 32;
-            this.icnBtnInverse.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.icnBtnInverse.Location = new System.Drawing.Point(0, 400);
-            this.icnBtnInverse.Name = "icnBtnInverse";
-            this.icnBtnInverse.Padding = new System.Windows.Forms.Padding(15, 0, 20, 0);
-            this.icnBtnInverse.Rotation = 0D;
-            this.icnBtnInverse.Size = new System.Drawing.Size(200, 60);
-            this.icnBtnInverse.TabIndex = 8;
-            this.icnBtnInverse.Text = "Inverse";
-            this.icnBtnInverse.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.icnBtnInverse.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.icnBtnInverse.UseVisualStyleBackColor = true;
-            this.icnBtnInverse.Click += new System.EventHandler(this.icnBtnInverse_Click);
+            this.panel1.Controls.Add(this.menuStrip);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 34);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(129, 22);
+            this.panel1.TabIndex = 8;
             // 
             // MainForm
             // 
@@ -605,6 +615,8 @@
             this.panelForm.ResumeLayout(false);
             this.panelDesktop.ResumeLayout(false);
             this.panelBtns.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -644,6 +656,7 @@
         private System.Windows.Forms.Label lblTitle;
         private FontAwesome.Sharp.IconButton icnBtnCircle;
         private FontAwesome.Sharp.IconButton icnBtnInverse;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 
