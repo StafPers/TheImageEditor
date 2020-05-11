@@ -2,6 +2,7 @@
 using System;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Threading.Tasks;
 
 namespace ImageEditor.ImageEffects
 {
@@ -36,42 +37,42 @@ namespace ImageEditor.ImageEffects
         /// </summary>
         /// <param name="img">The image to apply an effect to</param>
         /// <returns>A new image with the effect applied</returns>
-        public Bitmap ApplyEffect( Bitmap img )
+        public Bitmap ApplyEffect( Bitmap inImg )
         {
-            Bitmap grayImg = (Bitmap)img.Clone();
-            BitmapData data = grayImg.LockBits(new Rectangle(0, 0, grayImg.Width, grayImg.Height), ImageLockMode.ReadWrite, grayImg.PixelFormat);
-
-            // 3 or 4 depending on if the image has alpha
-            int colWidth = data.Stride / grayImg.Width;
+            Bitmap outImg = (Bitmap)inImg.Clone();
+            BitmapData outData = outImg.LockBits(new Rectangle(0, 0, outImg.Width, outImg.Height), ImageLockMode.ReadWrite, outImg.PixelFormat);
+            int bytesPerPixel = Bitmap.GetPixelFormatSize(outImg.PixelFormat) / 8;
+            int height = outData.Height;
+            int width = outData.Width * bytesPerPixel;
+            int contrast = (int)MathHelper.Lerp(-255.0f, 255.0f, Amount);
+            float correctionFactor = (259.0f * (255.0f + contrast)) / (255.0f * (259.0f - contrast));
 
             //I'm using pointers in these functions because GetPixel and SetPixel are way to slow
             //to be useable since I'm using sliders which causes this function to be called frequently
             unsafe
             {
-                for( int y = 0; y < grayImg.Height; ++y )
+                byte* ptr0 = (byte*)outData.Scan0;
+                Parallel.For( 0, height, y =>
                 {
-                    byte* row = (byte*)data.Scan0 + (y * data.Stride);
-                    int columnOffset = 0;
-                    for( int x = 0; x < grayImg.Width; ++x )
+                    byte* row = ptr0 + (y * outData.Stride);
+                    for( int x = 0; x < width; x += bytesPerPixel )
                     {
-                        byte b = row[columnOffset];
-                        byte g = row[columnOffset + 1];
-                        byte r = row[columnOffset + 2];
+                        byte b = row[x];
+                        byte g = row[x + 1];
+                        byte r = row[x + 2];
 
                         int avg = (int)(r * 0.3 + g * 0.59 + b * 0.11);
                         avg = Math.Min( 255, avg );
 
-                        row[columnOffset] = ( byte )Math.Min( ( avg * Amount ) + ( b * ( 1.0f - Amount ) ), 255 );
-                        row[columnOffset + 1] = ( byte )Math.Min( ( avg * Amount ) + ( g * ( 1.0f - Amount ) ), 255 );
-                        row[columnOffset + 2] = ( byte )Math.Min( ( avg * Amount ) + ( r * ( 1.0f - Amount ) ), 255 );
-
-                        columnOffset += colWidth;
+                        row[x] = ( byte )Math.Min( ( avg * Amount ) + ( b * ( 1.0f - Amount ) ), 255 );
+                        row[x + 1] = ( byte )Math.Min( ( avg * Amount ) + ( g * ( 1.0f - Amount ) ), 255 );
+                        row[x + 2] = ( byte )Math.Min( ( avg * Amount ) + ( r * ( 1.0f - Amount ) ), 255 );
                     }
-                }
+                } );
             }
 
-            grayImg.UnlockBits( data );
-            return grayImg;
+            outImg.UnlockBits( outData );
+            return outImg;
         }
     }
 }
