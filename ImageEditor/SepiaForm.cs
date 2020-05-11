@@ -53,6 +53,9 @@ namespace ImageEditor
             (Img.Effect as SepiaEffect).Amount = amount;
             Img.Image = Img.Effect.ApplyEffect( _originalImg.Image );
             pictureBox.Image = Img.Image;
+
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
         }
     }
 }

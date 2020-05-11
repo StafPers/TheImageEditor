@@ -61,12 +61,11 @@ namespace ImageEditor.ImageEffects
                         byte g = row[x + 1];
                         byte r = row[x + 2];
 
-                        int avg = (int)(r * 0.3 + g * 0.59 + b * 0.11);
-                        avg = Math.Min( 255, avg );
-
-                        row[x] = ( byte )Math.Min( ( avg * Amount ) + ( b * ( 1.0f - Amount ) ), 255 );
-                        row[x + 1] = ( byte )Math.Min( ( avg * Amount ) + ( g * ( 1.0f - Amount ) ), 255 );
-                        row[x + 2] = ( byte )Math.Min( ( avg * Amount ) + ( r * ( 1.0f - Amount ) ), 255 );
+                        float avg = (r * 0.3f + g * 0.59f + b * 0.11f) * Amount;
+                        float remaining = 1.0f - Amount;
+                        row[x] = ( byte )Math.Min( avg + ( b * remaining ), 255 );
+                        row[x + 1] = ( byte )Math.Min( avg + ( g * remaining ), 255 );
+                        row[x + 2] = ( byte )Math.Min( avg + ( r * remaining ), 255 );
                     }
                 } );
             }
