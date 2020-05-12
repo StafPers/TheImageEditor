@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Threading.Tasks;
 
 namespace ImageEditor.ImageEffects
 {
@@ -22,42 +23,46 @@ namespace ImageEditor.ImageEffects
         public Bitmap ApplyEffect( Bitmap img )
         {
             Bitmap circleImg = (Bitmap)img.Clone();
-            BitmapData data = circleImg.LockBits(new Rectangle(0, 0, circleImg.Width, circleImg.Height), ImageLockMode.ReadWrite, circleImg.PixelFormat);
+            BitmapData outData = circleImg.LockBits(new Rectangle(0, 0, circleImg.Width, circleImg.Height), ImageLockMode.ReadWrite, circleImg.PixelFormat);
 
-            int radius = Math.Min(circleImg.Width, circleImg.Height) / 2;
+            int bytesPerPixel = Bitmap.GetPixelFormatSize(circleImg.PixelFormat) / 8;
+
+            int height = circleImg.Height;
+            int width = outData.Width * bytesPerPixel;
+
+            // I've tried to optimize effects since they can be pretty slow
+            // That's why I'm bitshifting instead of dividing since it's a few less instructions
+            int centerX = circleImg.Width >> 1;
+            int centerY = height >> 1;
+
+            int radius = Math.Min(circleImg.Width, height) >> 1;
             int radiusSq = radius * radius;
-            int centerX = circleImg.Width / 2;
-            int centerY = circleImg.Height / 2;
-
-            // 3 or 4 depending on if the image has alpha
-            int colWidth = data.Stride / circleImg.Width;
 
             //I'm using pointers in these functions because GetPixel and SetPixel are way to slow
             //to be useable since I'm using sliders which causes this function to be called frequently
             unsafe
             {
-                for( int y = 0; y < circleImg.Height; ++y )
+                byte* ptr0 = (byte*)outData.Scan0;
+                Parallel.For( 0, height, y =>
                 {
-                    byte* row = (byte*)data.Scan0 + (y * data.Stride);
-                    int columnOffset = 0;
-                    for( int x = 0; x < circleImg.Width; ++x )
+                    byte* row = ptr0 + (y * outData.Stride);
+
+                    for( int x = 0; x < width; x += bytesPerPixel )
                     {
-                        int deltaX = centerX - x;
+                        int deltaX = centerX - x / bytesPerPixel;
                         int deltaY = centerY - y;
 
-                        if((deltaX * deltaX) + (deltaY * deltaY) > radiusSq)
+                        if( ( deltaX * deltaX ) + ( deltaY * deltaY ) > radiusSq )
                         {
-                            row[columnOffset] = 255;
-                            row[columnOffset + 1] = 255;
-                            row[columnOffset + 2] = 255;
+                            row[x] = 255;
+                            row[x + 1] = 255;
+                            row[x + 2] = 255;
                         }
-
-                        columnOffset += colWidth;
                     }
-                }
+                } );
             }
 
-            circleImg.UnlockBits( data );
+            circleImg.UnlockBits( outData );
             return circleImg;
         }
     }
