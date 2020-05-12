@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Threading.Tasks;
 
 namespace ImageEditor.ImageEffects
 {
@@ -19,35 +20,33 @@ namespace ImageEditor.ImageEffects
         /// </summary>
         /// <param name="img">The image to apply an effect to</param>
         /// <returns>A new image with the effect applied</returns>
-        public Bitmap ApplyEffect( Bitmap img )
+        public Bitmap ApplyEffect( Bitmap inImg )
         {
-            Bitmap inverseImg = (Bitmap)img.Clone();
-            BitmapData data = inverseImg.LockBits(new Rectangle(0, 0, inverseImg.Width, inverseImg.Height), ImageLockMode.ReadWrite, inverseImg.PixelFormat);
-
-            // 3 or 4 depending on if the image has alpha
-            int colWidth = data.Stride / inverseImg.Width;
+            Bitmap outImg = (Bitmap)inImg.Clone();
+            BitmapData outData = outImg.LockBits(new Rectangle(0, 0, outImg.Width, outImg.Height), ImageLockMode.ReadWrite, outImg.PixelFormat);
+            int bytesPerPixel = Bitmap.GetPixelFormatSize(outImg.PixelFormat) / 8;
+            int height = outData.Height;
+            int width = outData.Width * bytesPerPixel;
 
             //I'm using pointers in these functions because GetPixel and SetPixel are way to slow
             //to be useable since I'm using sliders which causes this function to be called frequently
             unsafe
             {
-                for( int y = 0; y < inverseImg.Height; ++y )
+                byte* ptr0 = (byte*)outData.Scan0;
+                Parallel.For( 0, height, y =>
                 {
-                    byte* row = (byte*)data.Scan0 + (y * data.Stride);
-                    int columnOffset = 0;
-                    for( int x = 0; x < inverseImg.Width; ++x )
+                    byte* row = ptr0 + (y * outData.Stride);
+                    for( int x = 0; x < width; x += bytesPerPixel )
                     {
-                        row[columnOffset] = (byte)(255 - row[columnOffset]);
-                        row[columnOffset + 1] = ( byte )( 255 - row[columnOffset + 1] );
-                        row[columnOffset + 2] = ( byte )( 255 - row[columnOffset + 2] );
-
-                        columnOffset += colWidth;
+                        row[x] = ( byte )( 255 - row[x] );
+                        row[x + 1] = ( byte )( 255 - row[x + 1] );
+                        row[x + 2] = ( byte )( 255 - row[x + 2] );
                     }
-                }
+                } );
             }
 
-            inverseImg.UnlockBits( data );
-            return inverseImg;
+            outImg.UnlockBits( outData );
+            return outImg;
         }
     }
 }
