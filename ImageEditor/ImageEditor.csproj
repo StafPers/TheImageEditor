@@ -54,21 +54,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ValueSliderEffectForm.cs">
+    <Compile Include="Forms\ValueSliderEffectForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ValueSliderEffectForm.Designer.cs">
+    <Compile Include="Forms\ValueSliderEffectForm.Designer.cs">
       <DependentUpon>ValueSliderEffectForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="EffectFormBase.cs">
+    <Compile Include="Forms\EffectFormBase.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Helper\MathHelper.cs" />
     <Compile Include="ImageEffects\ContrastEffect.cs" />
-    <Compile Include="ColorSliderEffectForm.cs">
+    <Compile Include="Forms\ColorSliderEffectForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ColorSliderEffectForm.Designer.cs">
+    <Compile Include="Forms\ColorSliderEffectForm.Designer.cs">
       <DependentUpon>ColorSliderEffectForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ImageEffects\TintEffect.cs" />
@@ -77,10 +77,10 @@
     <Compile Include="ImageEffects\BrightnessEffect.cs" />
     <Compile Include="ImageEffects\InverseEffect.cs" />
     <Compile Include="ImageEffects\SepiaEffect.cs" />
-    <Compile Include="MainForm.cs">
+    <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
+    <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ImageEffects\GrayscaleEffect.cs" />
@@ -88,16 +88,16 @@
     <Compile Include="ImageEffects\IImageEffect.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="ValueSliderEffectForm.resx">
+    <EmbeddedResource Include="Forms\ValueSliderEffectForm.resx">
       <DependentUpon>ValueSliderEffectForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EffectFormBase.resx">
+    <EmbeddedResource Include="Forms\EffectFormBase.resx">
       <DependentUpon>EffectFormBase.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ColorSliderEffectForm.resx">
+    <EmbeddedResource Include="Forms\ColorSliderEffectForm.resx">
       <DependentUpon>ColorSliderEffectForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.resx">
+    <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

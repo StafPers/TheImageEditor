@@ -3,7 +3,6 @@ using System;
 
 // I had many forms with the same design and almost exactly the same functionality
 // so I decided to take a template approach in order to reduce repetition
-
 namespace ImageEditor
 {
     /// <summary>
