@@ -13,6 +13,7 @@ namespace ImageEditor
         public Bitmap Image { get; set; }
         public IImageEffect Effect { get; private set; }
         public bool IsSaved { get; set; }
+        public int Id { get; private set; }
         
         /// <summary>
         /// Constructor
@@ -20,11 +21,12 @@ namespace ImageEditor
         /// <param name="image">The image</param>
         /// <param name="effect">The effect</param>
         /// <param name="isSaved">Flag if it's been saved</param>
-        public HistoryImage(Bitmap image, IImageEffect effect = null, bool isSaved = false)
+        public HistoryImage(int id, Bitmap image, IImageEffect effect = null, bool isSaved = false)
         {
             Image = image;
             Effect = effect;
             IsSaved = isSaved;
+            Id = id;
         }
 
         /// <summary>
@@ -32,7 +34,7 @@ namespace ImageEditor
         /// </summary>
         public object Clone()
         {
-            return new HistoryImage((Bitmap)Image.Clone(), Effect != null ? (IImageEffect)Effect.Clone() : null, IsSaved);
+            return new HistoryImage(Id, (Bitmap)Image.Clone(), Effect != null ? (IImageEffect)Effect.Clone() : null, IsSaved);
         }
     }
 }

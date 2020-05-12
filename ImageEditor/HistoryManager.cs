@@ -1,6 +1,7 @@
 ﻿using ImageEditor.ImageEffects;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ImageEditor
 {
@@ -44,17 +45,13 @@ namespace ImageEditor
         /// <returns>The image with the applied effect or null if effect has not been applied</returns>
         public HistoryImage HasEffect<T>()
         {
-            for( int i = CurrIndex; i > 0; --i )
-            {
-                IImageEffect currEffect = _imageHistory[i].Effect;
-                if( currEffect == null )
-                    continue;
+            int? id = GetCurrent()?.Id;
 
-                if( currEffect is T )
-                    return (HistoryImage)_imageHistory[i].Clone();
-            }
-
-            return null;
+            return id == null ? null : 
+                ( HistoryImage )_imageHistory
+                .Where( x => x.Id == id && x.Effect != null && x.Effect is T && _imageHistory.IndexOf(x) <= CurrIndex )
+                .FirstOrDefault()?
+                .Clone();
         }
 
         /// <summary>

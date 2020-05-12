@@ -30,7 +30,7 @@ namespace ImageEditor
                 return;
 
             _originalImg = image;
-            Img = new HistoryImage( image.Image, new BrightnessEffect() );
+            Img = new HistoryImage( _originalImg.Id, image.Image, new BrightnessEffect() );
 
             // Use old values if it has already been applied 
             IImageEffect effect = history.HasEffect<BrightnessEffect>()?.Effect;

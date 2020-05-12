@@ -31,7 +31,7 @@ namespace ImageEditor
 
             _originalImg = image;
             TintEffect tintEffect = new TintEffect();
-            Img = new HistoryImage( image.Image, tintEffect );
+            Img = new HistoryImage( _originalImg.Id, image.Image, tintEffect );
 
             // Use old values if it has already been applied 
             IImageEffect effect = history.HasEffect<TintEffect>()?.Effect;

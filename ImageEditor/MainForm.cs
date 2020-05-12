@@ -25,6 +25,8 @@ namespace ImageEditor
         private SepiaForm _sepiaForm;
         private GrayscaleForm _grayscaleForm;
         private TintForm _tintForm;
+        private int _imageIdCounter = 0;
+        private int _curImageId = 0;
 
         /// <summary>
         /// Constructor
@@ -200,8 +202,9 @@ namespace ImageEditor
                 using( var tempImg = new Bitmap( fileName ) )
                     pictureBox.Image = new Bitmap( tempImg );
 
+                _curImageId = ++_imageIdCounter;
                 pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
-                _historyManager.Append( new HistoryImage( pictureBox.Image as Bitmap ) );
+                _historyManager.Append( new HistoryImage( _imageIdCounter, pictureBox.Image as Bitmap ) );
                 UpdateGui();
             }
         }
@@ -262,12 +265,8 @@ namespace ImageEditor
             if( _historyManager.GetCurrent() == null || _currEffectForm != null )
                 return;
 
-            // Only apply this effect if it hasn't already been applied
-            if( _historyManager.HasEffect<InverseEffect>() == null )
-            {
-                HightlightButton( sender, ButtonColors.color5 );
-                ApplyEffect( new InverseEffect() );
-            }
+            HightlightButton( sender, ButtonColors.color5 );
+            ApplyEffect( new InverseEffect() );
         }
 
         /// <summary>
@@ -356,7 +355,7 @@ namespace ImageEditor
                 Bitmap grayImg = effect.ApplyEffect(img as Bitmap);
 
                 pictureBox.Image = grayImg;
-                _historyManager.Append( new HistoryImage(grayImg, effect) );
+                _historyManager.Append( new HistoryImage(_curImageId, grayImg, effect) );
             }
         }
 
@@ -506,6 +505,7 @@ namespace ImageEditor
             if(img != null)
             {
                 pictureBox.Image = img.Image;
+                _curImageId = img.Id;
                 UpdateGui();
             }
         }
@@ -518,6 +518,7 @@ namespace ImageEditor
             HistoryImage img = _historyManager.Revert();
             if( img != null )
             {
+                _curImageId = img.Id;
                 pictureBox.Image = img.Image;
                 UpdateGui();
             }
@@ -551,7 +552,7 @@ namespace ImageEditor
         private void panelTitlebar_MouseDown( object sender, MouseEventArgs e )
         {
             ReleaseCapture();
-            SendMessage( this.Handle, 0x112, 0xf012, 0 );
+            SendMessage( Handle, 0x112, 0xf012, 0 );
         }
 
         private void icnBtnMinimize_Click( object sender, EventArgs e )

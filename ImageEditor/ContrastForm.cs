@@ -30,7 +30,7 @@ namespace ImageEditor
                 return;
 
             _originalImg = image;
-            Img = new HistoryImage( image.Image, new ContrastEffect() );
+            Img = new HistoryImage(_originalImg.Id, image.Image, new ContrastEffect() );
 
             // Use old values if it has already been applied 
             IImageEffect effect = history.HasEffect<ContrastEffect>()?.Effect;
