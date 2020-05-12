@@ -59,11 +59,11 @@
             this.panelDesktop = new System.Windows.Forms.Panel();
             this.panelRightPad = new System.Windows.Forms.Panel();
             this.panelBtns = new System.Windows.Forms.Panel();
+            this.icnBtnClear = new FontAwesome.Sharp.IconButton();
             this.icnBtnSave = new FontAwesome.Sharp.IconButton();
             this.icnBtnLoad = new FontAwesome.Sharp.IconButton();
             this.panelShadow = new System.Windows.Forms.Panel();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.iconButton1 = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.panelEffects.SuspendLayout();
             this.panelLogo.SuspendLayout();
@@ -520,7 +520,7 @@
             // panelBtns
             // 
             this.panelBtns.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(25)))), ((int)(((byte)(62)))));
-            this.panelBtns.Controls.Add(this.iconButton1);
+            this.panelBtns.Controls.Add(this.icnBtnClear);
             this.panelBtns.Controls.Add(this.icnBtnSave);
             this.panelBtns.Controls.Add(this.icnBtnLoad);
             this.panelBtns.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -528,6 +528,31 @@
             this.panelBtns.Name = "panelBtns";
             this.panelBtns.Size = new System.Drawing.Size(728, 60);
             this.panelBtns.TabIndex = 10;
+            // 
+            // icnBtnClear
+            // 
+            this.icnBtnClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.icnBtnClear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(30)))), ((int)(((byte)(68)))));
+            this.icnBtnClear.FlatAppearance.BorderSize = 0;
+            this.icnBtnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.icnBtnClear.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
+            this.icnBtnClear.Font = new System.Drawing.Font("Arimo", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.icnBtnClear.ForeColor = System.Drawing.Color.Gainsboro;
+            this.icnBtnClear.IconChar = FontAwesome.Sharp.IconChar.Ban;
+            this.icnBtnClear.IconColor = System.Drawing.Color.Gainsboro;
+            this.icnBtnClear.IconSize = 32;
+            this.icnBtnClear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.icnBtnClear.Location = new System.Drawing.Point(552, 0);
+            this.icnBtnClear.Margin = new System.Windows.Forms.Padding(0);
+            this.icnBtnClear.Name = "icnBtnClear";
+            this.icnBtnClear.Rotation = 0D;
+            this.icnBtnClear.Size = new System.Drawing.Size(146, 60);
+            this.icnBtnClear.TabIndex = 12;
+            this.icnBtnClear.Text = "Clear effects";
+            this.icnBtnClear.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.icnBtnClear.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.icnBtnClear.UseVisualStyleBackColor = false;
+            this.icnBtnClear.Click += new System.EventHandler(this.icnBtnClear_Click);
             // 
             // icnBtnSave
             // 
@@ -591,29 +616,6 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // iconButton1
-            // 
-            this.iconButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(30)))), ((int)(((byte)(68)))));
-            this.iconButton1.FlatAppearance.BorderSize = 0;
-            this.iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton1.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
-            this.iconButton1.Font = new System.Drawing.Font("Arimo", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconButton1.ForeColor = System.Drawing.Color.Gainsboro;
-            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.Save;
-            this.iconButton1.IconColor = System.Drawing.Color.Gainsboro;
-            this.iconButton1.IconSize = 32;
-            this.iconButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton1.Location = new System.Drawing.Point(552, 0);
-            this.iconButton1.Margin = new System.Windows.Forms.Padding(0);
-            this.iconButton1.Name = "iconButton1";
-            this.iconButton1.Rotation = 0D;
-            this.iconButton1.Size = new System.Drawing.Size(146, 60);
-            this.iconButton1.TabIndex = 12;
-            this.iconButton1.Text = "Save";
-            this.iconButton1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.iconButton1.UseVisualStyleBackColor = false;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -625,6 +627,7 @@
             this.Controls.Add(this.panelTitlebar);
             this.Controls.Add(this.panelEffects);
             this.Icon = global::ImageEditor.Properties.Resources.AppIcon;
+            this.MinimumSize = new System.Drawing.Size(680, 175);
             this.Name = "MainForm";
             this.Text = "The Image Editor";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
@@ -682,7 +685,7 @@
         private FontAwesome.Sharp.IconButton icnBtnCircle;
         private FontAwesome.Sharp.IconButton icnBtnInverse;
         private System.Windows.Forms.Panel panel1;
-        private FontAwesome.Sharp.IconButton iconButton1;
+        private FontAwesome.Sharp.IconButton icnBtnClear;
     }
 }
 

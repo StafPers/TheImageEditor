@@ -1,6 +1,7 @@
 ﻿using ImageEditor.ImageEffects;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 
 namespace ImageEditor
@@ -12,8 +13,9 @@ namespace ImageEditor
     public class HistoryManager
     {
         private List<HistoryImage> _imageHistory;
+        private List<HistoryImage> _originalImages;
         public int CurrIndex { get; private set; } = -1;
-        private const int MaxHisotryRecords = 50;
+        private const int MaxHisotryRecords = 20;
 
         /// <summary>
         /// Constructor
@@ -21,6 +23,7 @@ namespace ImageEditor
         public HistoryManager()
         {
             _imageHistory = new List<HistoryImage>();
+            _originalImages = new List<HistoryImage>();
         }
 
         /// <summary>
@@ -126,10 +129,16 @@ namespace ImageEditor
             for( int i = _imageHistory.Count - 1; i > CurrIndex; --i )
                 _imageHistory.RemoveAt( i );
 
+            if( _originalImages.Find( x => x.Id == img.Id ) == null )
+                _originalImages.Add( img );
+
             _imageHistory.Add( img );
             ++CurrIndex;
 
             LimitHistory();
+
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
         }
 
         /// <summary>
@@ -144,6 +153,20 @@ namespace ImageEditor
                 CurrIndex -= diff;
                 _imageHistory.RemoveRange( 0, diff );
             }
+        }
+
+        /// <summary>
+        /// Appends the original version of the current image to the history
+        /// </summary>
+        /// <returns>The original image</returns>
+        public Bitmap ClearEffects()
+        {
+            int? id = GetCurrent()?.Id;
+
+            if(id != null)
+                return (Bitmap)_originalImages.Where( x => x.Id == id ).FirstOrDefault()?.Image.Clone();
+
+            return null;
         }
     }
 }

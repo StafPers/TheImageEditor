@@ -572,5 +572,15 @@ namespace ImageEditor
         {
             Application.Exit();
         }
+
+        private void icnBtnClear_Click( object sender, EventArgs e )
+        {
+            if( _curImageId > 0 )
+            {
+                Bitmap img = _historyManager.ClearEffects();
+                if( img != null )
+                    pictureBox.Image = img;
+            }
+        }
     }
 }
