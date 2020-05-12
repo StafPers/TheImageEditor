@@ -38,7 +38,7 @@ namespace ImageEditor.ImageEffects
             int radius = Math.Min(circleImg.Width, height) >> 1;
             int radiusSq = radius * radius;
 
-            //I'm using pointers in these functions because GetPixel and SetPixel are way to slow
+            //I'm using pointers and parallel in these functions because GetPixel and SetPixel are way to slow
             //to be useable since I'm using sliders which causes this function to be called frequently
             unsafe
             {

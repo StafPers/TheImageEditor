@@ -5,7 +5,7 @@ using System.Drawing;
 namespace ImageEditor
 {
     /// <summary>
-    /// Form used for adjusting and applying Tint effect to an image
+    /// Form used for adjusting and applying effects using a colorslider to an image
     /// </summary>
     public partial class ColorSliderEffectForm<EffectType> : EffectFormBase where EffectType : class, IImageEffect<Color>, new()
     {

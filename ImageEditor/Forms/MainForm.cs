@@ -37,6 +37,9 @@ namespace ImageEditor
             InitializeGui();
         }
 
+        /// <summary>
+        /// Colors used for highlighting buttons
+        /// </summary>
         private struct ButtonColors
         {
             public static Color color1 = Color.FromArgb(172, 126, 241);
@@ -555,11 +558,17 @@ namespace ImageEditor
             SendMessage( Handle, 0x112, 0xf012, 0 );
         }
 
+        /// <summary>
+        /// Minimize the window
+        /// </summary>
         private void icnBtnMinimize_Click( object sender, EventArgs e )
         {
             WindowState = FormWindowState.Minimized;
         }
 
+        /// <summary>
+        /// Maximize the window
+        /// </summary>
         private void icnBtnMaximize_Click( object sender, EventArgs e )
         {
             if( WindowState == FormWindowState.Normal )
@@ -568,11 +577,17 @@ namespace ImageEditor
                 WindowState = FormWindowState.Normal;
         }
 
+        /// <summary>
+        /// Exits the application
+        /// </summary>
         private void icnBtnClose_Click( object sender, EventArgs e )
         {
             Application.Exit();
         }
 
+        /// <summary>
+        /// Clears all effects applied to the current image
+        /// </summary>
         private void icnBtnClear_Click( object sender, EventArgs e )
         {
             if( _curImageId > 0 )

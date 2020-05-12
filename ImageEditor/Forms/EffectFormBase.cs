@@ -3,20 +3,29 @@ using System.Windows.Forms;
 
 namespace ImageEditor
 {
+    /// <summary>
+    /// Base form for effectforms. Contains some common functionality
+    /// </summary>
     public class EffectFormBase : Form
     {
-
+        // All effects has apply and cancel button so events for them are stored here
         public event EventHandler<EffectAppliedEventArgs> EffectApplied;
         public event EventHandler EffectCanceled;
 
         protected HistoryImage _originalImg;
         public HistoryImage Img { get; protected set; }
 
+        /// <summary>
+        /// Event handler for Apply button
+        /// </summary>
         protected virtual void OnEffectApplied()
         {
             EffectApplied?.Invoke( this, new EffectAppliedEventArgs() { Image = Img } );
         }
 
+        /// <summary>
+        /// Event handler for cancel button
+        /// </summary>
         protected virtual void onEffectCanceled()
         {
             EffectCanceled?.Invoke( this, EventArgs.Empty );
@@ -50,6 +59,7 @@ namespace ImageEditor
             ResumeLayout(false);
         }
 
+
         protected void Apply_Click( object sender, EventArgs e )
         {
             OnEffectApplied();
@@ -62,7 +72,7 @@ namespace ImageEditor
     }
 
     /// <summary>
-    /// Event args
+    /// Event args for when an effect is applied
     /// </summary>
     public class EffectAppliedEventArgs : EventArgs
     {

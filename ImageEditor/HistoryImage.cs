@@ -7,6 +7,7 @@ namespace ImageEditor
     /// <summary>
     /// Used to represent an image with effects
     /// Has the image, the effect applied on it and a flag to check if the image has been saved
+    /// Id is the Id of the original image
     /// </summary>
     public class HistoryImage : ICloneable
     {

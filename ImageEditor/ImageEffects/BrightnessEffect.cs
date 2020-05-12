@@ -22,11 +22,17 @@ namespace ImageEditor.ImageEffects
             return newInstance;
         }
 
+        /// <summary>
+        /// Setter for _amount
+        /// </summary>
         public void SetValue(float amount)
         {
             _amount = MathHelper.Clamp( 0.0f, 1.0f, amount );
         }
 
+        /// <summary>
+        /// Getter for _amount
+        /// </summary>
         public float GetValue() => _amount;
 
         /// <summary>
@@ -43,7 +49,7 @@ namespace ImageEditor.ImageEffects
             int width = outData.Width * bytesPerPixel;
             int brightness = (int)MathHelper.Lerp(-255.0f, 255.0f, _amount);
 
-            //I'm using pointers in these functions because GetPixel and SetPixel are way to slow
+            //I'm using pointers and parallel in these functions because GetPixel and SetPixel are way to slow
             //to be useable since I'm using sliders which causes this function to be called frequently
             unsafe
             {

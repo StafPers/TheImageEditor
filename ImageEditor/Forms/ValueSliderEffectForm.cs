@@ -6,7 +6,7 @@ using System;
 namespace ImageEditor
 {
     /// <summary>
-    /// Form used for adjusting and applying Brightness effect to an image
+    /// Form used for adjusting and applying effects with a float value parameter to an image
     /// </summary>
     public partial class ValueSliderEffectForm<EffectType> : EffectFormBase where EffectType : class, IImageEffect<float>, new()
     {
