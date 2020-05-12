@@ -1,18 +1,36 @@
-﻿using System.Drawing;
+﻿using ImageEditor.Helper;
+using System.Drawing;
 using System.Drawing.Imaging;
 using System.Threading.Tasks;
 
 namespace ImageEditor.ImageEffects
 {
-    class InverseEffect : IImageEffect
+    class InvertEffect : IImageEffect<float>
     {
+        private float _amount = 1.0f;
+
         /// <summary>
         /// Creates a copy of the instance
         /// </summary>
         public object Clone()
         {
-            return new InverseEffect();
+            InvertEffect newInstance = new InvertEffect();
+            newInstance.SetValue( _amount );
+            return newInstance;
         }
+
+        /// <summary>
+        /// Setter for _amount
+        /// </summary>
+        public void SetValue( float amount )
+        {
+            _amount = MathHelper.Clamp( 0.0f, 1.0f, amount );
+        }
+
+        /// <summary>
+        /// Getter for _amount
+        /// </summary>
+        public float GetValue() => _amount;
 
         /// <summary>
         /// Applies the effect to an image
@@ -27,7 +45,7 @@ namespace ImageEditor.ImageEffects
             int height = outData.Height;
             int width = outData.Width * bytesPerPixel;
 
-            //I'm using pointers in these functions because GetPixel and SetPixel are way to slow
+            //I'm using pointers and parallel in these functions because GetPixel and SetPixel are way to slow
             //to be useable since I'm using sliders which causes this function to be called frequently
             unsafe
             {
@@ -37,9 +55,13 @@ namespace ImageEditor.ImageEffects
                     byte* row = ptr0 + (y * outData.Stride);
                     for( int x = 0; x < width; x += bytesPerPixel )
                     {
-                        row[x] = ( byte )( 255 - row[x] );
-                        row[x + 1] = ( byte )( 255 - row[x + 1] );
-                        row[x + 2] = ( byte )( 255 - row[x + 2] );
+                        int invB = 255 - row[x];
+                        int invG = 255 - row[x + 1];
+                        int invR = 255 - row[x + 2];
+
+                        row[x] = ( byte )(MathHelper.Lerp(row[x], invB, _amount));
+                        row[x + 1] = ( byte )( MathHelper.Lerp( row[x + 1], invG, _amount ) );
+                        row[x + 2] = ( byte )( MathHelper.Lerp( row[x + 2], invR, _amount ) );
                     }
                 } );
             }

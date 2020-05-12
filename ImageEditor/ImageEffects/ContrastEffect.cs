@@ -41,7 +41,7 @@ namespace ImageEditor.ImageEffects
             int contrast = (int)MathHelper.Lerp(-255.0f, 255.0f, _amount);
             float correctionFactor = (259.0f * (255.0f + contrast)) / (255.0f * (259.0f - contrast));
 
-            //I'm using pointers in these functions because GetPixel and SetPixel are way to slow
+            //I'm using pointers and parallel in these functions because GetPixel and SetPixel are way to slow
             //to be useable since I'm using sliders which causes this function to be called frequently
             unsafe
             {

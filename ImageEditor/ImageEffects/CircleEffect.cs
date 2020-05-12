@@ -1,19 +1,38 @@
-﻿using System;
+﻿using ImageEditor.Helper;
+using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Threading.Tasks;
 
 namespace ImageEditor.ImageEffects
 {
-    class CircleEffect : IImageEffect
+    class CircleEffect : IImageEffect<float>
     {
+        private float _radiusFactor = 1.0f;
+        private const int _minRadius = 10;
+
         /// <summary>
         /// Creates a copy of the instance
         /// </summary>
         public object Clone()
         {
-            return new CircleEffect();
+            CircleEffect newInstance = new CircleEffect();
+            newInstance.SetValue( _radiusFactor );
+            return newInstance;
         }
+
+        /// <summary>
+        /// Setter for _amount
+        /// </summary>
+        public void SetValue( float amount )
+        {
+            _radiusFactor = MathHelper.Clamp( 0.0f, 1.0f, amount );
+        }
+
+        /// <summary>
+        /// Getter for _amount
+        /// </summary>
+        public float GetValue() => _radiusFactor;
 
         /// <summary>
         /// Applies the effect to an image
@@ -35,7 +54,7 @@ namespace ImageEditor.ImageEffects
             int centerX = circleImg.Width >> 1;
             int centerY = height >> 1;
 
-            int radius = Math.Min(circleImg.Width, height) >> 1;
+            int radius = (int)MathHelper.Lerp(_minRadius, Math.Min(circleImg.Width, height) >> 1, _radiusFactor);
             int radiusSq = radius * radius;
 
             //I'm using pointers and parallel in these functions because GetPixel and SetPixel are way to slow

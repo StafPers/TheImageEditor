@@ -24,6 +24,8 @@ namespace ImageEditor
         private ValueSliderEffectForm<ContrastEffect> _contrashForm;
         private ValueSliderEffectForm<SepiaEffect> _sepiaForm;
         private ValueSliderEffectForm<GrayscaleEffect> _grayscaleForm;
+        private ValueSliderEffectForm<InvertEffect> _invertForm;
+        private ValueSliderEffectForm<CircleEffect> _circleForm;
         private ColorSliderEffectForm<TintEffect> _tintForm;
         private int _imageIdCounter = 0;
         private int _curImageId = 0;
@@ -65,6 +67,8 @@ namespace ImageEditor
             _contrashForm = new ValueSliderEffectForm<ContrastEffect>();
             _sepiaForm = new ValueSliderEffectForm<SepiaEffect>();
             _grayscaleForm = new ValueSliderEffectForm<GrayscaleEffect>();
+            _circleForm = new ValueSliderEffectForm<CircleEffect>();
+            _invertForm = new ValueSliderEffectForm<InvertEffect>();
             _tintForm = new ColorSliderEffectForm<TintEffect>();
 
             _brightnessForm.EffectApplied += OnEffectApplied;
@@ -75,6 +79,10 @@ namespace ImageEditor
             _sepiaForm.EffectCanceled += OnEffectCanceled;
             _grayscaleForm.EffectApplied += OnEffectApplied;
             _grayscaleForm.EffectCanceled += OnEffectCanceled;
+            _circleForm.EffectApplied += OnEffectApplied;
+            _circleForm.EffectCanceled += OnEffectCanceled;
+            _invertForm.EffectApplied += OnEffectApplied;
+            _invertForm.EffectCanceled += OnEffectCanceled;
             _tintForm.EffectApplied += OnEffectApplied;
             _tintForm.EffectCanceled += OnEffectCanceled;
 
@@ -261,15 +269,15 @@ namespace ImageEditor
         }
 
         /// <summary>
-        /// Inverse the colors of the image
+        /// Inverts the colors of the image
         /// </summary>
-        private void icnBtnInverse_Click( object sender, System.EventArgs e )
+        private void icnBtnInvert_Click( object sender, System.EventArgs e )
         {
-            if( _historyManager.GetCurrent() == null || _currEffectForm != null )
+            if( _historyManager.GetCurrent() == null )
                 return;
 
             HightlightButton( sender, ButtonColors.color5 );
-            ApplyEffect( new InverseEffect() );
+            ShowEffectForm( _invertForm );
         }
 
         /// <summary>
@@ -277,15 +285,11 @@ namespace ImageEditor
         /// </summary>
         private void icnBtnCircle_Click( object sender, System.EventArgs e )
         {
-            if( _historyManager.GetCurrent() == null || _currEffectForm != null )
+            if( _historyManager.GetCurrent() == null )
                 return;
 
-            // Only apply this effect if it hasn't already been applied
-            if(_historyManager.HasEffect<CircleEffect>() == null)
-            {
-                HightlightButton( sender, ButtonColors.color4 );
-                ApplyEffect( new CircleEffect() );
-            }
+            HightlightButton( sender, ButtonColors.color4 );
+            ShowEffectForm( _circleForm );
         }
 
         /// <summary>
@@ -344,22 +348,6 @@ namespace ImageEditor
             _currEffectForm.BringToFront();
 
             _currEffectForm.ShowForm( _historyManager.GetCurrent(), _historyManager );
-        }
-
-        /// <summary>
-        /// Applies an effect to the image
-        /// </summary>
-        /// <param name="effect">The effect to apply</param>
-        private void ApplyEffect(IImageEffect effect)
-        {
-            Image img = pictureBox.Image;
-            if( img != null )
-            {
-                Bitmap grayImg = effect.ApplyEffect(img as Bitmap);
-
-                pictureBox.Image = grayImg;
-                _historyManager.Append( new HistoryImage(_curImageId, grayImg, effect) );
-            }
         }
 
         /// <summary>
@@ -594,7 +582,11 @@ namespace ImageEditor
             {
                 Bitmap img = _historyManager.ClearEffects();
                 if( img != null )
+                {
                     pictureBox.Image = img;
+                    _curImageId = ++_imageIdCounter;
+                    _historyManager.Append( new HistoryImage( _curImageId, img ) );
+                }
             }
         }
     }

@@ -75,7 +75,7 @@
     <Compile Include="HistoryImage.cs" />
     <Compile Include="ImageEffects\CircleEffect.cs" />
     <Compile Include="ImageEffects\BrightnessEffect.cs" />
-    <Compile Include="ImageEffects\InverseEffect.cs" />
+    <Compile Include="ImageEffects\InvertEffect.cs" />
     <Compile Include="ImageEffects\SepiaEffect.cs" />
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>

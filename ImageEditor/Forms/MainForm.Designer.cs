@@ -32,7 +32,7 @@
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.panelEffects = new System.Windows.Forms.Panel();
             this.icnBtnCircle = new FontAwesome.Sharp.IconButton();
-            this.icnBtnInverse = new FontAwesome.Sharp.IconButton();
+            this.icnBtnInvert = new FontAwesome.Sharp.IconButton();
             this.icnBtnContrast = new FontAwesome.Sharp.IconButton();
             this.icnBtnBrightness = new FontAwesome.Sharp.IconButton();
             this.icnBtnTint = new FontAwesome.Sharp.IconButton();
@@ -98,7 +98,7 @@
             this.panelEffects.AutoScroll = true;
             this.panelEffects.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(30)))), ((int)(((byte)(68)))));
             this.panelEffects.Controls.Add(this.icnBtnCircle);
-            this.panelEffects.Controls.Add(this.icnBtnInverse);
+            this.panelEffects.Controls.Add(this.icnBtnInvert);
             this.panelEffects.Controls.Add(this.icnBtnContrast);
             this.panelEffects.Controls.Add(this.icnBtnBrightness);
             this.panelEffects.Controls.Add(this.icnBtnTint);
@@ -135,29 +135,29 @@
             this.icnBtnCircle.UseVisualStyleBackColor = true;
             this.icnBtnCircle.Click += new System.EventHandler(this.icnBtnCircle_Click);
             // 
-            // icnBtnInverse
+            // icnBtnInvert
             // 
-            this.icnBtnInverse.Dock = System.Windows.Forms.DockStyle.Top;
-            this.icnBtnInverse.FlatAppearance.BorderSize = 0;
-            this.icnBtnInverse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.icnBtnInverse.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
-            this.icnBtnInverse.Font = new System.Drawing.Font("Arimo", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.icnBtnInverse.ForeColor = System.Drawing.Color.Gainsboro;
-            this.icnBtnInverse.IconChar = FontAwesome.Sharp.IconChar.Image;
-            this.icnBtnInverse.IconColor = System.Drawing.Color.Gainsboro;
-            this.icnBtnInverse.IconSize = 32;
-            this.icnBtnInverse.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.icnBtnInverse.Location = new System.Drawing.Point(0, 400);
-            this.icnBtnInverse.Name = "icnBtnInverse";
-            this.icnBtnInverse.Padding = new System.Windows.Forms.Padding(15, 0, 20, 0);
-            this.icnBtnInverse.Rotation = 0D;
-            this.icnBtnInverse.Size = new System.Drawing.Size(200, 60);
-            this.icnBtnInverse.TabIndex = 8;
-            this.icnBtnInverse.Text = "Inverse";
-            this.icnBtnInverse.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.icnBtnInverse.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.icnBtnInverse.UseVisualStyleBackColor = true;
-            this.icnBtnInverse.Click += new System.EventHandler(this.icnBtnInverse_Click);
+            this.icnBtnInvert.Dock = System.Windows.Forms.DockStyle.Top;
+            this.icnBtnInvert.FlatAppearance.BorderSize = 0;
+            this.icnBtnInvert.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.icnBtnInvert.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
+            this.icnBtnInvert.Font = new System.Drawing.Font("Arimo", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.icnBtnInvert.ForeColor = System.Drawing.Color.Gainsboro;
+            this.icnBtnInvert.IconChar = FontAwesome.Sharp.IconChar.Image;
+            this.icnBtnInvert.IconColor = System.Drawing.Color.Gainsboro;
+            this.icnBtnInvert.IconSize = 32;
+            this.icnBtnInvert.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.icnBtnInvert.Location = new System.Drawing.Point(0, 400);
+            this.icnBtnInvert.Name = "icnBtnInvert";
+            this.icnBtnInvert.Padding = new System.Windows.Forms.Padding(15, 0, 20, 0);
+            this.icnBtnInvert.Rotation = 0D;
+            this.icnBtnInvert.Size = new System.Drawing.Size(200, 60);
+            this.icnBtnInvert.TabIndex = 8;
+            this.icnBtnInvert.Text = "Invert";
+            this.icnBtnInvert.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.icnBtnInvert.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.icnBtnInvert.UseVisualStyleBackColor = true;
+            this.icnBtnInvert.Click += new System.EventHandler(this.icnBtnInvert_Click);
             // 
             // icnBtnContrast
             // 
@@ -683,7 +683,7 @@
         private FontAwesome.Sharp.IconButton icnBtnClose;
         private System.Windows.Forms.Label lblTitle;
         private FontAwesome.Sharp.IconButton icnBtnCircle;
-        private FontAwesome.Sharp.IconButton icnBtnInverse;
+        private FontAwesome.Sharp.IconButton icnBtnInvert;
         private System.Windows.Forms.Panel panel1;
         private FontAwesome.Sharp.IconButton icnBtnClear;
     }

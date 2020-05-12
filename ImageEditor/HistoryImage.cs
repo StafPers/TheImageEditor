@@ -12,7 +12,7 @@ namespace ImageEditor
     public class HistoryImage : ICloneable
     {
         public Bitmap Image { get; set; }
-        public IImageEffect Effect { get; private set; }
+        public IImageEffect Effect { get; set; }
         public bool IsSaved { get; set; }
         public int Id { get; private set; }
         

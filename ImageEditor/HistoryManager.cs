@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ImageEditor.ImageEffects;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -35,7 +36,7 @@ namespace ImageEditor
                 return null;
 
             if( CurrIndex > 0 )
-                return _imageHistory[--CurrIndex];
+                return (HistoryImage)_imageHistory[--CurrIndex].Clone();
 
             // Clone so history can't be modified outside of class
             return (HistoryImage)_imageHistory[CurrIndex].Clone();
@@ -49,11 +50,21 @@ namespace ImageEditor
         {
             int? id = GetCurrent()?.Id;
 
-            return id == null ? null : 
-                ( HistoryImage )_imageHistory
-                .Where( x => x.Id == id && x.Effect != null && x.Effect is T && _imageHistory.IndexOf(x) <= CurrIndex )
-                .FirstOrDefault()?
-                .Clone();
+            if( id == null )
+                return null;
+
+            for(int i = CurrIndex; i >= 0; --i )
+            {
+                HistoryImage img = _imageHistory[i];
+
+                if( img.Id != id )
+                    return null;
+
+                if( img.Effect != null && img.Effect is T )
+                    return img;
+            }
+
+            return null;
         }
 
         /// <summary>
@@ -166,6 +177,58 @@ namespace ImageEditor
                 return (Bitmap)_originalImages.Where( x => x.Id == id ).FirstOrDefault()?.Image.Clone();
 
             return null;
+        }
+
+        /// <summary>
+        /// Gets an original image with no effects
+        /// </summary>
+        /// <param name="id">The id of the image to return</param>
+        public HistoryImage GetOriginalImage(int id)
+        {
+            return (HistoryImage)_originalImages.Where( x => x.Id == id ).FirstOrDefault()?.Clone();
+        }
+
+        /// <summary>
+        /// Returns a version of the current image without the effect of type T without storing it in the history
+        /// </summary>
+        public HistoryImage PreviewRemovedEffect<T>()
+        {
+            int id = _imageHistory[CurrIndex].Id;
+            HistoryImage original = GetOriginalImage(id);
+
+            if( original == null )
+                return null;
+
+            List<HistoryImage> effectsToApply = _imageHistory.Where(x => x.Id == id && x.Effect != null && !(x.Effect is T)).ToList();
+
+            // I need to trim duplicates starting from the back in order for 
+            // The effects to be applied correctly
+            for(int i = effectsToApply.Count - 1; i > 0; --i )
+            {
+                IImageEffect effect = effectsToApply[i].Effect;
+
+                for(int j = i - 1; j >= 0; --j )
+                {
+                    if(effect.GetType() == effectsToApply[j].Effect.GetType())
+                    {
+                        --i;
+                        effectsToApply.RemoveAt( j );
+                    }
+                }
+            }
+
+            foreach( HistoryImage img in effectsToApply )
+            {
+                Bitmap newImg = img.Effect?.ApplyEffect( original.Image );
+
+                if( newImg != null )
+                {
+                    original.Effect = img.Effect;
+                    original.Image = newImg;
+                }
+            }
+
+            return original;
         }
     }
 }

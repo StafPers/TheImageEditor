@@ -31,8 +31,8 @@ namespace ImageEditor
             if( image.Image == null )
                 return;
 
-            _originalImg = image;
-            Img = new HistoryImage( _originalImg.Id, image.Image, new EffectType() );
+            _startImage = history.PreviewRemovedEffect<EffectType>();
+            Img = new HistoryImage(_startImage.Id, _startImage.Image, new EffectType());
 
             // Use old values if it has already been applied 
             EffectType effect = (EffectType)history.HasEffect<EffectType>()?.Effect;
@@ -40,8 +40,13 @@ namespace ImageEditor
                 ( Img.Effect as EffectType ).SetValue(effect.GetValue());
 
             barAmount.Value = Math.Min((int)( ( Img.Effect as EffectType ).GetValue() * 100.0f), 100);
-            Img.Image = Img.Effect.ApplyEffect( _originalImg.Image );
+
+            Img.Image = Img.Effect.ApplyEffect(_startImage.Image);
+
             pictureBox.Image = Img.Image;
+
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
         }
 
         /// <summary>
@@ -53,7 +58,7 @@ namespace ImageEditor
             float amount = barAmount.Value / 100.0f;
 
             (Img.Effect as EffectType).SetValue(amount);
-            Img.Image = Img.Effect.ApplyEffect( _originalImg.Image );
+            Img.Image = Img.Effect.ApplyEffect(_startImage.Image);
             pictureBox.Image = Img.Image;
 
             GC.Collect();

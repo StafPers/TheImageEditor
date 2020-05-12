@@ -30,23 +30,24 @@ namespace ImageEditor
             if( image.Image == null )
                 return;
 
-            _originalImg = image;
-
-            Img = new HistoryImage( _originalImg.Id, image.Image, new EffectType() );
+            _startImage = history.PreviewRemovedEffect<EffectType>();
+            Img = new HistoryImage( _startImage.Id, _startImage.Image, new EffectType() );
 
             // Use old values if it has already been applied 
-            EffectType effect = (EffectType)history.HasEffect<TintEffect>()?.Effect;
+            EffectType effect = (EffectType)history.HasEffect<EffectType>()?.Effect;
             if( effect != null )
-                ( Img.Effect as EffectType ).SetValue(effect.GetValue());
+                ( Img.Effect as EffectType ).SetValue( effect.GetValue() );
 
             effect = Img.Effect as EffectType;
-
             Color color = effect.GetValue();
             barRed.Value = color.R;
             barGreen.Value = color.G;
             barBlue.Value = color.B;
 
             ApplyEffect();
+
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
         }
 
         /// <summary>
@@ -56,7 +57,7 @@ namespace ImageEditor
         {
             EffectType effect = Img.Effect as EffectType;
 
-            Img.Image = Img.Effect.ApplyEffect( _originalImg.Image );
+            Img.Image = Img.Effect.ApplyEffect( _startImage.Image );
             pictureBox.Image = Img.Image;
         }
 
