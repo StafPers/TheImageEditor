@@ -7,12 +7,12 @@ namespace ImageEditor
     /// <summary>
     /// Form used for adjusting and applying Tint effect to an image
     /// </summary>
-    public partial class TintForm : EffectFormBase
+    public partial class ColorSliderEffectForm<EffectType> : EffectFormBase where EffectType : class, IImageEffect<Color>, new()
     {
         /// <summary>
         /// Constructor
         /// </summary>
-        public TintForm()
+        public ColorSliderEffectForm()
         {
             InitializeComponent();
             icnBtnApply.Click += Apply_Click;
@@ -31,16 +31,17 @@ namespace ImageEditor
                 return;
 
             _originalImg = image;
-            TintEffect tintEffect = new TintEffect();
-            Img = new HistoryImage( _originalImg.Id, image.Image, tintEffect );
+
+            Img = new HistoryImage( _originalImg.Id, image.Image, new EffectType() );
 
             // Use old values if it has already been applied 
-            IImageEffect effect = history.HasEffect<TintEffect>()?.Effect;
+            EffectType effect = (EffectType)history.HasEffect<TintEffect>()?.Effect;
             if( effect != null )
-                ( Img.Effect as TintEffect ).SetValue(( effect as TintEffect ).GetValue());
+                ( Img.Effect as EffectType ).SetValue(effect.GetValue());
 
-            TintEffect oldTint = image.Effect as TintEffect;
-            Color color = tintEffect.GetValue();
+            effect = Img.Effect as EffectType;
+
+            Color color = effect.GetValue();
             barRed.Value = color.R;
             barGreen.Value = color.G;
             barBlue.Value = color.B;
@@ -53,7 +54,7 @@ namespace ImageEditor
         /// </summary>
         private void ApplyEffect()
         {
-            TintEffect effect = Img.Effect as TintEffect;
+            EffectType effect = Img.Effect as EffectType;
 
             Img.Image = Img.Effect.ApplyEffect( _originalImg.Image );
             pictureBox.Image = Img.Image;
@@ -64,7 +65,7 @@ namespace ImageEditor
         /// </summary>
         private void ColorChanged( object sender, EventArgs e )
         {
-            TintEffect effect = Img.Effect as TintEffect;
+            EffectType effect = Img.Effect as EffectType;
             effect.SetValue(Color.FromArgb( barRed.Value, barGreen.Value, barBlue.Value ));
 
             ApplyEffect();

@@ -54,42 +54,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ContrastForm.cs">
+    <Compile Include="ValueSliderEffectForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ContrastForm.Designer.cs">
-      <DependentUpon>ContrastForm.cs</DependentUpon>
+    <Compile Include="ValueSliderEffectForm.Designer.cs">
+      <DependentUpon>ValueSliderEffectForm.cs</DependentUpon>
     </Compile>
     <Compile Include="EffectFormBase.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BrightnessForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BrightnessForm.Designer.cs">
-      <DependentUpon>BrightnessForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Helper\MathHelper.cs" />
     <Compile Include="ImageEffects\ContrastEffect.cs" />
-    <Compile Include="TintForm.cs">
+    <Compile Include="ColorSliderEffectForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TintForm.Designer.cs">
-      <DependentUpon>TintForm.cs</DependentUpon>
+    <Compile Include="ColorSliderEffectForm.Designer.cs">
+      <DependentUpon>ColorSliderEffectForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ImageEffects\TintEffect.cs" />
-    <Compile Include="SepiaForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SepiaForm.Designer.cs">
-      <DependentUpon>SepiaForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GrayscaleForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GrayscaleForm.Designer.cs">
-      <DependentUpon>GrayscaleForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="HistoryImage.cs" />
     <Compile Include="ImageEffects\CircleEffect.cs" />
     <Compile Include="ImageEffects\BrightnessEffect.cs" />
@@ -106,23 +88,14 @@
     <Compile Include="ImageEffects\IImageEffect.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="ContrastForm.resx">
-      <DependentUpon>ContrastForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BrightnessForm.resx">
-      <DependentUpon>BrightnessForm.cs</DependentUpon>
+    <EmbeddedResource Include="ValueSliderEffectForm.resx">
+      <DependentUpon>ValueSliderEffectForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EffectFormBase.resx">
       <DependentUpon>EffectFormBase.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TintForm.resx">
-      <DependentUpon>TintForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SepiaForm.resx">
-      <DependentUpon>SepiaForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GrayscaleForm.resx">
-      <DependentUpon>GrayscaleForm.cs</DependentUpon>
+    <EmbeddedResource Include="ColorSliderEffectForm.resx">
+      <DependentUpon>ColorSliderEffectForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

@@ -1,6 +1,9 @@
-﻿namespace ImageEditor
+﻿using ImageEditor.ImageEffects;
+using System.Drawing;
+
+namespace ImageEditor
 {
-    partial class ContrastForm
+    partial class ColorSliderEffectForm<EffectType> : EffectFormBase where EffectType : class, IImageEffect<Color>, new()
     {
         /// <summary>
         /// Required designer variable.
@@ -30,13 +33,20 @@
         {
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.panelBtns = new System.Windows.Forms.Panel();
+            this.barBlue = new System.Windows.Forms.TrackBar();
+            this.lblBlue = new System.Windows.Forms.Label();
+            this.barGreen = new System.Windows.Forms.TrackBar();
+            this.lblGreen = new System.Windows.Forms.Label();
+            this.barRed = new System.Windows.Forms.TrackBar();
+            this.lblRed = new System.Windows.Forms.Label();
             this.icnBtnCancel = new FontAwesome.Sharp.IconButton();
             this.icnBtnApply = new FontAwesome.Sharp.IconButton();
-            this.barAmount = new System.Windows.Forms.TrackBar();
             this.panelImg = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.panelBtns.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.barAmount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barBlue)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barGreen)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barRed)).BeginInit();
             this.panelImg.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,14 +62,91 @@
             // 
             // panelBtns
             // 
-            this.panelBtns.Controls.Add(this.barAmount);
+            this.panelBtns.Controls.Add(this.barBlue);
+            this.panelBtns.Controls.Add(this.lblBlue);
+            this.panelBtns.Controls.Add(this.barGreen);
+            this.panelBtns.Controls.Add(this.lblGreen);
+            this.panelBtns.Controls.Add(this.barRed);
+            this.panelBtns.Controls.Add(this.lblRed);
             this.panelBtns.Controls.Add(this.icnBtnCancel);
             this.panelBtns.Controls.Add(this.icnBtnApply);
             this.panelBtns.Dock = System.Windows.Forms.DockStyle.Right;
             this.panelBtns.Location = new System.Drawing.Point(446, 0);
             this.panelBtns.Name = "panelBtns";
             this.panelBtns.Size = new System.Drawing.Size(236, 395);
-            this.panelBtns.TabIndex = 6;
+            this.panelBtns.TabIndex = 13;
+            // 
+            // barBlue
+            // 
+            this.barBlue.Dock = System.Windows.Forms.DockStyle.Top;
+            this.barBlue.Location = new System.Drawing.Point(0, 258);
+            this.barBlue.Maximum = 255;
+            this.barBlue.Name = "barBlue";
+            this.barBlue.Size = new System.Drawing.Size(236, 45);
+            this.barBlue.TabIndex = 17;
+            this.barBlue.TickFrequency = 20;
+            this.barBlue.Scroll += new System.EventHandler(this.ColorChanged);
+            // 
+            // lblBlue
+            // 
+            this.lblBlue.AutoSize = true;
+            this.lblBlue.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblBlue.Font = new System.Drawing.Font("Arimo", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBlue.ForeColor = System.Drawing.Color.Gainsboro;
+            this.lblBlue.Location = new System.Drawing.Point(0, 242);
+            this.lblBlue.Name = "lblBlue";
+            this.lblBlue.Padding = new System.Windows.Forms.Padding(7, 0, 0, 0);
+            this.lblBlue.Size = new System.Drawing.Size(45, 16);
+            this.lblBlue.TabIndex = 16;
+            this.lblBlue.Text = "Blue:";
+            // 
+            // barGreen
+            // 
+            this.barGreen.Dock = System.Windows.Forms.DockStyle.Top;
+            this.barGreen.Location = new System.Drawing.Point(0, 197);
+            this.barGreen.Maximum = 255;
+            this.barGreen.Name = "barGreen";
+            this.barGreen.Size = new System.Drawing.Size(236, 45);
+            this.barGreen.TabIndex = 15;
+            this.barGreen.TickFrequency = 20;
+            this.barGreen.Scroll += new System.EventHandler(this.ColorChanged);
+            // 
+            // lblGreen
+            // 
+            this.lblGreen.AutoSize = true;
+            this.lblGreen.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblGreen.Font = new System.Drawing.Font("Arimo", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGreen.ForeColor = System.Drawing.Color.Gainsboro;
+            this.lblGreen.Location = new System.Drawing.Point(0, 181);
+            this.lblGreen.Name = "lblGreen";
+            this.lblGreen.Padding = new System.Windows.Forms.Padding(7, 0, 0, 0);
+            this.lblGreen.Size = new System.Drawing.Size(54, 16);
+            this.lblGreen.TabIndex = 14;
+            this.lblGreen.Text = "Green:";
+            // 
+            // barRed
+            // 
+            this.barRed.Dock = System.Windows.Forms.DockStyle.Top;
+            this.barRed.Location = new System.Drawing.Point(0, 136);
+            this.barRed.Maximum = 255;
+            this.barRed.Name = "barRed";
+            this.barRed.Size = new System.Drawing.Size(236, 45);
+            this.barRed.TabIndex = 13;
+            this.barRed.TickFrequency = 20;
+            this.barRed.Scroll += new System.EventHandler(this.ColorChanged);
+            // 
+            // lblRed
+            // 
+            this.lblRed.AutoSize = true;
+            this.lblRed.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblRed.Font = new System.Drawing.Font("Arimo", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRed.ForeColor = System.Drawing.Color.Gainsboro;
+            this.lblRed.Location = new System.Drawing.Point(0, 120);
+            this.lblRed.Name = "lblRed";
+            this.lblRed.Padding = new System.Windows.Forms.Padding(7, 0, 0, 0);
+            this.lblRed.Size = new System.Drawing.Size(42, 16);
+            this.lblRed.TabIndex = 12;
+            this.lblRed.Text = "Red:";
             // 
             // icnBtnCancel
             // 
@@ -107,18 +194,6 @@
             this.icnBtnApply.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.icnBtnApply.UseVisualStyleBackColor = true;
             // 
-            // barAmount
-            // 
-            this.barAmount.Dock = System.Windows.Forms.DockStyle.Top;
-            this.barAmount.Location = new System.Drawing.Point(0, 120);
-            this.barAmount.Maximum = 100;
-            this.barAmount.Name = "barAmount";
-            this.barAmount.Size = new System.Drawing.Size(236, 45);
-            this.barAmount.TabIndex = 4;
-            this.barAmount.TickFrequency = 10;
-            this.barAmount.Value = 100;
-            this.barAmount.Scroll += new System.EventHandler(this.barAmount_Scroll);
-            // 
             // panelImg
             // 
             this.panelImg.Controls.Add(this.pictureBox);
@@ -126,9 +201,9 @@
             this.panelImg.Location = new System.Drawing.Point(0, 0);
             this.panelImg.Name = "panelImg";
             this.panelImg.Size = new System.Drawing.Size(446, 395);
-            this.panelImg.TabIndex = 7;
+            this.panelImg.TabIndex = 14;
             // 
-            // ContrastForm
+            // ColorSliderEffectForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -137,12 +212,13 @@
             this.Controls.Add(this.panelImg);
             this.Controls.Add(this.panelBtns);
             this.Icon = global::ImageEditor.Properties.Resources.AppIcon;
-            this.Name = "ContrastForm";
-            this.Text = "Contrast";
+            this.Name = "ColorSliderEffectForm";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.panelBtns.ResumeLayout(false);
             this.panelBtns.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.barAmount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barBlue)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barGreen)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barRed)).EndInit();
             this.panelImg.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -154,7 +230,12 @@
         private System.Windows.Forms.Panel panelBtns;
         private FontAwesome.Sharp.IconButton icnBtnCancel;
         private FontAwesome.Sharp.IconButton icnBtnApply;
-        private System.Windows.Forms.TrackBar barAmount;
+        private System.Windows.Forms.TrackBar barBlue;
+        private System.Windows.Forms.Label lblBlue;
+        private System.Windows.Forms.TrackBar barGreen;
+        private System.Windows.Forms.Label lblGreen;
+        private System.Windows.Forms.TrackBar barRed;
+        private System.Windows.Forms.Label lblRed;
         private System.Windows.Forms.Panel panelImg;
     }
 }

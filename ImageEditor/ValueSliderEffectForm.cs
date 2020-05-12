@@ -1,17 +1,20 @@
 ﻿using ImageEditor.ImageEffects;
 using System;
 
+// I had many forms with the same design and almost exactly the same functionality
+// so I decided to take a template approach in order to reduce repetition
+
 namespace ImageEditor
 {
     /// <summary>
-    /// Form used for adjusting and applying grayscale effect to an image
+    /// Form used for adjusting and applying Brightness effect to an image
     /// </summary>
-    public partial class GrayscaleForm : EffectFormBase
+    public partial class ValueSliderEffectForm<EffectType> : EffectFormBase where EffectType : class, IImageEffect<float>, new()
     {
         /// <summary>
         /// Constructor
         /// </summary>
-        public GrayscaleForm()
+        public ValueSliderEffectForm()
         {
             InitializeComponent();
             icnBtnApply.Click += Apply_Click;
@@ -30,14 +33,14 @@ namespace ImageEditor
                 return;
 
             _originalImg = image;
-            Img = new HistoryImage( _originalImg.Id, image.Image, new GrayscaleEffect() );
+            Img = new HistoryImage( _originalImg.Id, image.Image, new EffectType() );
 
             // Use old values if it has already been applied 
-            IImageEffect effect = history.HasEffect<GrayscaleEffect>()?.Effect;
-            if( effect != null )
-                ( Img.Effect as GrayscaleEffect ).SetValue(( effect as GrayscaleEffect ).GetValue());
+            EffectType effect = (EffectType)history.HasEffect<EffectType>()?.Effect;
+            if( effect != null)
+                ( Img.Effect as EffectType ).SetValue(effect.GetValue());
 
-            barAmount.Value = Math.Min((int)( ( Img.Effect as GrayscaleEffect ).GetValue() * 100.0f), 100);
+            barAmount.Value = Math.Min((int)( ( Img.Effect as EffectType ).GetValue() * 100.0f), 100);
             Img.Image = Img.Effect.ApplyEffect( _originalImg.Image );
             pictureBox.Image = Img.Image;
         }
@@ -50,7 +53,7 @@ namespace ImageEditor
         {
             float amount = barAmount.Value / 100.0f;
 
-            (Img.Effect as GrayscaleEffect).SetValue(amount);
+            (Img.Effect as EffectType).SetValue(amount);
             Img.Image = Img.Effect.ApplyEffect( _originalImg.Image );
             pictureBox.Image = Img.Image;
 

@@ -8,7 +8,7 @@ namespace ImageEditor.ImageEffects
 {
     class TintEffect : IImageEffect<Color>
     {
-        private Color _color;
+        private Color _color = Color.Black;
 
         /// <summary>
         /// Creates a copy of the instance

@@ -20,11 +20,11 @@ namespace ImageEditor
         private IconButton _currentButton;
         private Panel _leftBorderBtn;
         private EffectFormBase _currEffectForm;
-        private BrightnessForm _brightnessForm;
-        private ContrastForm _contrashForm;
-        private SepiaForm _sepiaForm;
-        private GrayscaleForm _grayscaleForm;
-        private TintForm _tintForm;
+        private ValueSliderEffectForm<BrightnessEffect> _brightnessForm;
+        private ValueSliderEffectForm<ContrastEffect> _contrashForm;
+        private ValueSliderEffectForm<SepiaEffect> _sepiaForm;
+        private ValueSliderEffectForm<GrayscaleEffect> _grayscaleForm;
+        private ColorSliderEffectForm<TintEffect> _tintForm;
         private int _imageIdCounter = 0;
         private int _curImageId = 0;
 
@@ -58,11 +58,11 @@ namespace ImageEditor
             ControlBox = false;
             DoubleBuffered = true;
 
-            _brightnessForm = new BrightnessForm();
-            _contrashForm = new ContrastForm();
-            _sepiaForm = new SepiaForm();
-            _grayscaleForm = new GrayscaleForm();
-            _tintForm = new TintForm();
+            _brightnessForm = new ValueSliderEffectForm<BrightnessEffect>();
+            _contrashForm = new ValueSliderEffectForm<ContrastEffect>();
+            _sepiaForm = new ValueSliderEffectForm<SepiaEffect>();
+            _grayscaleForm = new ValueSliderEffectForm<GrayscaleEffect>();
+            _tintForm = new ColorSliderEffectForm<TintEffect>();
 
             _brightnessForm.EffectApplied += OnEffectApplied;
             _brightnessForm.EffectCanceled += OnEffectCanceled;

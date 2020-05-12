@@ -1,6 +1,8 @@
-﻿namespace ImageEditor
+﻿using ImageEditor.ImageEffects;
+
+namespace ImageEditor
 {
-    partial class GrayscaleForm
+    partial class ValueSliderEffectForm<EffectType> where EffectType : class, IImageEffect<float>, new()
     {
         /// <summary>
         /// Required designer variable.
@@ -28,17 +30,26 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.panelImg = new System.Windows.Forms.Panel();
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.panelBtns = new System.Windows.Forms.Panel();
+            this.barAmount = new System.Windows.Forms.TrackBar();
             this.icnBtnCancel = new FontAwesome.Sharp.IconButton();
             this.icnBtnApply = new FontAwesome.Sharp.IconButton();
-            this.barAmount = new System.Windows.Forms.TrackBar();
-            this.panelImg = new System.Windows.Forms.Panel();
+            this.panelImg.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.panelBtns.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.barAmount)).BeginInit();
-            this.panelImg.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // panelImg
+            // 
+            this.panelImg.Controls.Add(this.pictureBox);
+            this.panelImg.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelImg.Location = new System.Drawing.Point(0, 0);
+            this.panelImg.Name = "panelImg";
+            this.panelImg.Size = new System.Drawing.Size(446, 395);
+            this.panelImg.TabIndex = 7;
             // 
             // pictureBox
             // 
@@ -59,7 +70,19 @@
             this.panelBtns.Location = new System.Drawing.Point(446, 0);
             this.panelBtns.Name = "panelBtns";
             this.panelBtns.Size = new System.Drawing.Size(236, 395);
-            this.panelBtns.TabIndex = 6;
+            this.panelBtns.TabIndex = 5;
+            // 
+            // barAmount
+            // 
+            this.barAmount.Dock = System.Windows.Forms.DockStyle.Top;
+            this.barAmount.Location = new System.Drawing.Point(0, 120);
+            this.barAmount.Maximum = 100;
+            this.barAmount.Name = "barAmount";
+            this.barAmount.Size = new System.Drawing.Size(236, 45);
+            this.barAmount.TabIndex = 6;
+            this.barAmount.TickFrequency = 10;
+            this.barAmount.Value = 100;
+            this.barAmount.Scroll += new System.EventHandler(this.barAmount_Scroll);
             // 
             // icnBtnCancel
             // 
@@ -78,7 +101,7 @@
             this.icnBtnCancel.Padding = new System.Windows.Forms.Padding(15, 0, 20, 0);
             this.icnBtnCancel.Rotation = 0D;
             this.icnBtnCancel.Size = new System.Drawing.Size(236, 60);
-            this.icnBtnCancel.TabIndex = 3;
+            this.icnBtnCancel.TabIndex = 5;
             this.icnBtnCancel.Text = "Cancel";
             this.icnBtnCancel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.icnBtnCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -101,34 +124,13 @@
             this.icnBtnApply.Padding = new System.Windows.Forms.Padding(15, 0, 20, 0);
             this.icnBtnApply.Rotation = 0D;
             this.icnBtnApply.Size = new System.Drawing.Size(236, 60);
-            this.icnBtnApply.TabIndex = 2;
+            this.icnBtnApply.TabIndex = 4;
             this.icnBtnApply.Text = "Apply";
             this.icnBtnApply.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.icnBtnApply.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.icnBtnApply.UseVisualStyleBackColor = true;
             // 
-            // barAmount
-            // 
-            this.barAmount.Dock = System.Windows.Forms.DockStyle.Top;
-            this.barAmount.Location = new System.Drawing.Point(0, 120);
-            this.barAmount.Maximum = 100;
-            this.barAmount.Name = "barAmount";
-            this.barAmount.Size = new System.Drawing.Size(236, 45);
-            this.barAmount.TabIndex = 4;
-            this.barAmount.TickFrequency = 10;
-            this.barAmount.Value = 100;
-            this.barAmount.Scroll += new System.EventHandler(this.barAmount_Scroll);
-            // 
-            // panelImg
-            // 
-            this.panelImg.Controls.Add(this.pictureBox);
-            this.panelImg.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelImg.Location = new System.Drawing.Point(0, 0);
-            this.panelImg.Name = "panelImg";
-            this.panelImg.Size = new System.Drawing.Size(446, 395);
-            this.panelImg.TabIndex = 7;
-            // 
-            // GrayscaleForm
+            // ValueSliderEffectForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -137,13 +139,12 @@
             this.Controls.Add(this.panelImg);
             this.Controls.Add(this.panelBtns);
             this.Icon = global::ImageEditor.Properties.Resources.AppIcon;
-            this.Name = "GrayscaleForm";
-            this.Text = "Grayscale";
+            this.Name = "ValueSliderEffectForm";
+            this.panelImg.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.panelBtns.ResumeLayout(false);
             this.panelBtns.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.barAmount)).EndInit();
-            this.panelImg.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -152,9 +153,9 @@
 
         private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.Panel panelBtns;
+        private System.Windows.Forms.Panel panelImg;
+        private System.Windows.Forms.TrackBar barAmount;
         private FontAwesome.Sharp.IconButton icnBtnCancel;
         private FontAwesome.Sharp.IconButton icnBtnApply;
-        private System.Windows.Forms.TrackBar barAmount;
-        private System.Windows.Forms.Panel panelImg;
     }
 }
