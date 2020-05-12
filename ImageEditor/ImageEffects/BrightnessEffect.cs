@@ -8,10 +8,9 @@ using System.Threading.Tasks;
 /// </summary>
 namespace ImageEditor.ImageEffects
 {
-    class BrightnessEffect : IImageEffect
+    class BrightnessEffect : IImageEffect<float>
     {
         private float _amount = 0.5f;
-        public float Amount { get { return _amount; } set { _amount = MathHelper.Clamp( 0.0f, 1.0f, value ); } }
 
         /// <summary>
         /// Creates a copy of the instance
@@ -19,9 +18,16 @@ namespace ImageEditor.ImageEffects
         public object Clone()
         {
             BrightnessEffect newInstance = new BrightnessEffect();
-            newInstance.Amount = Amount;
+            newInstance.SetValue(_amount);
             return newInstance;
         }
+
+        public void SetValue(float amount)
+        {
+            _amount = MathHelper.Clamp( 0.0f, 1.0f, amount );
+        }
+
+        public float GetValue() => _amount;
 
         /// <summary>
         /// Applies the effect to an image
@@ -35,7 +41,7 @@ namespace ImageEditor.ImageEffects
             int bytesPerPixel = Bitmap.GetPixelFormatSize(outImg.PixelFormat) / 8;
             int height = outData.Height;
             int width = outData.Width * bytesPerPixel;
-            int brightness = (int)MathHelper.Lerp(-255.0f, 255.0f, Amount);
+            int brightness = (int)MathHelper.Lerp(-255.0f, 255.0f, _amount);
 
             //I'm using pointers in these functions because GetPixel and SetPixel are way to slow
             //to be useable since I'm using sliders which causes this function to be called frequently

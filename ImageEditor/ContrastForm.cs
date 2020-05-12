@@ -35,9 +35,9 @@ namespace ImageEditor
             // Use old values if it has already been applied 
             IImageEffect effect = history.HasEffect<ContrastEffect>()?.Effect;
             if( effect != null )
-                ( Img.Effect as ContrastEffect ).Amount = ( effect as ContrastEffect ).Amount;
+                ( Img.Effect as ContrastEffect ).SetValue(( effect as ContrastEffect ).GetValue());
 
-            barAmount.Value = Math.Min((int)( ( Img.Effect as ContrastEffect ).Amount * 100.0f), 100);
+            barAmount.Value = Math.Min((int)( ( Img.Effect as ContrastEffect ).GetValue() * 100.0f), 100);
             Img.Image = Img.Effect.ApplyEffect( _originalImg.Image );
             pictureBox.Image = Img.Image;
         }
@@ -50,7 +50,7 @@ namespace ImageEditor
         {
             float amount = barAmount.Value / 100.0f;
 
-            (Img.Effect as ContrastEffect).Amount = amount;
+            (Img.Effect as ContrastEffect).SetValue(amount);
             Img.Image = Img.Effect.ApplyEffect( _originalImg.Image );
             pictureBox.Image = Img.Image;
 

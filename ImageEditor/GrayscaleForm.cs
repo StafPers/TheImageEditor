@@ -35,9 +35,9 @@ namespace ImageEditor
             // Use old values if it has already been applied 
             IImageEffect effect = history.HasEffect<GrayscaleEffect>()?.Effect;
             if( effect != null )
-                ( Img.Effect as GrayscaleEffect ).Amount = ( effect as GrayscaleEffect ).Amount;
+                ( Img.Effect as GrayscaleEffect ).SetValue(( effect as GrayscaleEffect ).GetValue());
 
-            barAmount.Value = Math.Min((int)( ( Img.Effect as GrayscaleEffect ).Amount * 100.0f), 100);
+            barAmount.Value = Math.Min((int)( ( Img.Effect as GrayscaleEffect ).GetValue() * 100.0f), 100);
             Img.Image = Img.Effect.ApplyEffect( _originalImg.Image );
             pictureBox.Image = Img.Image;
         }
@@ -50,7 +50,7 @@ namespace ImageEditor
         {
             float amount = barAmount.Value / 100.0f;
 
-            (Img.Effect as GrayscaleEffect).Amount = amount;
+            (Img.Effect as GrayscaleEffect).SetValue(amount);
             Img.Image = Img.Effect.ApplyEffect( _originalImg.Image );
             pictureBox.Image = Img.Image;
 

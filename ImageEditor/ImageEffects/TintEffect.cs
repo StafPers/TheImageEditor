@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace ImageEditor.ImageEffects
 {
-    class TintEffect : IImageEffect
+    class TintEffect : IImageEffect<Color>
     {
-        public Color Color { get; set; }
+        private Color _color;
 
         /// <summary>
         /// Creates a copy of the instance
@@ -16,9 +16,16 @@ namespace ImageEditor.ImageEffects
         public object Clone()
         {
             TintEffect newInstance = new TintEffect();
-            newInstance.Color = Color;
+            newInstance.SetValue(_color);
             return newInstance;
         }
+
+        public void SetValue( Color color )
+        {
+            _color = color;
+        }
+
+        public Color GetValue() => _color;
 
         /// <summary>
         /// Applies the effect to an image
@@ -47,9 +54,9 @@ namespace ImageEditor.ImageEffects
                         byte g = row[x + 1];
                         byte r = row[x + 2];
 
-                        row[x + 2] = Math.Min( ( byte )255, ( byte )( r + ( ( 255 - r ) * ( Color.R / 255.0f ) ) ) );
-                        row[x + 1] = Math.Min( ( byte )255, ( byte )( g + ( ( 255 - g ) * ( Color.G / 255.0f ) ) ) );
-                        row[x] = Math.Min( ( byte )255, ( byte )( b + ( ( 255 - b ) * ( Color.B / 255.0f ) ) ) );
+                        row[x + 2] = Math.Min( ( byte )255, ( byte )( r + ( ( 255 - r ) * ( _color.R / 255.0f ) ) ) );
+                        row[x + 1] = Math.Min( ( byte )255, ( byte )( g + ( ( 255 - g ) * ( _color.G / 255.0f ) ) ) );
+                        row[x] = Math.Min( ( byte )255, ( byte )( b + ( ( 255 - b ) * ( _color.B / 255.0f ) ) ) );
                     }
                 } );
             }

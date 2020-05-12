@@ -35,9 +35,9 @@ namespace ImageEditor
             // Use old values if it has already been applied 
             IImageEffect effect = history.HasEffect<BrightnessEffect>()?.Effect;
             if( effect != null)
-                ( Img.Effect as BrightnessEffect ).Amount = ( effect as BrightnessEffect ).Amount;
+                ( Img.Effect as BrightnessEffect ).SetValue(( effect as BrightnessEffect ).GetValue());
 
-            barAmount.Value = Math.Min((int)( ( Img.Effect as BrightnessEffect ).Amount * 100.0f), 100);
+            barAmount.Value = Math.Min((int)( ( Img.Effect as BrightnessEffect ).GetValue() * 100.0f), 100);
             Img.Image = Img.Effect.ApplyEffect( _originalImg.Image );
             pictureBox.Image = Img.Image;
         }
@@ -50,7 +50,7 @@ namespace ImageEditor
         {
             float amount = barAmount.Value / 100.0f;
 
-            (Img.Effect as BrightnessEffect).Amount = amount;
+            (Img.Effect as BrightnessEffect).SetValue(amount);
             Img.Image = Img.Effect.ApplyEffect( _originalImg.Image );
             pictureBox.Image = Img.Image;
 

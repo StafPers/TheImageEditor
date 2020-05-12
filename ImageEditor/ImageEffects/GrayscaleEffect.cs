@@ -6,21 +6,9 @@ using System.Threading.Tasks;
 
 namespace ImageEditor.ImageEffects
 {
-    class GrayscaleEffect : IImageEffect
+    class GrayscaleEffect : IImageEffect<float>
     {
         private float _amount = 1.0f;
-        public float Amount
-        {
-            get
-            {
-                return _amount;
-            }
-
-            set
-            {
-                _amount = MathHelper.Clamp( 0.0f, 1.0f, value );
-            }
-        }
 
         /// <summary>
         /// Creates a copy of the instance
@@ -28,9 +16,16 @@ namespace ImageEditor.ImageEffects
         public object Clone()
         {
             GrayscaleEffect newInstance = new GrayscaleEffect();
-            newInstance.Amount = Amount;
+            newInstance.SetValue(_amount);
             return newInstance;
         }
+
+        public void SetValue( float amount )
+        {
+            _amount = MathHelper.Clamp( 0.0f, 1.0f, amount );
+        }
+
+        public float GetValue() => _amount;
 
         /// <summary>
         /// Applies the effect to an image
@@ -59,8 +54,8 @@ namespace ImageEditor.ImageEffects
                         byte g = row[x + 1];
                         byte r = row[x + 2];
 
-                        float avg = (r * 0.3f + g * 0.59f + b * 0.11f) * Amount;
-                        float remaining = 1.0f - Amount;
+                        float avg = (r * 0.3f + g * 0.59f + b * 0.11f) * _amount;
+                        float remaining = 1.0f - _amount;
                         row[x] = ( byte )Math.Min( avg + ( b * remaining ), 255 );
                         row[x + 1] = ( byte )Math.Min( avg + ( g * remaining ), 255 );
                         row[x + 2] = ( byte )Math.Min( avg + ( r * remaining ), 255 );

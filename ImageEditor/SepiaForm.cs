@@ -35,9 +35,9 @@ namespace ImageEditor
             // Use old values if it has already been applied 
             IImageEffect effect = history.HasEffect<SepiaEffect>()?.Effect;
             if( effect != null )
-                ( Img.Effect as SepiaEffect ).Amount = ( effect as SepiaEffect ).Amount;
+                ( Img.Effect as SepiaEffect ).SetValue(( effect as SepiaEffect ).GetValue());
 
-            barAmount.Value = Math.Min((int)( ( Img.Effect as SepiaEffect ).Amount * 100.0f), 100);
+            barAmount.Value = Math.Min((int)( ( Img.Effect as SepiaEffect ).GetValue() * 100.0f), 100);
             Img.Image = Img.Effect.ApplyEffect( _originalImg.Image );
             pictureBox.Image = Img.Image;
         }
@@ -50,7 +50,7 @@ namespace ImageEditor
         {
             float amount = barAmount.Value / 100.0f;
 
-            (Img.Effect as SepiaEffect).Amount = amount;
+            (Img.Effect as SepiaEffect).SetValue(amount);
             Img.Image = Img.Effect.ApplyEffect( _originalImg.Image );
             pictureBox.Image = Img.Image;
 

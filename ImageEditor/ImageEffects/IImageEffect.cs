@@ -10,4 +10,14 @@ namespace ImageEditor.ImageEffects
     {
         Bitmap ApplyEffect( Bitmap image );
     }
+
+    /// <summary>
+    /// Interface used for effects which has some sort of parameter like Amount or Color
+    /// </summary>
+    /// <typeparam name="T">The datatype of the parameter</typeparam>
+    public interface IImageEffect<T> : IImageEffect
+    {
+        void SetValue( T val );
+        T GetValue();
+    }
 }

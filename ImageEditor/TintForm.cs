@@ -1,5 +1,6 @@
 ﻿using ImageEditor.ImageEffects;
 using System;
+using System.Drawing;
 
 namespace ImageEditor
 {
@@ -36,12 +37,13 @@ namespace ImageEditor
             // Use old values if it has already been applied 
             IImageEffect effect = history.HasEffect<TintEffect>()?.Effect;
             if( effect != null )
-                ( Img.Effect as TintEffect ).Color = ( effect as TintEffect ).Color;
+                ( Img.Effect as TintEffect ).SetValue(( effect as TintEffect ).GetValue());
 
             TintEffect oldTint = image.Effect as TintEffect;
-            barRed.Value = tintEffect.Color.R;
-            barGreen.Value = tintEffect.Color.G;
-            barBlue.Value = tintEffect.Color.B;
+            Color color = tintEffect.GetValue();
+            barRed.Value = color.R;
+            barGreen.Value = color.G;
+            barBlue.Value = color.B;
 
             ApplyEffect();
         }
@@ -63,7 +65,7 @@ namespace ImageEditor
         private void ColorChanged( object sender, EventArgs e )
         {
             TintEffect effect = Img.Effect as TintEffect;
-            effect.Color = System.Drawing.Color.FromArgb( barRed.Value, barGreen.Value, barBlue.Value );
+            effect.SetValue(Color.FromArgb( barRed.Value, barGreen.Value, barBlue.Value ));
 
             ApplyEffect();
 

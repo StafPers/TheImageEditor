@@ -6,21 +6,9 @@ using System.Threading.Tasks;
 
 namespace ImageEditor.ImageEffects
 {
-    class SepiaEffect : IImageEffect
+    class SepiaEffect : IImageEffect<float>
     {
         private float _amount = 1.0f;
-        public float Amount
-        {
-            get
-            {
-                return _amount;
-            }
-
-            set
-            {
-                _amount = MathHelper.Clamp(0.0f, 1.0f, value);
-            }
-        }
 
         /// <summary>
         /// Creates a copy of the instance
@@ -28,9 +16,16 @@ namespace ImageEditor.ImageEffects
         public object Clone()
         {
             SepiaEffect newInstance = new SepiaEffect();
-            newInstance.Amount = Amount;
+            newInstance.SetValue(_amount);
             return newInstance;
         }
+
+        public void SetValue( float amount )
+        {
+            _amount = MathHelper.Clamp( 0.0f, 1.0f, amount );
+        }
+
+        public float GetValue() => _amount;
 
         /// <summary>
         /// Applies the effect to an image
@@ -59,10 +54,10 @@ namespace ImageEditor.ImageEffects
                         byte oldG = row[x + 1];
                         byte oldR = row[x + 2];
 
-                        float remainder = 1.0f - Amount;
-                        int r = Math.Min(255, (int)((((oldR * 0.393f) + (oldG * 0.769f) + (oldB * 0.189f)) *  Amount) + (oldR * remainder)));
-                        int g = Math.Min(255, (int)((((oldR * 0.349f) + (oldG * 0.686f) + (oldB * 0.168f)) *  Amount) + (oldG * remainder)));
-                        int b = Math.Min(255, (int)((((oldR * 0.272f) + (oldG * 0.534f) + (oldB * 0.131f)) *  Amount) + (oldB * remainder)));
+                        float remainder = 1.0f - _amount;
+                        int r = Math.Min(255, (int)((((oldR * 0.393f) + (oldG * 0.769f) + (oldB * 0.189f)) *  _amount) + (oldR * remainder)));
+                        int g = Math.Min(255, (int)((((oldR * 0.349f) + (oldG * 0.686f) + (oldB * 0.168f)) *  _amount) + (oldG * remainder)));
+                        int b = Math.Min(255, (int)((((oldR * 0.272f) + (oldG * 0.534f) + (oldB * 0.131f)) *  _amount) + (oldB * remainder)));
 
                         row[x] = ( byte )b;
                         row[x + 1] = ( byte )g;

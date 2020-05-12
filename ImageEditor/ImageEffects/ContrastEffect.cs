@@ -5,10 +5,9 @@ using System.Threading.Tasks;
 
 namespace ImageEditor.ImageEffects
 {
-    class ContrastEffect : IImageEffect
+    class ContrastEffect : IImageEffect<float>
     {
         private float _amount = 0.5f;
-        public float Amount { get { return _amount; } set { _amount = MathHelper.Clamp( 0.0f, 1.0f, value ); } }
 
         /// <summary>
         /// Creates a copy of the instance
@@ -16,9 +15,16 @@ namespace ImageEditor.ImageEffects
         public object Clone()
         {
             ContrastEffect newInstance = new ContrastEffect();
-            newInstance.Amount = Amount;
+            newInstance.SetValue(_amount);
             return newInstance;
         }
+
+        public void SetValue( float amount )
+        {
+            _amount = MathHelper.Clamp( 0.0f, 1.0f, amount );
+        }
+
+        public float GetValue() => _amount;
 
         /// <summary>
         /// Applies the effect to an image
@@ -32,7 +38,7 @@ namespace ImageEditor.ImageEffects
             int bytesPerPixel = Bitmap.GetPixelFormatSize(outImg.PixelFormat) / 8;
             int height = outData.Height;
             int width = outData.Width * bytesPerPixel;
-            int contrast = (int)MathHelper.Lerp(-255.0f, 255.0f, Amount);
+            int contrast = (int)MathHelper.Lerp(-255.0f, 255.0f, _amount);
             float correctionFactor = (259.0f * (255.0f + contrast)) / (255.0f * (259.0f - contrast));
 
             //I'm using pointers in these functions because GetPixel and SetPixel are way to slow
