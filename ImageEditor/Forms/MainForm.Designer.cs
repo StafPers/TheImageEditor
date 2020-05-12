@@ -45,7 +45,7 @@
             this.icnBtnMinimize = new FontAwesome.Sharp.IconButton();
             this.icnBtnClose = new FontAwesome.Sharp.IconButton();
             this.panelMenu = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.panelFile = new System.Windows.Forms.Panel();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.fileMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -70,7 +70,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
             this.panelTitlebar.SuspendLayout();
             this.panelMenu.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.panelFile.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.panelForm.SuspendLayout();
             this.panelDesktop.SuspendLayout();
@@ -384,7 +384,7 @@
             // 
             // panelMenu
             // 
-            this.panelMenu.Controls.Add(this.panel1);
+            this.panelMenu.Controls.Add(this.panelFile);
             this.panelMenu.Controls.Add(this.lblTitle);
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelMenu.Location = new System.Drawing.Point(0, 0);
@@ -393,14 +393,14 @@
             this.panelMenu.TabIndex = 0;
             this.panelMenu.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelTitlebar_MouseDown);
             // 
-            // panel1
+            // panelFile
             // 
-            this.panel1.Controls.Add(this.menuStrip);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 34);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(129, 22);
-            this.panel1.TabIndex = 8;
+            this.panelFile.Controls.Add(this.menuStrip);
+            this.panelFile.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelFile.Location = new System.Drawing.Point(0, 34);
+            this.panelFile.Name = "panelFile";
+            this.panelFile.Size = new System.Drawing.Size(129, 22);
+            this.panelFile.TabIndex = 8;
             // 
             // menuStrip
             // 
@@ -638,8 +638,8 @@
             this.panelTitlebar.ResumeLayout(false);
             this.panelMenu.ResumeLayout(false);
             this.panelMenu.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.panelFile.ResumeLayout(false);
+            this.panelFile.PerformLayout();
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
             this.panelForm.ResumeLayout(false);
@@ -684,7 +684,7 @@
         private System.Windows.Forms.Label lblTitle;
         private FontAwesome.Sharp.IconButton icnBtnCircle;
         private FontAwesome.Sharp.IconButton icnBtnInvert;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panelFile;
         private FontAwesome.Sharp.IconButton icnBtnClear;
     }
 }
