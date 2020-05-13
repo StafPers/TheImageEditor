@@ -626,7 +626,6 @@
             this.Controls.Add(this.panelForm);
             this.Controls.Add(this.panelTitlebar);
             this.Controls.Add(this.panelEffects);
-            this.Icon = global::ImageEditor.Properties.Resources.AppIcon;
             this.MinimumSize = new System.Drawing.Size(680, 175);
             this.Name = "MainForm";
             this.Text = "The Image Editor";

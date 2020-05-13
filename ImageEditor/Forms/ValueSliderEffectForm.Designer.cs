@@ -140,7 +140,6 @@ namespace ImageEditor
             this.ClientSize = new System.Drawing.Size(682, 395);
             this.Controls.Add(this.panelImg);
             this.Controls.Add(this.panelBtns);
-            this.Icon = global::ImageEditor.Properties.Resources.AppIcon;
             this.Name = "ValueSliderEffectForm";
             this.panelImg.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
@@ -148,7 +147,6 @@ namespace ImageEditor
             this.panelBtns.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.barAmount)).EndInit();
             this.ResumeLayout(false);
-
         }
 
         #endregion

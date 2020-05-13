@@ -62,7 +62,7 @@ namespace ImageEditor
             // 
             // panelBtns
             // 
-            this.panelBtns.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(62)))), ((int)(((byte)(70)))));
+            this.panelBtns.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(40)))), ((int)(((byte)(49)))));
             this.panelBtns.Controls.Add(this.barBlue);
             this.panelBtns.Controls.Add(this.lblBlue);
             this.panelBtns.Controls.Add(this.barGreen);
@@ -213,7 +213,6 @@ namespace ImageEditor
             this.ClientSize = new System.Drawing.Size(682, 395);
             this.Controls.Add(this.panelImg);
             this.Controls.Add(this.panelBtns);
-            this.Icon = global::ImageEditor.Properties.Resources.AppIcon;
             this.Name = "ColorSliderEffectForm";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.panelBtns.ResumeLayout(false);

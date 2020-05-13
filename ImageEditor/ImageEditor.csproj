@@ -129,7 +129,6 @@
   <ItemGroup>
     <None Include="dragdrop.png" />
     <None Include="logo.png" />
-    <None Include="Appicon-32.ico" />
     <Content Include="AppIcon-96.ico" />
   </ItemGroup>
   <ItemGroup>
