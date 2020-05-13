@@ -590,6 +590,7 @@ namespace ImageEditor
                     pictureBox.Image = img;
                     _curImageId = ++_imageIdCounter;
                     _historyManager.Append( new HistoryImage( _curImageId, img ) );
+                    UpdateGui();
                 }
             }
         }
