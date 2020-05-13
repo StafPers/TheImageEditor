@@ -62,6 +62,7 @@ namespace ImageEditor
             // 
             // panelBtns
             // 
+            this.panelBtns.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(62)))), ((int)(((byte)(70)))));
             this.panelBtns.Controls.Add(this.barBlue);
             this.panelBtns.Controls.Add(this.lblBlue);
             this.panelBtns.Controls.Add(this.barGreen);
@@ -196,6 +197,7 @@ namespace ImageEditor
             // 
             // panelImg
             // 
+            this.panelImg.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(62)))), ((int)(((byte)(70)))));
             this.panelImg.Controls.Add(this.pictureBox);
             this.panelImg.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelImg.Location = new System.Drawing.Point(0, 0);

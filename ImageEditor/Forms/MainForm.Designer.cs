@@ -86,7 +86,7 @@
             this.pictureBox.Location = new System.Drawing.Point(0, 0);
             this.pictureBox.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(698, 442);
+            this.pictureBox.Size = new System.Drawing.Size(698, 445);
             this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox.TabIndex = 0;
             this.pictureBox.TabStop = false;
@@ -96,7 +96,7 @@
             // panelEffects
             // 
             this.panelEffects.AutoScroll = true;
-            this.panelEffects.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(30)))), ((int)(((byte)(68)))));
+            this.panelEffects.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(40)))), ((int)(((byte)(49)))));
             this.panelEffects.Controls.Add(this.icnBtnCircle);
             this.panelEffects.Controls.Add(this.icnBtnInvert);
             this.panelEffects.Controls.Add(this.icnBtnContrast);
@@ -301,7 +301,7 @@
             // 
             // panelTitlebar
             // 
-            this.panelTitlebar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(25)))), ((int)(((byte)(62)))));
+            this.panelTitlebar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(40)))), ((int)(((byte)(49)))));
             this.panelTitlebar.Controls.Add(this.icnBtnMaximize);
             this.panelTitlebar.Controls.Add(this.icnBtnMinimize);
             this.panelTitlebar.Controls.Add(this.icnBtnClose);
@@ -309,14 +309,14 @@
             this.panelTitlebar.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTitlebar.Location = new System.Drawing.Point(200, 0);
             this.panelTitlebar.Name = "panelTitlebar";
-            this.panelTitlebar.Size = new System.Drawing.Size(728, 56);
+            this.panelTitlebar.Size = new System.Drawing.Size(728, 53);
             this.panelTitlebar.TabIndex = 10;
             this.panelTitlebar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelTitlebar_MouseDown);
             // 
             // icnBtnMaximize
             // 
             this.icnBtnMaximize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.icnBtnMaximize.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(25)))), ((int)(((byte)(62)))));
+            this.icnBtnMaximize.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(40)))), ((int)(((byte)(49)))));
             this.icnBtnMaximize.FlatAppearance.BorderSize = 0;
             this.icnBtnMaximize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.icnBtnMaximize.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
@@ -339,7 +339,7 @@
             // icnBtnMinimize
             // 
             this.icnBtnMinimize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.icnBtnMinimize.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(25)))), ((int)(((byte)(62)))));
+            this.icnBtnMinimize.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(40)))), ((int)(((byte)(49)))));
             this.icnBtnMinimize.FlatAppearance.BorderSize = 0;
             this.icnBtnMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.icnBtnMinimize.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
@@ -362,7 +362,7 @@
             // icnBtnClose
             // 
             this.icnBtnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.icnBtnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(25)))), ((int)(((byte)(62)))));
+            this.icnBtnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(40)))), ((int)(((byte)(49)))));
             this.icnBtnClose.FlatAppearance.BorderSize = 0;
             this.icnBtnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.icnBtnClose.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
@@ -389,7 +389,7 @@
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelMenu.Location = new System.Drawing.Point(0, 0);
             this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(129, 56);
+            this.panelMenu.Size = new System.Drawing.Size(129, 53);
             this.panelMenu.TabIndex = 0;
             this.panelMenu.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelTitlebar_MouseDown);
             // 
@@ -397,14 +397,14 @@
             // 
             this.panelFile.Controls.Add(this.menuStrip);
             this.panelFile.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelFile.Location = new System.Drawing.Point(0, 34);
+            this.panelFile.Location = new System.Drawing.Point(0, 31);
             this.panelFile.Name = "panelFile";
             this.panelFile.Size = new System.Drawing.Size(129, 22);
             this.panelFile.TabIndex = 8;
             // 
             // menuStrip
             // 
-            this.menuStrip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(25)))), ((int)(((byte)(62)))));
+            this.menuStrip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(40)))), ((int)(((byte)(49)))));
             this.menuStrip.Font = new System.Drawing.Font("Arimo", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileMenuItem});
@@ -479,7 +479,7 @@
             // 
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Arimo", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.ForeColor = System.Drawing.Color.Gainsboro;
+            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(87)))), ((int)(((byte)(94)))), ((int)(((byte)(105)))));
             this.lblTitle.Location = new System.Drawing.Point(11, 9);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(106, 16);
@@ -492,39 +492,39 @@
             this.panelForm.Controls.Add(this.panelRightPad);
             this.panelForm.Controls.Add(this.panelBtns);
             this.panelForm.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelForm.Location = new System.Drawing.Point(200, 56);
+            this.panelForm.Location = new System.Drawing.Point(200, 53);
             this.panelForm.Name = "panelForm";
-            this.panelForm.Size = new System.Drawing.Size(728, 502);
+            this.panelForm.Size = new System.Drawing.Size(728, 505);
             this.panelForm.TabIndex = 11;
             // 
             // panelDesktop
             // 
-            this.panelDesktop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(33)))), ((int)(((byte)(74)))));
+            this.panelDesktop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(62)))), ((int)(((byte)(70)))));
             this.panelDesktop.Controls.Add(this.pictureBox);
             this.panelDesktop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelDesktop.Location = new System.Drawing.Point(0, 0);
             this.panelDesktop.Margin = new System.Windows.Forms.Padding(0);
             this.panelDesktop.Name = "panelDesktop";
-            this.panelDesktop.Size = new System.Drawing.Size(698, 442);
+            this.panelDesktop.Size = new System.Drawing.Size(698, 445);
             this.panelDesktop.TabIndex = 12;
             // 
             // panelRightPad
             // 
-            this.panelRightPad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(25)))), ((int)(((byte)(62)))));
+            this.panelRightPad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(40)))), ((int)(((byte)(49)))));
             this.panelRightPad.Dock = System.Windows.Forms.DockStyle.Right;
             this.panelRightPad.Location = new System.Drawing.Point(698, 0);
             this.panelRightPad.Name = "panelRightPad";
-            this.panelRightPad.Size = new System.Drawing.Size(30, 442);
+            this.panelRightPad.Size = new System.Drawing.Size(30, 445);
             this.panelRightPad.TabIndex = 11;
             // 
             // panelBtns
             // 
-            this.panelBtns.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(25)))), ((int)(((byte)(62)))));
+            this.panelBtns.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(40)))), ((int)(((byte)(49)))));
             this.panelBtns.Controls.Add(this.icnBtnClear);
             this.panelBtns.Controls.Add(this.icnBtnSave);
             this.panelBtns.Controls.Add(this.icnBtnLoad);
             this.panelBtns.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelBtns.Location = new System.Drawing.Point(0, 442);
+            this.panelBtns.Location = new System.Drawing.Point(0, 445);
             this.panelBtns.Name = "panelBtns";
             this.panelBtns.Size = new System.Drawing.Size(728, 60);
             this.panelBtns.TabIndex = 10;
@@ -532,7 +532,7 @@
             // icnBtnClear
             // 
             this.icnBtnClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.icnBtnClear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(30)))), ((int)(((byte)(68)))));
+            this.icnBtnClear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(40)))), ((int)(((byte)(49)))));
             this.icnBtnClear.FlatAppearance.BorderSize = 0;
             this.icnBtnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.icnBtnClear.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
@@ -556,7 +556,7 @@
             // 
             // icnBtnSave
             // 
-            this.icnBtnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(30)))), ((int)(((byte)(68)))));
+            this.icnBtnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(40)))), ((int)(((byte)(49)))));
             this.icnBtnSave.FlatAppearance.BorderSize = 0;
             this.icnBtnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.icnBtnSave.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
@@ -580,7 +580,7 @@
             // 
             // icnBtnLoad
             // 
-            this.icnBtnLoad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(30)))), ((int)(((byte)(68)))));
+            this.icnBtnLoad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(40)))), ((int)(((byte)(49)))));
             this.icnBtnLoad.FlatAppearance.BorderSize = 0;
             this.icnBtnLoad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.icnBtnLoad.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
@@ -604,9 +604,9 @@
             // 
             // panelShadow
             // 
-            this.panelShadow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(24)))), ((int)(((byte)(58)))));
+            this.panelShadow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(255)))), ((int)(((byte)(62)))));
             this.panelShadow.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelShadow.Location = new System.Drawing.Point(200, 56);
+            this.panelShadow.Location = new System.Drawing.Point(200, 53);
             this.panelShadow.Name = "panelShadow";
             this.panelShadow.Size = new System.Drawing.Size(728, 9);
             this.panelShadow.TabIndex = 12;

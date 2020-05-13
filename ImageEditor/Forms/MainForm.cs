@@ -40,20 +40,6 @@ namespace ImageEditor
         }
 
         /// <summary>
-        /// Colors used for highlighting buttons
-        /// </summary>
-        private struct ButtonColors
-        {
-            public static Color color1 = Color.FromArgb(172, 126, 241);
-            public static Color color2 = Color.FromArgb(249, 118, 176);
-            public static Color color3 = Color.FromArgb(253, 138, 114);
-            public static Color color4 = Color.FromArgb(95, 77, 221);
-            public static Color color5 = Color.FromArgb(249, 88, 155);
-            public static Color color6 = Color.FromArgb(24, 161, 155);
-            public static Color color7 = Color.FromArgb(53, 177, 211);
-        }
-
-        /// <summary>
         /// Creates and sets variables
         /// </summary>
         private void InitializeGui()
@@ -97,21 +83,22 @@ namespace ImageEditor
         /// <summary>
         /// Visually highlights a button
         /// </summary>
-        private void HightlightButton(object sender, Color color)
+        private void HightlightButton(object sender)
         {
             if(sender != null)
             {
                 DisableHighlight();
 
+                Color highlightColor = Color.FromArgb(168, 255, 62);
                 _currentButton = sender as IconButton;
-                _currentButton.BackColor = Color.FromArgb( 37, 36, 81 );
-                _currentButton.ForeColor = color;
+                _currentButton.BackColor = Color.FromArgb( 57, 62, 70 );
+                _currentButton.ForeColor = highlightColor; 
                 _currentButton.TextAlign = ContentAlignment.MiddleCenter;
-                _currentButton.IconColor = color;
+                _currentButton.IconColor = highlightColor;
                 _currentButton.TextImageRelation = TextImageRelation.TextBeforeImage;
                 _currentButton.ImageAlign = ContentAlignment.MiddleRight;
 
-                _leftBorderBtn.BackColor = color;
+                _leftBorderBtn.BackColor = highlightColor;
                 _leftBorderBtn.Location = new Point( 0, _currentButton.Location.Y );
                 _leftBorderBtn.Visible = true;
                 _leftBorderBtn.BringToFront();
@@ -149,7 +136,7 @@ namespace ImageEditor
         {
             if(_currentButton != null)
             {
-                _currentButton.BackColor = Color.FromArgb( 31, 30, 68 );
+                _currentButton.BackColor = Color.FromArgb( 34, 40, 49 );
                 _currentButton.ForeColor = Color.Gainsboro;
                 _currentButton.TextAlign = ContentAlignment.MiddleLeft;
                 _currentButton.IconColor = Color.Gainsboro;
@@ -253,7 +240,7 @@ namespace ImageEditor
             if( _historyManager.GetCurrent() == null )
                 return;
 
-            HightlightButton( sender, ButtonColors.color1 );
+            HightlightButton( sender );
             ShowEffectForm( _grayscaleForm );
         }
 
@@ -265,7 +252,7 @@ namespace ImageEditor
             if( _historyManager.GetCurrent() == null )
                 return;
 
-            HightlightButton( sender, ButtonColors.color6 );
+            HightlightButton( sender );
             ShowEffectForm( _sepiaForm );
         }
 
@@ -277,7 +264,7 @@ namespace ImageEditor
             if( _historyManager.GetCurrent() == null )
                 return;
 
-            HightlightButton( sender, ButtonColors.color5 );
+            HightlightButton( sender );
             ShowEffectForm( _invertForm );
         }
 
@@ -289,7 +276,7 @@ namespace ImageEditor
             if( _historyManager.GetCurrent() == null )
                 return;
 
-            HightlightButton( sender, ButtonColors.color4 );
+            HightlightButton( sender );
             ShowEffectForm( _circleForm );
         }
 
@@ -301,7 +288,7 @@ namespace ImageEditor
             if( _historyManager.GetCurrent() == null )
                 return;
 
-            HightlightButton( sender, ButtonColors.color3 );
+            HightlightButton( sender );
             ShowEffectForm( _tintForm );
         }
 
@@ -314,7 +301,7 @@ namespace ImageEditor
                 return;
 
             ShowEffectForm( _brightnessForm );
-            HightlightButton( sender, ButtonColors.color2 );
+            HightlightButton( sender );
         }
 
         /// <summary>
@@ -325,7 +312,7 @@ namespace ImageEditor
             if( _historyManager.GetCurrent() == null )
                 return;
 
-            HightlightButton( sender, ButtonColors.color7 );
+            HightlightButton( sender );
             ShowEffectForm( _contrashForm );
         }
 
