@@ -507,7 +507,7 @@ namespace ImageEditor
         /// </summary>
         private void redoMenuItem_Click( object sender, System.EventArgs e )
         {
-            HistoryImage img = _historyManager.Revert();
+            HistoryImage img = _historyManager.Redo();
             if( img != null )
             {
                 _curImageId = img.Id;
