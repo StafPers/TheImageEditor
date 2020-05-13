@@ -189,7 +189,8 @@ namespace ImageEditor
         private void UpdateGui()
         {
             // Display * next to title if the file hasn't been saved
-            if(_historyManager.GetCurrent().IsSaved)
+            HistoryImage img = _historyManager.GetCurrent();
+            if(img.IsSaved || (img.Effect == null))
             {
                 lblTitle.Text = lblTitle.Text.Replace( "*", "" );
             }
@@ -451,7 +452,7 @@ namespace ImageEditor
         /// </summary>
         private void MainForm_FormClosing( object sender, FormClosingEventArgs e )
         {
-            if(!_historyManager.GetIsSaved())
+            if(!_historyManager.GetIsSaved() && _historyManager.GetCurrent()?.Effect != null)
                 PromptForSave();
         }
 
@@ -578,6 +579,9 @@ namespace ImageEditor
         /// </summary>
         private void icnBtnClear_Click( object sender, EventArgs e )
         {
+            if( _historyManager.GetCurrent()?.Effect == null )
+                return;
+
             if( _curImageId > 0 )
             {
                 Bitmap img = _historyManager.ClearEffects();

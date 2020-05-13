@@ -203,19 +203,7 @@ namespace ImageEditor
 
             // I need to trim duplicates starting from the back in order for 
             // The effects to be applied correctly
-            for(int i = effectsToApply.Count - 1; i > 0; --i )
-            {
-                IImageEffect effect = effectsToApply[i].Effect;
-
-                for(int j = i - 1; j >= 0; --j )
-                {
-                    if(effect.GetType() == effectsToApply[j].Effect.GetType())
-                    {
-                        --i;
-                        effectsToApply.RemoveAt( j );
-                    }
-                }
-            }
+            RemoveDuplicates( effectsToApply );
 
             foreach( HistoryImage img in effectsToApply )
             {
@@ -229,6 +217,23 @@ namespace ImageEditor
             }
 
             return original;
+        }
+
+        private void RemoveDuplicates(List<HistoryImage> images)
+        {
+            for( int i = images.Count - 1; i > 0; --i )
+            {
+                IImageEffect effect = images[i].Effect;
+
+                for( int j = i - 1; j >= 0; --j )
+                {
+                    if( effect.GetType() == images[j].Effect.GetType() )
+                    {
+                        --i;
+                        images.RemoveAt( j );
+                    }
+                }
+            }
         }
     }
 }
