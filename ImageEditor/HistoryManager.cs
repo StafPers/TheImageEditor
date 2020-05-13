@@ -199,7 +199,13 @@ namespace ImageEditor
             if( original == null )
                 return null;
 
-            List<HistoryImage> effectsToApply = _imageHistory.Where(x => x.Id == id && x.Effect != null && !(x.Effect is T)).ToList();
+            List<HistoryImage> effectsToApply = _imageHistory
+                .Where((x, index) =>
+                index <= CurrIndex &&
+                x.Id == id &&
+                x.Effect != null &&
+                !(x.Effect is T))
+                .ToList();
 
             // I need to trim duplicates starting from the back in order for 
             // The effects to be applied correctly
